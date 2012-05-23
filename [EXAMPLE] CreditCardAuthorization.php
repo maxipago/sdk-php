@@ -1,34 +1,35 @@
 <?php
-// Inclui o arquivo de chamada à maxiPago! //
+// Includes the 'maxipago_payment.php' file //
 include_once "maxipago_payment.php";
 
-// Determina as credenciais da loja //
+// Sets the Merchant credentials. These should be kept secret! //
 $credentials = array("merchantId" => "mid", "merchantKey" => "secret-key");
 
-// Versão da API, que pode ser checada aqui. //
+// Sets the API version //
 define("version", "3.1.1.15");
 
-// URL para envio da transação. Útil para apontar entre os ambientes de Teste e Produção //
+// Sets the target URL for the request //
 define("url", "https://www.url.com.");
 
-// Dados básicos obrigatórios para uma transação //
+// Transaction data array //
+// Below we have the mandatory fields for a credit card transaction //
 $data = array(
-  "debug" => "1", // Modo debug. Imprime os XMLs de requisição e resposta na tela. //
-  "processorID" => "1", // Código da operadora de cartão usada. //
-  "referenceNum" => "TestTransaction123", // Número do Pedido. Recomenda-se ser único. //
-  "chargeTotal" => "100.00", // Valor do pedido. Decimais separado por ponto ("."). //
-  "numberOfInstallments" => "2", // Número de parcelas. Não enviar se for à vista //
-  "chargeInterest" => "N", // Cobrança de juros (parcelado loja x cartão). Não enviar se for à vista //
-  "bname" => "Fulano de Tal", // Nome do cliente //
-  "number" => "5555555555554444", // Número do cartão de crédito //
-  "expMonth" => "12", // Mês de vencimento //
-  "expYear" => "2020", // Ano de vencimento com 4 dígitos //
-  "cvvNumber" => "111", // Código de segurança do cartão //
+  "debug" => "1", // Debug mode. Prints request and response //
+  "processorID" => "1", // Processor routing code: chooses the processor to which send the transaction to //
+  "referenceNum" => "TestTransaction123", // Merchant order number, for reference purposes //
+  "chargeTotal" => "100.00", // Total order amount in USD format //
+  "numberOfInstallments" => "2", // Number of installments. If no installments then do not send.  //
+  "chargeInterest" => "N", // Installment interest flag. If no installments then do not send.  //
+  "bname" => "Fulano de Tal", // Customer name //
+  "number" => "5555555555554444", // Credit card number //
+  "expMonth" => "12", // Expiration month //
+  "expYear" => "2020", // Expiration year; 4 digits //
+  "cvvNumber" => "111", // Credit card security code //
 ); 
 
-// Chama a função 'maxipago_payment' passando como Operação uma Venda Direta ("sale") //
-$transaction = maxipago_payment("auth", $credentials, $data, version, url);
+// Calls the 'maxipago_payment' function passing a Sale (Auth+Capture) transaction //
+$transaction = maxipago_payment("sale", $credentials, $data, version, url);
 
-// Imprime o array de retorno //
+// Prints the return array //
 print_r($transaction);
 ?> 
