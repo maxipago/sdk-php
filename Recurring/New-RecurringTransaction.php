@@ -4,7 +4,6 @@ $recurring = array(
   "processorID" => "1",
   "referenceNum" => "TestTransaction123",
   "chargeTotal" => "10.00",
-  "authentication" => "", // Only for Cielo. Please see documentation. //
   "numberOfInstallments" => "2",
   "chargeInterest" => "N",
   "number" => "4111111111111111",
@@ -30,11 +29,12 @@ $recurring = array(
   "scountry" => "BR", 
   "sphone" => "1121737900",
   "semail" => "ciclanodetal@email.com", 
-  "comments" => "Pedido de teste.", 
-  "recurring" => "0", // Recurring transaction flag //
-  "startDate" => "", // YYYY-MM-DD //
-  "frequency" => "", // Frequency of payment (1, 3, 6, …) //
-  "period" => "", // Internval: 'daily', 'weekly', 'monthly' //
-  "installments" => "", // Total number of payments //
-  "failureThreshold" => "" // Number of retries if Declined/Error //
+  "comments" => "Comments about this transaction",
+  // Below is a recurring order charged every MONTH, for 12 MONTHS, starting on DEC-12-2015 //
+  "recurring" => "1", // Recurring transaction flag. 1=Recurring //
+  "startDate" => "2015-12-25", // YYYY-MM-DD //
+  "frequency" => "1", // Frequency of payment (1, 3, 6, …) //
+  "period" => "monthly", // Internval: 'daily', 'weekly', 'monthly' //
+  "installments" => "12", // Total number of payments //
+  "failureThreshold" => "2" // Number of retries if Declined/Error //
 );
