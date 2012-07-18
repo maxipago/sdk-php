@@ -1,5 +1,9 @@
-// Command: "update-consumer"
-$updateConsumer = array(
+<?php
+include_once "maxipago_payment.php";
+$credentials = array("merchantId" => "mid", "merchantKey" => "secret-key");
+define("version", "3.1.1.15");
+define("url", "https://www.url.com.");
+$data = array(
   "debug" => "1",
   "customerIdExt" => "98765421",
   "firstName" => "Fulano",
@@ -16,6 +20,6 @@ $updateConsumer = array(
   "alternatePhone" => "2140099401",
   "sex" => "M"
 );
-
-
-
+$transaction = maxipago_payment("update-consumer", $credentials, $data, version, url);
+print_r($transaction);
+?>

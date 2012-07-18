@@ -1,12 +1,16 @@
-// Command: "boleto"
-$boleto = array(
-  "debug" = "1",
-  "processorID" = "12",
-  "referenceNumber" = "TestBoleto123",
-  "chargeTotal" = "10.00",
-  "number" = "01234567"
-  "expirationDate" = "2020-12-25",
-  "instructions" = "Sr. Caixa, não receber após vencimento.;Não receber pagamento com cheque.",
+<?php
+include_once "maxipago_payment.php";
+$credentials = array("merchantId" => "mid", "merchantKey" => "secret-key");
+define("version", "3.1.1.15");
+define("url", "https://www.url.com.");
+$data = array(
+  "debug" => "1",
+  "processorID" => "12",
+  "referenceNumber" => "TestBoleto123",
+  "chargeTotal" => "10.00",
+  "number" => "01234567"
+  "expirationDate" => "2020-12-25",
+  "instructions" => "Sr. Caixa, não receber após vencimento.;Não receber pagamento com cheque.",
   "ipAddress" => "123.123.123.123", 
   "bname" => "Fulano de Tal",
   "baddress" => "Av. República do Chile, 230",
@@ -27,4 +31,7 @@ $boleto = array(
   "sphone" => "1121737900",
   "semail" => "ciclanodetal@email.com", 
   "comments" => "Pedido de teste.", 
-);
+); 
+$transaction = maxipago_payment("boleto", $credentials, $data, version, url);
+print_r($transaction);
+?>

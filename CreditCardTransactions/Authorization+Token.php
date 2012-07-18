@@ -1,5 +1,9 @@
-// Command: "token-auth"
-$tokenAuth = array(
+<?php
+include_once "maxipago_payment.php";
+$credentials = array("merchantId" => "mid", "merchantKey" => "secret-key");
+define("version", "3.1.1.15");
+define("url", "https://www.url.com.");
+$data = array(
   "debug" => "1",
   "processorID" => "1", 
   "referenceNum" => "TestTransaction123", 
@@ -30,3 +34,6 @@ $tokenAuth = array(
   "semail" => "ciclanodetal@email.com", 
   "comments" => "Pedido de teste."
 );
+$transaction = maxipago_payment("token-auth", $credentials, $data, version, url);
+print_r($transaction);
+?>

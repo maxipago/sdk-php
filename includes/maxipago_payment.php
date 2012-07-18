@@ -515,4 +515,4 @@ function maxipago_payment($transactionType, $mid, $data, $version, $mp_url) {
   $maxiPago_result = mp_xml($xmlRequest, $requestType, $mp_url, $data["debug"]);
   return $maxiPago_result;
 } 
-?>
+?>c
