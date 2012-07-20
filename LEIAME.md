@@ -18,11 +18,11 @@ Para incluir use o código a seguir:
 
 ## Ambiente e Credenciais ##
 
-Para poder enviar requisições você precisará de Credenciais válidas. Você pode conseguí-las com nosso Suporte no endereço suporte [@] maxipago [.] com.
+Para poder enviar requisições você precisará de Credenciais válidas. Você pode conseguí-las com nosso Suporte.
 
 A **maxiPago!** oferece um ambiente de teste (*"sandbox"*) totalmente funcional para simular as transações. Você precisa definir o ambiente para que a biblioteca saiba para onde enviar as transações.
 
-Para definier o ambiente use este código:
+Para definir o ambiente use este código:
 
 		define("url", "https://www.url-da-api-maxipago.net");
 		
@@ -51,43 +51,50 @@ Você também precisa informar as suas Credenciais, o que pode ser feito declara
 
 * **Boleto:** Transações feitas com Boleto funcionam de forma diferente das transações com cartão de crédito. Aqui geramos um boleto e retornamos uma URL para comprador que dá acesso ao boleto. Ela pode ser acessada a qualquer momento antes do vencimento do boleto e até 60 dias após o vencimento.
 
+## Requisições ##
+
+Para mandar uma requisição à **maxiPago!** você deve chamar a função **maxipago_payment()**, da seguinte forma:
+
+        maxipago_payment("comando", $credentials, $data, version, url);
+
+Cada método tem seu próprio comando, listados no tópico abaixo.
+
+Você achará exemplos de cada uma das requisições neste repositório. Se você tiver alguma dúvida sobre o envio ou resposta da transação, [por favor consulte nossa documentação](http://www.maxipago.com/docs/maxiPago_API_Ultima.pdf). Você também pode entrar em contato com nosso suporte, se preferir.
+
 
 ## Métodos disponíveis ##
 
 Esta é uma lista completa dos comandos que podem ser executados com esta biblioteca.
 
 * **Transações de Cartão de Crédito**
- * Autorização 
- * Captura 
- * Venda Direta (Autorização + Capura) 
- * Autorização com Token (cartão salvo)
- * Venda Direta com Token (cartão salvo) 
- * Cancelamento (*Void*)
- * Estorno 
+ * Autorização **[comando: "auth"]**
+ * Captura **[comando: "capture"]**
+ * Venda Direta (Autorização + Capura) **[comando: "sale"]** 
+ * Autorização com Token (cartão salvo) **[comando: "token-auth"]**
+ * Venda Direta com Token (cartão salvo) **[comando: "token-sale"]** 
+ * Salvar cartão automaticamente **[comando: "auth" ou "sale"]**
+ * Cancelamento (*Void*) **[comando: "void"]**
+ * Estorno **[comando: "refund"]** 
  
 * **Transações Recorrentes**
- * Criar nova recorrência
+ * Criar nova recorrência **[comando: "sale"]**
+ * Cancel a recurring billing **[command: "cancel-recurring"]**
  
 * **Transações de Boleto**
- * Criar boleto
+ * Criar boleto **[comando: "boleto"]**
  
 * **Relatórios**
- * Sondar uma transação
- * Sondar uma lista de transações
- * Paginar a lista de transações 
- * Sondar um relatório pendente
+ * Sondar uma transação **[comando: "report"]**
+ * Sondar uma lista de transações **[comando: "report"]**
+ * Paginar a lista de transações **[comando: "report"]** 
+ * Sondar um relatório pendente **[comando: "report"]**
  
 * **Cadastro de Cliente / Salvar Cartão**
- * Criar um perfil  *(um perfil de cliente precisa ser criado antes de se salvar um cartão)*
- * Atualizar um perfil 
- * Remover um perfil 
- * Adicionar um cartão de crédito
- * Remover um cartão de crédito
-
-
-## Requisições ##
-
-Você achará exemplos de cada uma das requisições neste repositório. Se você tiver alguma dúvida sobre o envio ou resposta da transação, [por favor consulte nossa documentação](http://www.maxipago.com/docs/maxiPago_API_Ultima.pdf). Você também pode entrar em contato com nosso suporte, se preferir.
+ * Criar um perfil  *(um perfil de cliente precisa ser criado antes de se salvar um cartão)* **[comando: "add-consumer"]**
+ * Atualizar um perfil **[comando: "update-consumer"]** 
+ * Remover um perfil **[comando: "delete-consumer"]**
+ * Adicionar um cartão de crédito **[comando: "add-card-onfile"]**
+ * Remover um cartão de crédito **[comando: "remove-card-onfile"]**
 
 
 ## Suporte ##

@@ -1,5 +1,5 @@
 <?php
-// A função 'mp_xml' lida com o XML de requisição e de resposta.
+// DO NOT MODIFY //
 function mp_xml($xmlRequest, $startElement, $mp_url, $debug) {
 	$buildxml = new XmlWriter();
 	$buildxml->openMemory();
@@ -92,7 +92,6 @@ function mp_xml($xmlRequest, $startElement, $mp_url, $debug) {
 	if ($debug == 1) { echo "<br>----------['maxipago_payment' Response]----------<br>"; print_r($maxiPago_result); echo "<br>------------------------------------------<br><br>"; }
 	return $maxiPago_result;
 }
-// A função 'maxipago_payment' define os campos a serem enviados de acordo com o tipo de transação.
 function maxipago_payment($transactionType, $mid, $data, $version, $mp_url) {
   if (!is_array($mid) || !is_array($data) || empty($transactionType) || empty($mp_url) || empty($version)) { $maxiPago_result["error"] = "'payment_function' error: expected to receive (string), (array), (array), (version), (url)."; return $maxiPago_result; }
   if (($transactionType == "sale") || ($transactionType == "auth")) {
@@ -388,6 +387,19 @@ function maxipago_payment($transactionType, $mid, $data, $version, $mp_url) {
 	);	
   	$requestType = "api-request";
   }
+  elseif ($transactionType == "cancel-recurring") {
+	$xmlRequest = array(
+		"verification" => array(
+			"merchantId" => $mid["merchantId"],
+			"merchantKey" => $mid["merchantKey"]
+		),
+		"command" => $transactionType,
+		"request" => array(
+			"orderID" => $data["orderID"],
+		)
+	);	
+  	$requestType = "api-request";
+  }
   elseif (($transactionType == "token-sale") || ($transactionType == "token-auth")) {
   	$transactionType = str_ireplace("token-","",$transactionType);
 	$xmlRequest = array(
@@ -515,4 +527,4 @@ function maxipago_payment($transactionType, $mid, $data, $version, $mp_url) {
   $maxiPago_result = mp_xml($xmlRequest, $requestType, $mp_url, $data["debug"]);
   return $maxiPago_result;
 } 
-?>c
+?>

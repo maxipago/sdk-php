@@ -18,7 +18,7 @@ To include use the following code:
 
 ## Environment and Credentials ##
 
-In order to send requests you will need valid Merchant Credentials. They can be obtained with our Customer Support team at support [@] maxipago [.] com.
+In order to send requests you will need valid Merchant Credentials. They can be obtained with our Customer Support team.
 
 **maxiPago!** provides a fully functional sandbox environment to simulate the transaction responses. You need to set the environment so the library knows where to send the transactions to.
 
@@ -51,48 +51,54 @@ You also need to provide your Merchant Credentials, which is done by setting the
 * **Boleto:** *(Brazil only)* Transactions made with Boletos are different than credit card purchases. This creates a boleto and returns an URL to the buyer to access the boleto payment slip. It can be accessed at any time before the boleto expiration and up to 60 days after it has expired.
 
 
+## Requests ##
+
+To send a request to **maxiPago!** you need to call the **maxipago_payment()** function, as follows:
+
+        maxipago_payment("command", $credentials, $data, version, url);
+
+Each method has its own command, listed in the topic below.
+
+You can find examples of each individual request type in this repository. If you have questions about the requests or responses received, [please see our documentation](http://www.maxipago.com/docs/maxiPago_API_Latest.pdf). You can also contact our Support Team if you'd like.
+
+
 ## Available methods ##
 
 This is the complete list of actions that can be executed using this library
 
 * **Credit Card Transactions**
- * Authorization
- * Capture
- * Sale (Authorization + Capture)
- * Token Authorization (Authorization with saved card) 
- * Token Sale (Sale with saved card)
- * Automatically save card 
- * Void
- * Refund
+ * Authorization **[command: "auth"]**
+ * Capture **[command: "capture"]**
+ * Sale (Authorization + Capture) **[command: "sale"]**
+ * Token Authorization (Authorization with saved card) **[command: "token-auth"]**
+ * Token Sale (Sale with saved card) **[command: "token-sale"]**
+ * Automatically save card **[command: "auth" or "sale"]**
+ * Void **[command: "void"]**
+ * Refund **[command: "refund"]**
  
  
 * **Recurring Transactions**
- * Create recurring credit card billing 
+ * Create recurring credit card billing **[command: "sale"]**
+ * Cancel a recurring billing **[command: "cancel-recurring"]**
  
  
 * **Boleto Transactions**
- * Create boleto payment slip (Brazil only)
+ * Create boleto payment slip (Brazil only) **[command: "boleto"]**
 
 
 * **Reports**
- * Query one single transaction 
- * Query a list of transactions 
- * Flip through pages of a transaction list 
- * Query a pending report 
+ * Query one single transaction **[command: "report"]**
+ * Query a list of transactions **[command: "report"]** 
+ * Flip through pages of a transaction list **[command: "report"]** 
+ * Query a pending report **[command: "report"]** 
 
 
 * **Customer Profile / Card On File**
- * Create a profile *(a customer profile must be created before saving a card)*
- * Update a profile 
- * Remove a profile 
- * Add a credit card
- * Remove a credit card
-
-
-## Requests ##
-
-You can find examples of each individual request type in this repository. If you have questions about the requests or responses received, [please see our documentation](http://www.maxipago.com/docs/maxiPago_API_Latest.pdf). You can also contact our Support Team if you'd like.
-
+ * Create a profile *(a customer profile must be created before saving a card)* **[command: "add-consumer"]**
+ * Update a profile **[command: "update-consumer"]** 
+ * Remove a profile **[command: "delete-consumer"]** 
+ * Add a credit card **[command: "add-card-onfile"]**
+ * Remove a credit card **[command: "remove-card-onfile"]**
 
 ## Support ##
 

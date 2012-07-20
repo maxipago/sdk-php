@@ -5,8 +5,8 @@ define("version", "3.1.1.15");
 define("url", "https://testapi.maxipago.net/UniversalAPI/postAPI");
 $data = array(
   "debug" => "1", // Turns debug ON (1) and OFF (0) //
-  "customerId" => "11223", // REQUIRED - Customer ID created by maxiPago! after "add-customer" command //
+  "orderID" => "1", // REQUIRED - Order ID replied by maxiPago! after creating the scheduled payment //
 );
-$transaction = maxipago_payment("delete-consumer", $credentials, $data, version, url);
+$transaction = maxipago_payment("cancel-recurring", $credentials, $data, version, url);
 print_r($transaction);
 ?>
