@@ -100,6 +100,8 @@ This is the complete list of actions that can be executed using this library
  * Add a credit card **[command: "add-card-onfile"]**
  * Remove a credit card **[command: "remove-card-onfile"]**
 
-## Support ##
+## Documentation and Support ##
+
+[**maxiPago!**'s full API documentation can be found here](http://www.maxipago.com/docs/maxiPago_API_Latest.pdf).
 
 Our support team is happy to help you with any questions you might have, be it about the functionalities of our platform or about payments in general. They are available to customers and non-customers alike and can be reached at support [@] maxipago [.] com.

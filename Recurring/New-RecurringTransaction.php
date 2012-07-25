@@ -10,6 +10,7 @@ $data = array(
   "chargeTotal" => "10.00", // REQUIRED - Transaction amount in US format //
   "numberOfInstallments" => "2", // Optional - Number of installments ("parcelas") //
   "chargeInterest" => "N", // Optional - Charge interest flag (Y/N) ("com" e "sem" juros) //
+  "currencyCode" => "", // Optional - Valid only for ChasePaymentech multi-currecy setup. Please see full documentation for more info//
   "number" => "4111111111111111", // REQUIRED - Full credit card number //
   "expMonth" => "07", // REQUIRED - Credit card expiration month //
   "expYear" => "2020", // REQUIRED - Credit card expiration year //

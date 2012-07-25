@@ -97,6 +97,8 @@ Esta é uma lista completa dos comandos que podem ser executados com esta biblio
  * Remover um cartão de crédito **[comando: "remove-card-onfile"]**
 
 
-## Suporte ##
+## Documentação e Suporte ##
+
+[A documentação completa da API da **maxiPago!** pode ser encontrada aqui](http://www.maxipago.com/docs/maxiPago_API_Ultima.pdf).
 
 Nossa equipe de suporte está à disposição para ajudá-lo com quaisquer assunto, seja sobre funcionalidades de nossa plataforma ou sobre pagamentos em geral. Eles estão disponíveis para clientes e não-clientes no endereço suporte [@] maxipago [.] com.

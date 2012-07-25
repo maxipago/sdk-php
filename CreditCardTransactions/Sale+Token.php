@@ -8,11 +8,12 @@ $data = array(
   "processorID" => "1", // REQUIRED - Use '1' for testing. Contact our team for production values //
   "referenceNum" => "TestTransaction123", // REQUIRED - Merchant internal order number //
   "chargeTotal" => "0.01", // REQUIRED - Transaction amount in US format //
-  "authentication" => "", // Optional - Valid only for Cielo. Please see full documentation for more info //
   "numberOfInstallments" => "", // Optional - Number of installments ("parcelas") //
   "chargeInterest" => "", // Optional -  Charge interest flag (Y/N) ("com" ou "sem" juros) //
+  "currencyCode" => "", // Optional - Valid only for ChasePaymentech multi-currecy setup. Please see full documentation for more info//
   "token" => "AB6TML7MMW=", // REQUIRED - Credit card token replied by maxiPago! //
   "customerId" => "11223", // REQUIRED -  Customer ID created by maxiPago! //
+  "authentication" => "", // Optional - Valid only for Cielo. Please see full documentation for more info //
   "ipAddress" => "123.123.123.123", // Optional //
   "bname" => "Fulano de Tal", // RECOMMENDED - Customer name //
   "baddress" => "Av. República do Chile, 230", // Optional - Customer address //
