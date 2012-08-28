@@ -92,8 +92,21 @@ function mp_xml($xmlRequest, $startElement, $mp_url, $debug) {
 	if ($debug == 1) { echo "<br>----------['maxipago_payment' Response]----------<br>"; print_r($maxiPago_result); echo "<br>------------------------------------------<br><br>"; }
 	return $maxiPago_result;
 }
-function maxipago_payment($transactionType, $mid, $data, $version, $mp_url) {
-  if (!is_array($mid) || !is_array($data) || empty($transactionType) || empty($mp_url) || empty($version)) { $maxiPago_result["error"] = "'payment_function' error: expected to receive (string), (array), (array), (version), (url)."; return $maxiPago_result; }
+function maxipago_payment($transactionType, $mid, $data, $envir) {
+  $version = "3.1.1.15";
+  $envir = strtoupper($envir);
+  if (!is_array($mid) || !is_array($data) || empty($transactionType) || empty($envir)) { $maxiPago_result["error"] = "'payment_function' error: expected to receive (string), (array), (array), (string)."; return $maxiPago_result; }
+  switch($envir) {
+	case "LIVE":
+		$host = "api";
+		break;
+	case "TEST":
+		$host = "testapi";
+		break;
+	default:
+		 $maxiPago_result["error"] = "'payment_function' error: environment must be either 'LIVE' or 'TEST'";
+		 return $maxiPago_result;
+  }
   if (($transactionType == "sale") || ($transactionType == "auth")) {
   	if (($data["recurring"]) && ($transactionType == "sale")) { $transactionType = "recurringPayment"; }
   	elseif (($data["recurring"]) && ($transactionType == "auth")) { $maxiPago_result["error"] = "'payment_function' error: recurring payments can only accept 'sale' transactions."; return $maxiPago_result; }
@@ -524,6 +537,17 @@ function maxipago_payment($transactionType, $mid, $data, $version, $mp_url) {
   	$requestType = "rapi-request";
   }
   else { $maxiPago_result["error"] = "'payment_function' error: [" . $transactionType . "] is not a supported transaction type."; return $maxiPago_result; }
+  switch($requestType) {
+	case "transaction-request":
+		$mp_url = "https://" . $host . ".maxipago.net/UniversalAPI/postXML";
+		break;
+	case "api-request":
+		$mp_url = "https://" . $host . ".maxipago.net/UniversalAPI/postAPI";
+		break;
+	case "rapi-request";
+		$mp_url = "https://" . $host . ".maxipago.net/ReportsAPI/servlet/ReportsAPI";
+		break;
+  }
   $maxiPago_result = mp_xml($xmlRequest, $requestType, $mp_url, $data["debug"]);
   return $maxiPago_result;
 } 
