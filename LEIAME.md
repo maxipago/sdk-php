@@ -20,11 +20,7 @@ Para incluir use o código a seguir:
 
 Para poder enviar requisições você precisará de Credenciais válidas. Você pode conseguí-las com nosso Suporte.
 
-A **maxiPago!** oferece um ambiente de teste (*"sandbox"*) totalmente funcional para simular as transações. Você precisa definir o ambiente para que a biblioteca saiba para onde enviar as transações.
-
-Para definir o ambiente use este código:
-
-		define("url", "https://www.url-da-api-maxipago.net");
+A **maxiPago!** oferece um ambiente de teste (*"sandbox"*) totalmente funcional para simular as transações. Você precisa definir o ambiente para enviar as transações, o que pode ser feito enviando **"TEST"** ou **"LIVE"** na função **_maxipago\_payment()_**, descrita mais abaixo.
 		
 Você também precisa informar as suas Credenciais, o que pode ser feito declarando o array **$credencials** da seguinte forma:
 
@@ -55,7 +51,7 @@ Você também precisa informar as suas Credenciais, o que pode ser feito declara
 
 Para mandar uma requisição à **maxiPago!** você deve chamar a função **maxipago_payment()**, da seguinte forma:
 
-        maxipago_payment("comando", $credentials, $data, version, url);
+        maxipago_payment("comando", $credentials, $data, "ambiente");
 
 Cada método tem seu próprio comando, listados no tópico abaixo.
 

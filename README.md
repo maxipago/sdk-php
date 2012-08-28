@@ -20,11 +20,7 @@ To include use the following code:
 
 In order to send requests you will need valid Merchant Credentials. They can be obtained with our Customer Support team.
 
-**maxiPago!** provides a fully functional sandbox environment to simulate the transaction responses. You need to set the environment so the library knows where to send the transactions to.
-
-The environment can be set using:
-
-		define("url", "https://www.url-to-maxipago-api.net");
+**maxiPago!** provides a fully functional sandbox environment to simulate the transaction responses. You need to set the environment the transactions will be sent to, which can be done by sending either **"TEST"** or **"LIVE"** in the **\_maxipago_payment()_** function, described below.
 		
 You also need to provide your Merchant Credentials, which is done by setting the **$credentials** array, as shown below:
 
