@@ -1,8 +1,6 @@
 <?php
 include_once "maxipago_payment.php";
 $credentials = array("merchantId" => "mid", "merchantKey" => "secret-key");
-define("version", "3.1.1.15");
-define("url", "https://testapi.maxipago.net/UniversalAPI/postXML");
 $data = array(
   "debug" => "1", // Turns debug ON (1) and OFF (0) //
   "processorID" => "1", // REQUIRED - Use '1' for testing. Contact our team for production values //
@@ -37,6 +35,6 @@ $data = array(
   "semail" => "ciclanodetal@email.com", // Optional - Shipping email address //
   "comments" => "Pedido de teste.", // Optional - Additional comments //
 );
-$transaction = maxipago_payment("sale", $credentials, $data, version, url);
+$transaction = maxipago_payment("sale", $credentials, $data, "TEST");
 print_r($transaction);
 ?>

@@ -1,8 +1,6 @@
 <?php
 include_once "maxipago_payment.php";
 $credentials = array("merchantId" => "mid", "merchantKey" => "secret-key");
-define("version", "3.1.1.15");
-define("url", "https://testapi.maxipago.net/UniversalAPI/postAPI");
 $data = array(
   "debug" => "1", // Turns debug ON (1) and OFF (0) //
   "customerIdExt" => "98765421", // REQUIRED - Merchant internal customer ID //
@@ -20,6 +18,6 @@ $data = array(
   "alternatePhone" => "2140099401", // Optional - Customer alternate phone //
   "sex" => "M" // REQUIRED - Customer gender //
 );
-$transaction = maxipago_payment("update-consumer", $credentials, $data, version, url);
+$transaction = maxipago_payment("update-consumer", $credentials, $data, "TEST");
 print_r($transaction);
 ?>
