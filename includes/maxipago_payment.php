@@ -60,8 +60,8 @@ function mp_xml($xmlRequest, $startElement, $mp_url, $debug) {
 			elseif ($key != "time") { $maxiPago_result[$key] = (string)$value; }
 			elseif ($key == "time") {
 				$value = (string)$value;
-				if (strlen($value) == 10) { $date = date(c, $value); }
-				elseif (strlen($value) == 13) { $date = date(c, $value/1000); }
+				if (strlen($value) == 10) { $date = date('c', $value); }
+				elseif (strlen($value) == 13) { $date = date('c', $value/1000); }
 				$maxiPago_result[$key] = $date;
 			}
 		}
