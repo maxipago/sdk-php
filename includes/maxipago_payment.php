@@ -498,7 +498,7 @@ function maxipago_payment($transactionType, $mid, $data, $envir) {
 			"request" => array(
 				"filterOptions" => array(
 					"period" => $data["period"],
-					"pagesize" => "50",
+					"pageSize" => "50",
 					"startDate" => $data["startDate"],
 					"endDate" => $data["endDate"],
 					"orderByName" => $data["orderByName"],
