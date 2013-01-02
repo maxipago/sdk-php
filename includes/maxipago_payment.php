@@ -1,20 +1,21 @@
 <?php
 // DO NOT MODIFY //
+function write(XMLWriter $buildxml, $xmlRequest) {  
+    foreach ($xmlRequest as $key => $value) {
+        if (is_array($value)) {
+            $buildxml->startElement($key);
+            write($buildxml, $value);
+            $buildxml->endElement();
+            continue;
+        }
+        if (!empty($value)) { $buildxml->writeElement($key, $value); }
+    }
+}
+
 function mp_xml($xmlRequest, $startElement, $mp_url, $debug) {
 	$buildxml = new XmlWriter();
 	$buildxml->openMemory();
 	$buildxml->startElement($startElement);
-	function write(XMLWriter $buildxml, $xmlRequest) {  
-	    foreach ($xmlRequest as $key => $value) {
-	        if (is_array($value)) {
-	            $buildxml->startElement($key);
-	            write($buildxml, $value);
-	            $buildxml->endElement();
-	            continue;
-	        }
-	        if (!empty($value)) { $buildxml->writeElement($key, $value); }
-	    }
-	}
 	write($buildxml, $xmlRequest);
 	$buildxml->endElement();
 	$xmlStr = $buildxml->outputMemory(true);
