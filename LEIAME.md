@@ -90,7 +90,7 @@ Esta é uma lista completa dos comandos que podem ser executados com esta biblio
  * Atualizar um perfil **[comando: "update-consumer"]** 
  * Remover um perfil **[comando: "delete-consumer"]**
  * Adicionar um cartão de crédito **[comando: "add-card-onfile"]**
- * Remover um cartão de crédito **[comando: "remove-card-onfile"]**
+ * Remover um cartão de crédito **[comando: "delete-card-onfile"]**
 
 
 ## Documentação e Suporte ##

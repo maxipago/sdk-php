@@ -387,13 +387,13 @@ function maxipago_payment($transactionType, $mid, $data, $envir) {
 	);	
   	$requestType = "api-request"; 	
   }	
-  elseif ($transactionType == "remove-card-onfile") {
+  elseif (($transactionType == "remove-card-onfile") || ($transactionType == "delete-card-onfile")) {
 	$xmlRequest = array(
 		"verification" => array(
 			"merchantId" => $mid["merchantId"],
 			"merchantKey" => $mid["merchantKey"]
 		),
-		"command" => $transactionType,
+		"command" => "delete-card-onfile",
 		"request" => array(
 			"customerId" => $data["customerId"],
 			"token" => $data["token"],

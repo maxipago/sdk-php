@@ -94,7 +94,7 @@ This is the complete list of actions that can be executed using this library
  * Update a profile **[command: "update-consumer"]** 
  * Remove a profile **[command: "delete-consumer"]** 
  * Add a credit card **[command: "add-card-onfile"]**
- * Remove a credit card **[command: "remove-card-onfile"]**
+ * Remove a credit card **[command: "delete-card-onfile"]**
 
 ## Documentation and Support ##
 
