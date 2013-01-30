@@ -502,6 +502,8 @@ function maxipago_payment($transactionType, $mid, $data, $envir) {
 					"pageSize" => "50",
 					"startDate" => $data["startDate"],
 					"endDate" => $data["endDate"],
+					"startTime" => $data["startTime"],
+					"endTime" => $data["endTime"],
 					"orderByName" => $data["orderByName"],
 					"orderByDirection" => $data["orderByDirection"]
 				)
