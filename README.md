@@ -32,7 +32,7 @@ You can get a more comprehensive view of our API by looking at our documentation
 
 The library consists of the folling files:
 
-````
+```
   /lib/  
   |-- maxiPago.php  
   |-- maxipago  
@@ -42,16 +42,19 @@ The library consists of the folling files:
     |-- maxiPagoServiceBase.php  
     |-- maxiPagoTransaction.php  
     |-- maxiPagoXmlHandler.php
-````
+```
 
 Copy **/lib/maxipago/** to your local server. In your code, include the **maxiPago.php** file, which checks the minimum requirements and includes the other necessary files:
 
-	require_once "./lib/maxiPago.php"
+```php
+require_once "./lib/maxiPago.php"
+```
 
 Now, create a new object from the maxiPago class:
 
-	$maxiPago = new maxiPago;
-
+```php
+$maxiPago = new maxiPago;
+```
 
 ## Environment and Credentials ##
 
@@ -61,21 +64,24 @@ In order to send requests you will need valid Merchant Credentials. They can be 
 
 To set the credentials and environment used to process requests:
 
-	$maxiPago->setCredentials("100", "merchant_key");
-	$maxiPago->setEnvironment("TEST");
-
+```php
+$maxiPago->setCredentials("100", "merchant_key");
+$maxiPago->setEnvironment("TEST");
+```
 
 ## Debug Mode ##
 
 The Debug Mode prints the request and response XML's so you can easily identify any issues with the request. In order to enable debug use the **setDebug()** method:
 
+```php
 	$maxiPago->setDebug(true);
-
+```
 
 ## Request ##
 
 To send a request to **maxiPago!** you need to call one of the methods listed above, passing an array with the request parameters, as such:
 
+```php
 	$data = array(
 		"processorID" => "1",
 		"referenceNum" => "ORDER2937283",
@@ -87,12 +93,13 @@ To send a request to **maxiPago!** you need to call one of the methods listed ab
 	);
 	
 	$maxiPago->creditCardAuth($data);
-
+```
 
 ## Response ##
 
 There are methods to get each piece of information from the response. However, you can also call the **getResponse()** method to retrieve all fields in the response as an array:
 
+```php
 	print_r($maxiPago->getResponse());
 	
 	Array
@@ -110,7 +117,7 @@ There are methods to get each piece of information from the response. However, y
 	    [processorMessage] => APPROVED
 	    [errorMessage] => 
 	)
-
+```
 
 
 ## All request methods ##

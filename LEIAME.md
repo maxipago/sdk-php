@@ -31,7 +31,7 @@ Para ter uma visão mais aprofundada da nossa API baixe nossa documentação, [d
 
 A biblioteca consiste dos seguintes arquivos:
 
-````
+```
   /lib/  
   |-- maxiPago.php  
   |-- maxipago  
@@ -41,17 +41,20 @@ A biblioteca consiste dos seguintes arquivos:
     |-- maxiPagoServiceBase.php  
     |-- maxiPagoTransaction.php  
     |-- maxiPagoXmlHandler.php
-````
+```
 
 
 Copie **/lib/maxipago/** para seu servidor. No seu código, inclua o arquivo **maxiPago.php**, que checa os requisitos mínimos e inclui os demais arquivos necessários:
 
+```php
 	require_once "./lib/maxiPago.php";
+```
 
 Agora, crie um novo object da classe maxiPago:
 
+```php
 	$maxiPago = new maxiPago;
-
+```
 
 ## Ambiente e Credenciais ##
 
@@ -62,21 +65,23 @@ A **maxiPago!** oferece um ambiente de teste (*"sandbox"*) totalmente funcional 
 Para definir as credenciais e o ambiente usado:
 
 ```php
-$maxiPago->setCredentials("100", "merchant_key");
-$maxiPago->setEnvironment("TEST");
+	$maxiPago->setCredentials("100", "merchant_key");
+	$maxiPago->setEnvironment("TEST");
 ```
 
 ## Modo Debug ##
 
 O Modo Debug imprime os XMLs de requisição e resposta para que você possa facilmente identificar problemas na chamada. Para habilitar o debug use o método **setDebug()**:
 
+```php
 	$maxiPago->setDebug(true);
-
+```
 
 ## Requisição ##
 
 Para mandar uma requisição para a **maxiPago!** você precisa chamar um dos métodos listados abaixo, passando um array com os parâmetros, como por exemplo:
 
+```php
 	$data = array(
 		"processorID" => "1",
 		"referenceNum" => "ORDER2937283",
@@ -88,11 +93,13 @@ Para mandar uma requisição para a **maxiPago!** você precisa chamar um dos m�
 	);
 	
 	$maxiPago->creditCardAuth($data);
+```
 
 ## Resposta ##
 
 Há métodos para resgatar cada parte da resposta. Contudo, você também pode chamar o método **getResponse()** para recuperar todos os campos da resposta em um array:
 
+```php
 	print_r($maxiPago->getResponse());
 	
 	Array
@@ -110,7 +117,7 @@ Há métodos para resgatar cada parte da resposta. Contudo, você também pode c
 	    [processorMessage] => APPROVED
 	    [errorMessage] => 
 	)
-
+```
 
 ## Todos os métodos de requisição ##
 
