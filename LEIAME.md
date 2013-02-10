@@ -9,40 +9,42 @@ Para ter uma visão mais aprofundada da nossa API baixe nossa documentação, [d
 
 ## Tipos de transação ##
 
-* **Autorização:** verifica se o cartão de crédito usado é válido (número, CVV e data de validade) e se o comprador possui limite suficiente para a compra.
+* **Autorização:** verifica se o cartão de crédito usado é válido (número, CVV e data de validade) e se o comprador possui limite suficiente para a compra.
 
-* **Captura:** confirma a autorização feita para aquele pedido e completa a transação. Se a transação nunca for capturada o Estabelecimento não receberá o dinheiro e o comprador não será cobrado.
+* **Captura:** confirma a autorização feita para aquele pedido e completa a transação. Se a transação nunca for capturada o Estabelecimento não receberá o dinheiro e o comprador não será cobrado.
 
 >*Separar a autorização e a captura em dois momentos diferentes é uma ótima maneira de checar se você tem os produtos em estoque ou fazer uma análise de fraude, e ainda assim garantir o pagamento.*
 
-* **Venda Direta:** combina a autorização e a captura em uma mesma chamada. Ao usar a requisição de Venda Direta você estará fazendo uma autorização no cartão do cliente e imediatamente capturando o valor total.
+* **Venda Direta:** combina a autorização e a captura em uma mesma chamada. Ao usar a requisição de Venda Direta você estará fazendo uma autorização no cartão do cliente e imediatamente capturando o valor total.
 
 * **Void:**: cancela uma captura antes do fechamento do lote final do dia. Aqui o dinheiro não troca de mãos. Você só pode cancelar a venda até às 23h59 do dia da captura.
 
-* **Estorno:** reverte uma transação de cartão de crédito, debitando o valor do Estabelecimento e devolvendo-o ao comprador. O estorno é uma operação financeira e, por esta razão, pode demorar alguns dias para serem aprovados por algumas processadoras.
+* **Estorno:** reverte uma transação de cartão de crédito, debitando o valor do Estabelecimento e devolvendo-o ao comprador. O estorno é uma operação financeira e, por esta razão, pode demorar alguns dias para serem aprovados por algumas processadoras.
 
 * **Recorrente:** agenda uma transação de cartão de crédito para ser cobrada em um intervalo específico, definido pelo lojista.
 
 * **Armazenar Cartão:** guarda um cartão em nosso sistema e devolve um token único, que pode ser usado em novas transações. **Isto permite a implantação de pagamentos com 1-clique no seu site.**
 
-* **Boleto:** Transações feitas com Boleto funcionam de forma diferente das transações com cartão de crédito. Aqui geramos um boleto e retornamos uma URL para comprador que dá acesso ao boleto. Ela pode ser acessada a qualquer momento antes do vencimento do boleto e até 60 dias após o vencimento.
+* **Boleto:** Transações feitas com Boleto funcionam de forma diferente das transações com cartão de crédito. Aqui geramos um boleto e retornamos uma URL para comprador que dá acesso ao boleto. Ela pode ser acessada a qualquer momento antes do vencimento do boleto e até 60 dias após o vencimento.
 
 ## Installação e configuração ##
 
 A biblioteca consiste dos seguintes arquivos:
 
-> /lib/  
-> |-- maxiPago.php  
-> |-- maxipago  
-> >   |-- maxiPagoRequest.php  
->     |-- maxiPagoRequestBase.php  
->     |-- maxiPagoResponseBase.php  
->     |-- maxiPagoServiceBase.php  
->     |-- maxiPagoTransaction.php  
->     |-- maxiPagoXmlHandler.php
+````
+  /lib/  
+  |-- maxiPago.php  
+  |-- maxipago  
+    |-- maxiPagoRequest.php  
+    |-- maxiPagoRequestBase.php  
+    |-- maxiPagoResponseBase.php  
+    |-- maxiPagoServiceBase.php  
+    |-- maxiPagoTransaction.php  
+    |-- maxiPagoXmlHandler.php
+````
 
 
-Copie */lib/maxipago/* para seu servidor. No seu código, inclua o arquivo **maxiPago.php**, que checa os requisitos mínimos e inclui os demais arquivos necessários:
+Copie **/lib/maxipago/** para seu servidor. No seu código, inclua o arquivo **maxiPago.php**, que checa os requisitos mínimos e inclui os demais arquivos necessários:
 
 	require_once "./lib/maxiPago.php";
 
