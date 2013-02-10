@@ -1,6 +1,6 @@
 ## Introduction ##
 
-This **PHP** library allows for easy integration with the **maxiPago! Smart Payments** API. Our payment platform allows online merchants to accept payments in many countries in Latin America and the US and includes such functionalities as Automated Recurring Billing, "Single-Click" payments, Online Returns, Credit Card Payment Reconciliation, Fraud Tools and more. You can find out more about **maxiPago!** by visiting [www.maxipago.com](http://www.maxipago.com/).
+This **NEW PHP** library allows for easy integration with the **maxiPago! Smart Payments** API. Our payment platform allows online merchants to accept payments in many countries in Latin America and the US and includes such functionalities as Automated Recurring Billing, "Single-Click" payments, Online Returns, Credit Card Payment Reconciliation, Fraud Tools and more. You can find out more about **maxiPago!** by visiting [www.maxipago.com](http://www.maxipago.com/).
 
 This library has all the functionalities currently available through our XML-based API and can be freely copied and used by Merchants and developers.
 

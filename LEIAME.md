@@ -1,6 +1,6 @@
 ## Introdução ##
 
-Esta biblioteca **PHP** visa facilitar a integração com a API da **maxiPago! Smart Payments**. Nossa plataforma permite aos lojistas virtuais aceitarem pagamentos em diversos países da América Latina e nos EUA e inclui funcionalidades como Cobrança Recorrente Automática, Pagamentos com 1-Clique, Estornos Online, Conciliação de Cartões de Crédito e Ferramentas Anti-Fraude. Se quiser saber mais sobre a **maxiPago!** visite [www.maxipago.com](http://www.maxipago.com/).
+Esta **NOVA** biblioteca **PHP** visa facilitar a integração com a API da **maxiPago! Smart Payments**. Nossa plataforma permite aos lojistas virtuais aceitarem pagamentos em diversos países da América Latina e nos EUA e inclui funcionalidades como Cobrança Recorrente Automática, Pagamentos com 1-Clique, Estornos Online, Conciliação de Cartões de Crédito e Ferramentas Anti-Fraude. Se quiser saber mais sobre a **maxiPago!** visite [www.maxipago.com](http://www.maxipago.com/).
 
 Esta biblioteca traz todas as funcionalidades atualmente disponívels na plataforma e ela pode ser copiada e usada livremente por Lojas e desenvolvedores.
 
