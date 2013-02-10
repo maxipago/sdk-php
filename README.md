@@ -4,27 +4,8 @@ This **PHP** library allows for easy integration with the **maxiPago! Smart Paym
 
 This library has all the functionalities currently available through our XML-based API and can be freely copied and used by Merchants and developers.
 
-You can get a more comprehensive view of our API by our documentation, [which can be downloaded here](http://www.maxipago.com/docs/maxiPago_API_Latest.pdf). If you are looking for a hosted payment page solution, please see the section "**smartPages!**".
+You can get a more comprehensive view of our API by looking at our documentation, [which can be downloaded here](http://www.maxipago.com/docs/maxiPago_API_Latest.pdf). If you are looking for a hosted payment page solution, please see the section "**smartPages!**" in the documentation.
 
-
-## Setup ##
-
-Setup is pretty straightforward: simply copy the **maxipago_payment.php** file from this repository to your server and include it in your code.
-
-To include use the following code:
-
-		include_once "maxipago_payment.php";
-
-
-## Environment and Credentials ##
-
-In order to send requests you will need valid Merchant Credentials. They can be obtained with our Customer Support team.
-
-**maxiPago!** provides a fully functional sandbox environment to simulate the transaction responses. You need to set the environment the transactions will be sent to, which can be done by sending either **"TEST"** or **"LIVE"** in the **\_maxipago_payment()_** function, described below.
-		
-You also need to provide your Merchant Credentials, which is done by setting the **$credentials** array, as shown below:
-
-		$credentials = array("merchantId" => "100", "merchantKey" => "secret-key");
 
 ## Available transaction types ##
 
@@ -47,57 +28,161 @@ You also need to provide your Merchant Credentials, which is done by setting the
 * **Boleto:** *(Brazil only)* Transactions made with Boletos are different than credit card purchases. This creates a boleto and returns an URL to the buyer to access the boleto payment slip. It can be accessed at any time before the boleto expiration and up to 60 days after it has expired.
 
 
-## Requests ##
+## Installation and setup ##
 
-To send a request to **maxiPago!** you need to call the **maxipago_payment()** function, as follows:
+The library consists of the folling files:
 
-        maxipago_payment("command", $credentials, $data, version, url);
+> /lib/  
+> |-- maxiPago.php  
+> |-- maxipago  
+> >   |-- maxiPagoRequest.php  
+>     |-- maxiPagoRequestBase.php  
+>     |-- maxiPagoResponseBase.php  
+>     |-- maxiPagoServiceBase.php  
+>     |-- maxiPagoTransaction.php  
+>     |-- maxiPagoXmlHandler.php  
 
-Each method has its own command, listed in the topic below.
+Copy */lib/maxipago/* to your local server. In your code, include the **maxiPago.php** file, which checks the minimum requirements and includes the other necessary files:
 
-You can find examples of each individual request type in this repository. If you have questions about the requests or responses received, [please see our documentation](http://www.maxipago.com/docs/maxiPago_API_Latest.pdf). You can also contact our Support Team if you'd like.
+	require_once "./lib/maxiPago.php"
+
+Now, create a new object from the maxiPago class:
+
+	$maxiPago = new maxiPago;
 
 
-## Available methods ##
+## Environment and Credentials ##
 
-This is the complete list of actions that can be executed using this library
+In order to send requests you will need valid Merchant Credentials. They can be obtained with our Customer Support team.
+
+**maxiPago!** provides a fully functional sandbox environment to simulate the transaction responses. You need to set the environment the transactions will be sent to, which can be done by sending either **"TEST"** or **"LIVE"**.
+
+To set the credentials and environment used to process requests:
+
+	$maxiPago->setCredentials("100", "merchant_key");
+	$maxiPago->setEnvironment("TEST");
+
+
+## Debug Mode ##
+
+The Debug Mode prints the request and response XML's so you can easily identify any issues with the request. In order to enable debug use the **setDebug()** method:
+
+	$maxiPago->setDebug(true);
+
+
+## Request ##
+
+To send a request to **maxiPago!** you need to call one of the methods listed above, passing an array with the request parameters, as such:
+
+	$data = array(
+		"processorID" => "1",
+		"referenceNum" => "ORDER2937283",
+		"chargeTotal" => "10.00",
+		"number" => "4111111111111111",
+		"expMonth" => "07",
+		"expYear" => "2017",
+		"cvvNumber" => "123"
+	);
+	
+	$maxiPago->creditCardAuth($data);
+
+
+## Response ##
+
+There are methods to get each piece of information from the response. However, you can also call the **getResponse()** method to retrieve all fields in the response as an array:
+
+	print_r($maxiPago->getResponse());
+	
+	Array
+	(
+	    [authCode] => 123456
+	    [orderID] => 0AF90437:013CC42DDE87:F5D0:01E1101A
+	    [referenceNum] => ORD29328493
+	    [transactionID] => 422570
+	    [transactionTimestamp] => 1312156800
+	    [responseCode] => 0
+	    [responseMessage] => AUTHORIZED
+	    [avsResponseCode] =>
+	    [cvvResponseCode] =>
+	    [processorCode] => A
+	    [processorMessage] => APPROVED
+	    [errorMessage] => 
+	)
+
+
+
+## All request methods ##
+
 
 * **Credit Card Transactions**
- * Authorization **[command: "auth"]**
- * Capture **[command: "capture"]**
- * Sale (Authorization + Capture) **[command: "sale"]**
- * Token Authorization (Authorization with saved card) **[command: "token-auth"]**
- * Token Sale (Sale with saved card) **[command: "token-sale"]**
- * Automatically save card **[command: "auth" or "sale"]**
- * Void **[command: "void"]**
- * Refund **[command: "refund"]**
+ * Authorization: **creditCardAuth()**
+ * Capture: **creditCardCapture()**
+ * Sale (Authorization + Capture): **creditCardSale()**
+ * Automatically save card: **creditCardAuth() or creditCardSale()**
+ * Void: **creditCardVoid()**
+ * Refund: **creditCardRefund()**
  
  
 * **Recurring Transactions**
- * Create recurring credit card billing **[command: "sale"]**
- * Cancel a recurring billing **[command: "cancel-recurring"]**
+ * Create recurring credit card billing: **createRecurring()**
+ * Cancel a recurring billing: **cancelRecurring()**
  
  
 * **Boleto Transactions**
- * Create boleto payment slip (Brazil only) **[command: "boleto"]**
+ * Create boleto payment slip (Brazil only): **boletoSale()**
 
 
 * **Reports**
- * Query one single transaction **[command: "report"]**
- * Query a list of transactions **[command: "report"]** 
- * Flip through pages of a transaction list **[command: "report"]** 
- * Query a pending report **[command: "report"]** 
+ * Query one single transaction: **pullReport()**
+ * Query a list of transactions: **pullReport()** 
+ * Flip through pages of a transaction list: **pullReport()** 
+ * Query a pending report: **pullReport()** 
 
 
 * **Customer Profile / Card On File**
- * Create a profile *(a customer profile must be created before saving a card)* **[command: "add-consumer"]**
- * Update a profile **[command: "update-consumer"]** 
- * Remove a profile **[command: "delete-consumer"]** 
- * Add a credit card **[command: "add-card-onfile"]**
- * Remove a credit card **[command: "delete-card-onfile"]**
+ * Create a profile *(a profile must be created to save a card)*: **addProfile()**
+ * Update a profile: **updateProfile()** 
+ * Remove a profile: **deleteProfile()** 
+ * Add a credit card: **addCreditCard()**
+ * Remove a credit card: **deleteCreditCard()**
+
+
+## All response methods ##
+
+
+* **Request validators**
+ * Checks if there was an error in the request: **isErrorResponse()**
+ * Checks if the request was successful: **isTransactionResponse()**
+
+* **Main transaction response methods**
+ * Gets the Authorization Code, if any was replied: **getAuthCode()**
+ * Gets the Order ID created: **getOrderID()**
+ * Gets the Transaction ID created: **getTransactionID()**
+ * Gets the URL for the Boleto issued *(Brazil only)*: **getBoletoUrl()**
+ * Gets the Processor Code: **getProcessorCode()**
+ * Gets the Processor Reference Number: **getProcessorReferenceNumber()**
+ * Gets the Processor Transaction ID: **getProcessorTransactionID()**
+ * Gets an array with all response fields: **getResponse()**
+
+* **Other transaction response methods**
+ * Gets the AVS Response Code *(US only)*: **getAvsResponseCode()**
+ * Gets the Command used in the request: **getCommand()**
+ * Gets the Customer ID created: **getCustomerId()**
+ * Gets the CVV Response Code *(US only)*: **getCvvResponseCode()**
+ * Gets the Fraud Score analysis: **getFraudScore()**
+ * Gets the Response Message: **getMessage()**
+ * Gets the report's number of pages: **getNumberOfPages()**
+ * Gets the report's current page: **getPageNumber()**
+ * Gets the report's page token: **getPageToken()**
+ * Gets the transaction list as array: **getReportResult()**
+ * Gets the report's time: **getTime()**
+ * Gets the Credit Card Token created: **getToken()**
+ * Gets the number of transactions in a report: **getTotalNumberOfRecords()**
+ * Gets the Transaction Unix time: **getTransactionTimestamp()**
+
 
 ## Documentation and Support ##
 
 [**maxiPago!**'s full API documentation can be found here](http://www.maxipago.com/docs/maxiPago_API_Latest.pdf).
 
-Our support team is happy to help you with any questions you might have, be it about the functionalities of our platform or about payments in general. They are available to customers and non-customers alike and can be reached at support [@] maxipago [.] com.
+Our support team is happy to help you with any questions you might have, be it about the functionalities of our platform or about payments in general. They are available to customers and non-customers alike and can be reached at support [@] maxipago [.] com.maxiPago! PHP Integration lib - OO

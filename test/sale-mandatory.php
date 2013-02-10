@@ -1,0 +1,36 @@
+<?php
+require_once "../lib/maxiPago.php";
+
+try {
+
+    $maxiPago = new maxiPago;
+
+    // Before calling any other methods you must first set your credentials
+    $maxiPago->setCredentials("99", "uanz3tvoooysclnkr16kd3as");
+
+    $maxiPago->setDebug(true);
+    $maxiPago->setEnvironment("TEST");
+    $data = array(
+        "processorID" => "1", // REQUIRED - Use '1' for testing. Contact our team for production values //
+        "referenceNum" => "TestTransaction123", // REQUIRED - Merchant internal order number //
+        "chargeTotal" => "10.00", // REQUIRED - Transaction amount in US format //
+        "number" => "4111111111111111", // REQUIRED - Full credit card number //
+        "expMonth" => "07", // REQUIRED - Credit card expiration month //
+        "expYear" => "2020", // REQUIRED - Credit card expiration year //
+        "cvvNumber" => "123", // HIGHLY RECOMMENDED - Credit card verification code //
+    );
+    $maxiPago->creditCardSale($data);
+
+    if ($maxiPago->isErrorResponse()) {
+        echo "Transaction has failed<br>Error message: ".$maxiPago->getMessage();
+    }
+
+    elseif ($maxiPago->isTransactionResponse()) {
+        if ($maxiPago->getResponseCode() == "0") { echo "Transaction Approved<br>Authorization code: ".$maxiPago->getAuthCode(); }
+        else { echo "Transaction Declined<br>Decline message: ".$maxiPago->getMessage(); }    
+    }
+
+}
+
+catch (Exception $e) { echo $e->getMessage()." in ".$e->getFile()." on line ".$e->getLine(); }
+?>

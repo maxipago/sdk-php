@@ -7,26 +7,6 @@ Esta biblioteca traz todas as funcionalidades atualmente disponívels na platafo
 Para ter uma visão mais aprofundada da nossa API baixe nossa documentação, [disponível aqui](http://www.maxipago.com/docs/maxiPago_API_Ultima.pdf). Se você está procurando por uma solução de página hospedada (*"hosted payment page"*), por favor veja a seção "**smartPages!**".
 
 
-## Configuração ##
-
-Configurar a biblioteca é bem simples: basta copiar o arquivo  **maxipago_payment.php** para seu servidor e incluí-lo no seu código.
-
-Para incluir use o código a seguir:
-
-		include_once "maxipago_payment.php";
-
-
-## Ambiente e Credenciais ##
-
-Para poder enviar requisições você precisará de Credenciais válidas. Você pode conseguí-las com nosso Suporte.
-
-A **maxiPago!** oferece um ambiente de teste (*"sandbox"*) totalmente funcional para simular as transações. Você precisa definir o ambiente para enviar as transações, o que pode ser feito enviando **"TEST"** ou **"LIVE"** na função **_maxipago\_payment()_**, descrita mais abaixo.
-		
-Você também precisa informar as suas Credenciais, o que pode ser feito declarando o array **$credencials** da seguinte forma:
-
-		$credentials = array("merchantId" => "100", "merchantKey" => "secret-key");
-
-
 ## Tipos de transação ##
 
 * **Autorização:** verifica se o cartão de crédito usado é válido (número, CVV e data de validade) e se o comprador possui limite suficiente para a compra.
@@ -47,51 +27,150 @@ Você também precisa informar as suas Credenciais, o que pode ser feito declara
 
 * **Boleto:** Transações feitas com Boleto funcionam de forma diferente das transações com cartão de crédito. Aqui geramos um boleto e retornamos uma URL para comprador que dá acesso ao boleto. Ela pode ser acessada a qualquer momento antes do vencimento do boleto e até 60 dias após o vencimento.
 
-## Requisições ##
+## Installação e configuração ##
 
-Para mandar uma requisição à **maxiPago!** você deve chamar a função **maxipago_payment()**, da seguinte forma:
+A biblioteca consiste dos seguintes arquivos:
 
-        maxipago_payment("comando", $credentials, $data, "ambiente");
+> /lib/  
+> |-- maxiPago.php  
+> |-- maxipago  
+> >   |-- maxiPagoRequest.php  
+>     |-- maxiPagoRequestBase.php  
+>     |-- maxiPagoResponseBase.php  
+>     |-- maxiPagoServiceBase.php  
+>     |-- maxiPagoTransaction.php  
+>     |-- maxiPagoXmlHandler.php
 
-Cada método tem seu próprio comando, listados no tópico abaixo.
 
-Você achará exemplos de cada uma das requisições neste repositório. Se você tiver alguma dúvida sobre o envio ou resposta da transação, [por favor consulte nossa documentação](http://www.maxipago.com/docs/maxiPago_API_Ultima.pdf). Você também pode entrar em contato com nosso suporte, se preferir.
+Copie */lib/maxipago/* para seu servidor. No seu código, inclua o arquivo **maxiPago.php**, que checa os requisitos mínimos e inclui os demais arquivos necessários:
+
+	require_once "./lib/maxiPago.php";
+
+Agora, crie um novo object da classe maxiPago:
+
+	$maxiPago = new maxiPago;
 
 
-## Métodos disponíveis ##
+## Ambiente e Credenciais ##
 
-Esta é uma lista completa dos comandos que podem ser executados com esta biblioteca.
+Para poder enviar requisições você precisará de Credenciais válidas. Você pode conseguí-las com nosso Suporte.
+
+A **maxiPago!** oferece um ambiente de teste (*"sandbox"*) totalmente funcional para simular as transações. Você precisa definir o ambiente para enviar as transações, o que pode ser feito enviando **"TEST"** ou **"LIVE"**:
+		
+Para definir as credenciais e o ambiente usado:
+
+	$maxiPago->setCredentials("100", "merchant_key");
+	$maxiPago->setEnvironment("TEST");
+
+## Modo Debug ##
+
+O Modo Debug imprime os XMLs de requisição e resposta para que você possa facilmente identificar problemas na chamada. Para habilitar o debug use o método **setDebug()**:
+
+	$maxiPago->setDebug(true);
+
+
+## Requisição ##
+
+Para mandar uma requisição para a **maxiPago!** você precisa chamar um dos métodos listados abaixo, passando um array com os parâmetros, como por exemplo:
+
+	$data = array(
+		"processorID" => "1",
+		"referenceNum" => "ORDER2937283",
+		"chargeTotal" => "10.00",
+		"number" => "4111111111111111",
+		"expMonth" => "07",
+		"expYear" => "2017",
+		"cvvNumber" => "123"
+	);
+	
+	$maxiPago->creditCardAuth($data);
+
+## Resposta ##
+
+Há métodos para resgatar cada parte da resposta. Contudo, você também pode chamar o método **getResponse()** para recuperar todos os campos da resposta em um array:
+
+	print_r($maxiPago->getResponse());
+	
+	Array
+	(
+	    [authCode] => 123456
+	    [orderID] => 0AF90437:013CC42DDE87:F5D0:01E1101A
+	    [referenceNum] => ORD29328493
+	    [transactionID] => 422570
+	    [transactionTimestamp] => 1312156800
+	    [responseCode] => 0
+	    [responseMessage] => AUTHORIZED
+	    [avsResponseCode] =>
+	    [cvvResponseCode] =>
+	    [processorCode] => A
+	    [processorMessage] => APPROVED
+	    [errorMessage] => 
+	)
+
+
+## Todos os métodos de requisição ##
+
 
 * **Transações de Cartão de Crédito**
- * Autorização **[comando: "auth"]**
- * Captura **[comando: "capture"]**
- * Venda Direta (Autorização + Capura) **[comando: "sale"]** 
- * Autorização com Token (cartão salvo) **[comando: "token-auth"]**
- * Venda Direta com Token (cartão salvo) **[comando: "token-sale"]** 
- * Salvar cartão automaticamente **[comando: "auth" ou "sale"]**
- * Cancelamento (*Void*) **[comando: "void"]**
- * Estorno **[comando: "refund"]** 
+ * Autorização: **creditCardAuth()**
+ * Captura: **creditCarcCapture()**
+ * Venda Direta (Autorização + Capura): **creditCardSale()** 
+ * Salvar cartão automaticamente: **creditCardAuth()** ou **creditCardSale()**
+ * Cancelamento (*Void*): **creditCardVoid()**
+ * Estorno: **creditCardRefund()** 
  
 * **Transações Recorrentes**
- * Criar nova recorrência **[comando: "sale"]**
- * Cancel a recurring billing **[command: "cancel-recurring"]**
+ * Criar nova recorrência: **createRecurring()**
+ * Cancelar uma recorrência: **cancelRecurring()**
  
 * **Transações de Boleto**
- * Criar boleto **[comando: "boleto"]**
+ * Criar boleto: **boletoSale()**
  
 * **Relatórios**
- * Sondar uma transação **[comando: "report"]**
- * Sondar uma lista de transações **[comando: "report"]**
- * Paginar a lista de transações **[comando: "report"]** 
- * Sondar um relatório pendente **[comando: "report"]**
+ * Sondar uma transação: **pullReport()**
+ * Sondar uma lista de transações: **pullReport()**
+ * Paginar a lista de transações: **pullReport()** 
+ * Sondar um relatório pendente: **pullReport()**
  
 * **Cadastro de Cliente / Salvar Cartão**
- * Criar um perfil  *(um perfil de cliente precisa ser criado antes de se salvar um cartão)* **[comando: "add-consumer"]**
- * Atualizar um perfil **[comando: "update-consumer"]** 
- * Remover um perfil **[comando: "delete-consumer"]**
- * Adicionar um cartão de crédito **[comando: "add-card-onfile"]**
- * Remover um cartão de crédito **[comando: "delete-card-onfile"]**
+ * Criar um perfil: *(um perfil precisa ser criado antes de salvar um cartão)* **addProfile()**
+ * Atualizar um perfil: **updateProfile()** 
+ * Remover um perfil: **deleteProfile()**
+ * Adicionar um cartão de crédito: **addCreditCard()**
+ * Remover um cartão de crédito: **deleteCreditCard()**
 
+## Todos os métodos de resposta ##
+
+
+* **Validação da chamada**
+ * Verifica se houve algum erro na chamada **isErrorResponse()**
+ * Verificar se a chamada foi bem sucedida **isTransactionResponse()**
+
+* **Principais méthodos de resposta**
+ * Traz o Código de Autorização, se houver **getAuthCode()**
+ * Traz o Order ID criado **getOrderID()**
+ * Traz o Transaction ID criado **getTransactionID()**
+ * Traz a URL do Boleto *(somente Brasil)* **getBoletoUrl()**
+ * Traz o Código da Adquirente **getProcessorCode()**
+ * Traz o Numero de Referência da Adquirente **getProcessorReferenceNumber()**
+ * Traz o TID da Adquirente **getProcessorTransactionID()**
+ * Traz todos os campos da resposta **getResponse()**
+
+* **Outros métodos de rsposta**
+ * Traz a resposta do AVS *(somente EUA)* **getAvsResponseCode()**
+ * Traz o Comando usado na chamada **getCommand()**
+ * Traz o Customer ID criad **getCustomerId()**
+ * Traz a resposta do CVV *(somente EUA)* **getCvvResponseCode()**
+ * Traz o score da análise de fraude **getFraudScore()**
+ * Traz a mensagem de resposta **getMessage()**
+ * Traz o número de páginas do relatório **getNumberOfPages()**
+ * Traz a página atual do relatório **getPageNumber()**
+ * Traz o token da página do relatório **getPageToken()**
+ * Traz um array com as transações listadas **getReportResult()**
+ * Traz a data/hora do relatório **getTime()**
+ * Traz o Token criado para o Cartão de Crédito **getToken()**
+ * Traz o número de transações no relatório **getTotalNumberOfRecords()**
+ * Traz o Unix time da transação **getTransactionTimestamp()**
 
 ## Documentação e Suporte ##
 
