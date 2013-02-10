@@ -4,7 +4,7 @@ Esta **NOVA** biblioteca **PHP** visa facilitar a integração com a API da **ma
 
 Esta biblioteca traz todas as funcionalidades atualmente disponívels na plataforma e ela pode ser copiada e usada livremente por Lojas e desenvolvedores.
 
-Para ter uma visão mais aprofundada da nossa API baixe nossa documentação, [disponível aqui](http://www.maxipago.com/docs/maxiPago_API_Ultima.pdf). Se você está procurando por uma solução de página hospedada (*"hosted payment page"*), por favor veja a seção "**smartPages!**".
+Para ter uma visão mais aprofundada da nossa API baixe nossa documentação, [disponível aqui](http://www.maxipago.com/docs/maxiPago_API_Ultima.pdf). Se você está procurando por uma solução de página hospedada ("hosted payment page"), por favor veja a seção _**smartPages!**_.
 
 
 ## Tipos de transação ##
