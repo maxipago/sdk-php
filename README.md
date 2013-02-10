@@ -99,7 +99,7 @@ To send a request to **maxiPago!** you need to call one of the methods listed ab
 
 There are methods to get each piece of information from the response. However, you can also call the **getResponse()** method to retrieve all fields in the response as an array:
 
-```php
+```
 	print_r($maxiPago->getResponse());
 	
 	Array
