@@ -26,7 +26,6 @@ class maxiPagoXmlBuilder extends maxiPagoRequestBase {
         if (strlen($this->fraudCheck) > 0 ) { $this->xml->order->$type->addChild("fraudCheck", strtoupper($this->fraudCheck)); }
         if (strlen($this->ipAddress) > 0 ) { $this->xml->order->$type->addChild("ipAddress", strtoupper($this->ipAddress)); }
         $this->setAddress();
- //TODO: ??      if (in_array($type, array("auth", "sale", "capture", "boleto", "return", "add-consumer", "update-consumer", "add-card-onfile"))) { return; }
     }
     
     protected function setAddress() {
