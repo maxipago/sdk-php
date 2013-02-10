@@ -19,6 +19,7 @@ class maxiPago extends maxiPagoResponseBase {
      * @throws Exception
      */
     public function creditCardAuth($array) {
+        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -40,6 +41,7 @@ class maxiPago extends maxiPagoResponseBase {
      * @throws Exception
      */
     public function creditCardCapture($array) {
+        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -62,6 +64,7 @@ class maxiPago extends maxiPagoResponseBase {
      * @throws Exception
      */
     public function creditCardSale($array) {
+        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -70,7 +73,20 @@ class maxiPago extends maxiPagoResponseBase {
         $this->response = $req->processRequest();
     }
     
+    /**
+     * Creates a recurring payment
+     * 
+     * A recurring payment schedules a transaction to be run
+     * at a specific interval, starting at a specific date.
+     * A recurring payment is always a Sale (you cannot
+     * authorize a recurring payment to capture it later).
+     * 
+     * @param array $array
+     * @return array
+     * @throws Exception
+     */
     public function createRecurring($array) {
+        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -91,6 +107,7 @@ class maxiPago extends maxiPagoResponseBase {
      * @throws Exception
      */
     public function creditCardVoid($array) {
+        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -113,6 +130,7 @@ class maxiPago extends maxiPagoResponseBase {
      * @throws Exception
      */
     public function creditCardRefund($array) {
+        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -134,6 +152,7 @@ class maxiPago extends maxiPagoResponseBase {
      * @throws Exception
      */
     public function boletoSale($array) {
+        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -149,6 +168,7 @@ class maxiPago extends maxiPagoResponseBase {
      * @throws Exception
      */
     public function cancelRecurring($array) {
+        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -168,6 +188,7 @@ class maxiPago extends maxiPagoResponseBase {
      * @throws Exception
      */
     public function addProfile($array) {
+        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -187,6 +208,7 @@ class maxiPago extends maxiPagoResponseBase {
      * @throws Exception
      */
     public function updateProfile($array) {
+        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -202,6 +224,7 @@ class maxiPago extends maxiPagoResponseBase {
      * @throws Exception
      */
     public function deleteProfile($array) {
+        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -223,6 +246,7 @@ class maxiPago extends maxiPagoResponseBase {
      * @throws Exception
      */
     public function addCreditCard($array) {
+        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -239,6 +263,7 @@ class maxiPago extends maxiPagoResponseBase {
      * @throws Exception
      */
     public  function deleteCreditCard($array) {
+        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -254,6 +279,7 @@ class maxiPago extends maxiPagoResponseBase {
      * @throws Exception
      */
     public function pullReport($array) {
+        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);

@@ -1,5 +1,4 @@
 <?php
-//TODO: Treat EXCEPTIONS
 class maxiPagoRequestBase {
     
     protected $version = '3.1.1.15';
@@ -8,10 +7,12 @@ class maxiPagoRequestBase {
     public static $debug;
 
     public function setEndpoint($param) {
+        if (!$param) { throw new Exception('[maxiPago Class] INTERNAL ERROR on '.__METHOD__.' method: no Endpoint defined'); }
         $this->endpoint = $param;
     }
     
     public function setTransactionType($param) {
+        if (!$param) { throw new Exception('[maxiPago Class] INTERNAL ERROR on '.__METHOD__.' method: no Transaction Type defined'); }
         $this->type = $param;
     }
     
