@@ -3,6 +3,7 @@ class maxiPagoRequest extends maxiPagoXmlBuilder {
     
     protected function sendXml() {
         $this->xml = $this->xml->asXML();
+        if ((!isset($this->xml)) || (!$this->xml)) { throw new Exception('[maxiPago Class] INTERNAL ERROR on '.__METHOD__.' method:'); }
         $curl = curl_init($this->endpoint);
         $opt = array(CURLOPT_POST => 1,
             CURLOPT_HTTPHEADER => array('Content-Type: text/xml', 'charset=utf-8'),
@@ -17,7 +18,7 @@ class maxiPagoRequest extends maxiPagoXmlBuilder {
         curl_close($curl);
         if (maxiPagoRequestBase::$debug == true) { $this->printDebug($curlInfo); }
         if ($this->xmlResponse) { return $this->parseXml(); }
-        else { throw new Exception('[maxiPago Class] Connection error with maxiPago! server.', 503); }
+        else { throw new Exception('[maxiPago Class] Connection error with maxiPago! server', 503); }
     }
     
     private function parseXml($array = array(),$c = 0) {
@@ -58,7 +59,7 @@ class maxiPagoRequest extends maxiPagoXmlBuilder {
         return $array;
     }
     
-    private function printDebug($param) {
+    private function printDebug($param,$_mpInfo='') {
         $this->debugger("Target URL: ".$this->endpoint);
         $this->debugger("XML Request: ".htmlentities(mb_convert_encoding($this->xml, "UTF-8")));
         if ($param["http_code"] == "200") {
@@ -67,8 +68,10 @@ class maxiPagoRequest extends maxiPagoXmlBuilder {
         }
         else {
             $this->debugger("XML Response: Something went wrong with the cURL call.");
-            foreach ($param as $k => $v) { $_mpInfo .= $k.": ".$v.", "; }
-            $this->debugger("cURL_getinfo data:\n".$_mpInfo);
+            foreach ($param as $k => $v) { 
+                if ($k != "certinfo") { $_mpInfo .= $k.": ".$v.", "; }
+            }
+            $this->debugger("cURL_getinfo data: ".$_mpInfo);
         }
     }
     
