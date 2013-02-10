@@ -144,35 +144,35 @@ Há métodos para resgatar cada parte da resposta. Contudo, você também pode c
 ## Todos os métodos de resposta ##
 
 
-* **Validação da chamada**
- * Verifica se houve algum erro na chamada: **isErrorResponse()**
- * Verificar se a chamada foi bem sucedida: **isTransactionResponse()**
+#####Validação da chamada#####
+* Verifica se houve algum erro na chamada: **isErrorResponse()**
+* Verificar se a chamada foi bem sucedida: **isTransactionResponse()**
 
-* **Principais méthodos de resposta**
- * Traz o Código de Autorização, se houver: **getAuthCode()**
- * Traz o Order ID criado: **getOrderID()**
- * Traz o Transaction ID criado: **getTransactionID()**
- * Traz a URL do Boleto *(somente Brasil)*: **getBoletoUrl()**
- * Traz o Código da Adquirente: **getProcessorCode()**
- * Traz o Numero de Referência da Adquirente: **getProcessorReferenceNumber()**
- * Traz o TID da Adquirente: **getProcessorTransactionID()**
- * Traz todos os campos da resposta: **getResponse()**
+#####Principais méthodos de resposta#####
+* Traz o Código de Autorização, se houver: **getAuthCode()**
+* Traz o Order ID criado: **getOrderID()**
+* Traz o Transaction ID criado: **getTransactionID()**
+* Traz a URL do Boleto *(somente Brasil)*: **getBoletoUrl()**
+* Traz o Código da Adquirente: **getProcessorCode()**
+* Traz o Numero de Referência da Adquirente: **getProcessorReferenceNumber()**
+* Traz o TID da Adquirente: **getProcessorTransactionID()**
+* Traz todos os campos da resposta: **getResponse()**
 
-* **Outros métodos de rsposta**
- * Traz a resposta do AVS *(somente EUA)*: **getAvsResponseCode()**
- * Traz o Comando usado na chamada: **getCommand()**
- * Traz o Customer ID criado: **getCustomerId()**
- * Traz a resposta do CVV: *(somente EUA)* **getCvvResponseCode()**
- * Traz o score da análise de fraude: **getFraudScore()**
- * Traz a mensagem de resposta: **getMessage()**
- * Traz o número de páginas do relatório: **getNumberOfPages()**
- * Traz a página atual do relatório: **getPageNumber()**
- * Traz o token da página do relatório: **getPageToken()**
- * Traz um array com as transações listadas: **getReportResult()**
- * Traz a data/hora do relatório: **getTime()**
- * Traz o Token criado para o Cartão de Crédito: **getToken()**
- * Traz o número de transações no relatório: **getTotalNumberOfRecords()**
- * Traz o Unix time da transação: **getTransactionTimestamp()**
+#####Outros métodos de rsposta#####
+* Traz a resposta do AVS *(somente EUA)*: **getAvsResponseCode()**
+* Traz o Comando usado na chamada: **getCommand()**
+* Traz o Customer ID criado: **getCustomerId()**
+* Traz a resposta do CVV: *(somente EUA)* **getCvvResponseCode()**
+* Traz o score da análise de fraude: **getFraudScore()**
+* Traz a mensagem de resposta: **getMessage()**
+* Traz o número de páginas do relatório: **getNumberOfPages()**
+* Traz a página atual do relatório: **getPageNumber()**
+* Traz o token da página do relatório: **getPageToken()**
+* Traz um array com as transações listadas: **getReportResult()**
+* Traz a data/hora do relatório: **getTime()**
+* Traz o Token criado para o Cartão de Crédito: **getToken()**
+* Traz o número de transações no relatório: **getTotalNumberOfRecords()**
+* Traz o Unix time da transação: **getTransactionTimestamp()**
 
 ## Documentação e Suporte ##
 

@@ -149,35 +149,35 @@ There are methods to get each piece of information from the response. However, y
 ## All response methods ##
 
 
-* **Request validators**
- * Checks if there was an error in the request: **isErrorResponse()**
- * Checks if the request was successful: **isTransactionResponse()**
+#####Request validators#####
+* Checks if there was an error in the request: **isErrorResponse()**
+* Checks if the request was successful: **isTransactionResponse()**
 
-* **Main transaction response methods**
- * Gets the Authorization Code, if any was replied: **getAuthCode()**
- * Gets the Order ID created: **getOrderID()**
- * Gets the Transaction ID created: **getTransactionID()**
- * Gets the URL for the Boleto issued *(Brazil only)*: **getBoletoUrl()**
- * Gets the Processor Code: **getProcessorCode()**
- * Gets the Processor Reference Number: **getProcessorReferenceNumber()**
- * Gets the Processor Transaction ID: **getProcessorTransactionID()**
- * Gets an array with all response fields: **getResponse()**
+#####Main transaction response methods#####
+* Gets the Authorization Code, if any was replied: **getAuthCode()**
+* Gets the Order ID created: **getOrderID()**
+* Gets the Transaction ID created: **getTransactionID()**
+* Gets the URL for the Boleto issued *(Brazil only)*: **getBoletoUrl()**
+* Gets the Processor Code: **getProcessorCode()**
+* Gets the Processor Reference Number: **getProcessorReferenceNumber()**
+* Gets the Processor Transaction ID: **getProcessorTransactionID()**
+* Gets an array with all response fields: **getResponse()**
 
-* **Other transaction response methods**
- * Gets the AVS Response Code *(US only)*: **getAvsResponseCode()**
- * Gets the Command used in the request: **getCommand()**
- * Gets the Customer ID created: **getCustomerId()**
- * Gets the CVV Response Code *(US only)*: **getCvvResponseCode()**
- * Gets the Fraud Score analysis: **getFraudScore()**
- * Gets the Response Message: **getMessage()**
- * Gets the report's number of pages: **getNumberOfPages()**
- * Gets the report's current page: **getPageNumber()**
- * Gets the report's page token: **getPageToken()**
- * Gets the transaction list as array: **getReportResult()**
- * Gets the report's time: **getTime()**
- * Gets the Credit Card Token created: **getToken()**
- * Gets the number of transactions in a report: **getTotalNumberOfRecords()**
- * Gets the Transaction Unix time: **getTransactionTimestamp()**
+#####Other transaction response methods#####
+* Gets the AVS Response Code *(US only)*: **getAvsResponseCode()**
+* Gets the Command used in the request: **getCommand()**
+* Gets the Customer ID created: **getCustomerId()**
+* Gets the CVV Response Code *(US only)*: **getCvvResponseCode()**
+* Gets the Fraud Score analysis: **getFraudScore()**
+* Gets the Response Message: **getMessage()**
+* Gets the report's number of pages: **getNumberOfPages()**
+* Gets the report's current page: **getPageNumber()**
+* Gets the report's page token: **getPageToken()**
+* Gets the transaction list as array: **getReportResult()**
+* Gets the report's time: **getTime()**
+* Gets the Credit Card Token created: **getToken()**
+* Gets the number of transactions in a report: **getTotalNumberOfRecords()**
+* Gets the Transaction Unix time: **getTransactionTimestamp()**
 
 
 ## Documentation and Support ##
