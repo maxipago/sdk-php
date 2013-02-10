@@ -4,7 +4,7 @@ This **NEW PHP** library allows for easy integration with the **maxiPago! Smart 
 
 This library has all the functionalities currently available through our XML-based API and can be freely copied and used by Merchants and developers.
 
-You can get a more comprehensive view of our API by looking at our documentation, [which can be downloaded here](http://www.maxipago.com/docs/maxiPago_API_Latest.pdf). If you are looking for a hosted payment page solution, please see the section "**smartPages!**" in the documentation.
+You can get a more comprehensive view of our API by looking at our documentation, [which can be downloaded here](http://www.maxipago.com/docs/maxiPago_API_Latest.pdf). If you are looking for a hosted payment page solution, please see the section _**smartPages!**_ in the documentation.
 
 
 ## Available transaction types ##
