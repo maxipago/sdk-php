@@ -184,4 +184,15 @@ There are methods to get each piece of information from the response. However, y
 
 [**maxiPago!**'s full API documentation can be found here](http://www.maxipago.com/docs/maxiPago_API_Latest.pdf).
 
-Our support team is happy to help you with any questions you might have, be it about the functionalities of our platform or about payments in general. They are available to customers and non-customers alike and can be reached at support [@] maxipago [.] com.maxiPago! PHP Integration lib - OO
+Our support team is happy to help you with any questions you might have, be it about the functionalities of our platform or about payments in general. They are available to customers and non-customers alike and can be reached at support [@] maxipago [.] com.
+
+## License ##
+
+Library for integration with the **maxiPago! Payment Gateway**     
+**_Copyright (C) 2013, maxiPago!_**        
+                                                                      
+This program is free software: you can redistribute it and/or modify  it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.                                   
+                                                                      
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.                          
+                                                                      
+You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
