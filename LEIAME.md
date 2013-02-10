@@ -61,8 +61,10 @@ A **maxiPago!** oferece um ambiente de teste (*"sandbox"*) totalmente funcional 
 		
 Para definir as credenciais e o ambiente usado:
 
-	$maxiPago->setCredentials("100", "merchant_key");
-	$maxiPago->setEnvironment("TEST");
+```php
+$maxiPago->setCredentials("100", "merchant_key");
+$maxiPago->setEnvironment("TEST");
+```
 
 ## Modo Debug ##
 
