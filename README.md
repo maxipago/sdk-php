@@ -32,17 +32,19 @@ You can get a more comprehensive view of our API by looking at our documentation
 
 The library consists of the folling files:
 
-> /lib/  
-> |-- maxiPago.php  
-> |-- maxipago  
-> >   |-- maxiPagoRequest.php  
->     |-- maxiPagoRequestBase.php  
->     |-- maxiPagoResponseBase.php  
->     |-- maxiPagoServiceBase.php  
->     |-- maxiPagoTransaction.php  
->     |-- maxiPagoXmlHandler.php  
+````
+  /lib/  
+  |-- maxiPago.php  
+  |-- maxipago  
+    |-- maxiPagoRequest.php  
+    |-- maxiPagoRequestBase.php  
+    |-- maxiPagoResponseBase.php  
+    |-- maxiPagoServiceBase.php  
+    |-- maxiPagoTransaction.php  
+    |-- maxiPagoXmlHandler.php
+````
 
-Copy */lib/maxipago/* to your local server. In your code, include the **maxiPago.php** file, which checks the minimum requirements and includes the other necessary files:
+Copy **/lib/maxipago/** to your local server. In your code, include the **maxiPago.php** file, which checks the minimum requirements and includes the other necessary files:
 
 	require_once "./lib/maxiPago.php"
 
