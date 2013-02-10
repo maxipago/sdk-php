@@ -116,37 +116,34 @@ There are methods to get each piece of information from the response. However, y
 ## All request methods ##
 
 
-* **Credit Card Transactions**
- * Authorization: **creditCardAuth()**
- * Capture: **creditCardCapture()**
- * Sale (Authorization + Capture): **creditCardSale()**
- * Automatically save card: **creditCardAuth() or creditCardSale()**
- * Void: **creditCardVoid()**
- * Refund: **creditCardRefund()**
+#####Credit Card Transactions#####
+* Authorization: **creditCardAuth()**
+* Capture: **creditCardCapture()**
+* Sale (Authorization + Capture): **creditCardSale()**
+* Automatically save card: **creditCardAuth() or creditCardSale()**
+* Void: **creditCardVoid()**
+* Refund: **creditCardRefund()**
+  
+#####Recurring Transactions#####
+* Create recurring credit card billing: **createRecurring()**
+* Cancel a recurring billing: **cancelRecurring()**
  
- 
-* **Recurring Transactions**
- * Create recurring credit card billing: **createRecurring()**
- * Cancel a recurring billing: **cancelRecurring()**
- 
- 
-* **Boleto Transactions**
- * Create boleto payment slip (Brazil only): **boletoSale()**
+#####Boleto Transactions#####
+* Create boleto payment slip (Brazil only): **boletoSale()**
+
+#####Reports#####
+* Query one single transaction: **pullReport()**
+* Query a list of transactions: **pullReport()** 
+* Flip through pages of a transaction list: **pullReport()** 
+* Query a pending report: **pullReport()** 
 
 
-* **Reports**
- * Query one single transaction: **pullReport()**
- * Query a list of transactions: **pullReport()** 
- * Flip through pages of a transaction list: **pullReport()** 
- * Query a pending report: **pullReport()** 
-
-
-* **Customer Profile / Card On File**
- * Create a profile *(a profile must be created to save a card)*: **addProfile()**
- * Update a profile: **updateProfile()** 
- * Remove a profile: **deleteProfile()** 
- * Add a credit card: **addCreditCard()**
- * Remove a credit card: **deleteCreditCard()**
+#####Customer Profile / Card On File#####
+* Create a profile *(a profile must be created to save a card)*: **addProfile()**
+* Update a profile: **updateProfile()** 
+* Remove a profile: **deleteProfile()** 
+* Add a credit card: **addCreditCard()**
+* Remove a credit card: **deleteCreditCard()**
 
 
 ## All response methods ##
