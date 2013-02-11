@@ -40,7 +40,7 @@
 <li><a href="#allreq">All request methods</a></li>
 <li><a href="#allres">All response methods</a></li>
 <li><a href="#support">Support</a></li>
-</ol><h2>Introduction</h2>
+</ol><h2 id="intro">Introduction</h2>
 
 <p>This <strong>NEW PHP</strong> library allows for easy integration with the <strong>maxiPago! Smart Payments</strong> API. Our payment platform allows online merchants to accept payments in many countries in Latin America and the US and includes such functionalities as Automated Recurring Billing, "Single-Click" payments, Online Returns, Credit Card Payment Reconciliation, Fraud Tools and more. You can find out more about <strong>maxiPago!</strong> by visiting <a href="http://www.maxipago.com/">www.maxipago.com</a>.</p>
 
@@ -48,7 +48,7 @@
 
 <p>You can get a more comprehensive view of our API by looking at our documentation, <a href="http://www.maxipago.com/docs/maxiPago_API_Latest.pdf">which can be downloaded here</a>. If you are looking for a hosted payment page solution, please see the section <em><strong>smartPages!</strong></em> in the documentation.</p>
 
-<h2>Available transaction types</h2>
+<h2 id="types">Available transaction types</h2>
 
 <ul>
 <li><p><strong>Authorization:</strong> checks if the credit card used is valid (number, security code and expiration date) and if the card holder has sufficient funds for that purchase.</p></li>
@@ -64,7 +64,7 @@
 <li><p><strong>Recurring:</strong> schedules a credit card transaction to be charged at a specific interval, defined by the Merchant.</p></li>
 <li><p><strong>Card On File:</strong> saves a card in our system and returns a unique token, which can be used to process future transactions. <strong>This allows the implementation of "single-click" payments.</strong></p></li>
 <li><p><strong>Boleto:</strong> <em>(Brazil only)</em> Transactions made with Boletos are different than credit card purchases. This creates a boleto and returns an URL to the buyer to access the boleto payment slip. It can be accessed at any time before the boleto expiration and up to 60 days after it has expired.</p></li>
-</ul><h2>Installation and setup</h2>
+</ul><h2 id="setup">Installation and setup</h2>
 
 <p>The library consists of the folling files:</p>
 
@@ -89,7 +89,7 @@
 <div class="highlight"><pre><span class="nv">$maxiPago</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">maxiPago</span><span class="p">;</span>
 </pre></div>
 
-<h2>Environment and Credentials</h2>
+<h2 id="credentials">Environment and Credentials</h2>
 
 <p>In order to send requests you will need valid Merchant Credentials. They can be obtained with our Customer Support team.</p>
 
@@ -101,14 +101,14 @@
 <span class="nv">$maxiPago</span><span class="o">-&gt;</span><span class="na">setEnvironment</span><span class="p">(</span><span class="s2">"TEST"</span><span class="p">);</span>
 </pre></div>
 
-<h2>Debug Mode</h2>
+<h2 id="debug">Debug Mode</h2>
 
 <p>The Debug Mode prints the request and response XML's so you can easily identify any issues with the request. In order to enable debug use the <strong>setDebug()</strong> method:</p>
 
 <div class="highlight"><pre>    <span class="nv">$maxiPago</span><span class="o">-&gt;</span><span class="na">setDebug</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
 </pre></div>
 
-<h2>Send a request</h2>
+<h2 id="request">Send a request</h2>
 
 <p>To send a request to <strong>maxiPago!</strong> you need to call one of the methods listed above, passing an array with the request parameters, as such:</p>
 
@@ -125,7 +125,7 @@
     <span class="nv">$maxiPago</span><span class="o">-&gt;</span><span class="na">creditCardAuth</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
 </pre></div>
 
-<h2>Get a response</h2>
+<h2 id="response">Get a response</h2>
 
 <p>There are methods to get each piece of information from the response. However, you can also call the <strong>getResponse()</strong> method to retrieve all fields in the response as an array:</p>
 
@@ -148,9 +148,9 @@
     )
 </code></pre>
 
-<h2>All request methods</h2>
+<h2 id="allreq">All request methods</h2>
 
-<h5>Credit Card Transactions</h5>
+<h4>Credit Card Transactions</h4>
 
 <ul>
 <li>Authorization: <strong>creditCardAuth()</strong>
@@ -165,19 +165,19 @@
 </li>
 <li>Refund: <strong>creditCardRefund()</strong>
 </li>
-</ul><h5>Recurring Transactions</h5>
+</ul><h4>Recurring Transactions</h4>
 
 <ul>
 <li>Create recurring credit card billing: <strong>createRecurring()</strong>
 </li>
 <li>Cancel a recurring billing: <strong>cancelRecurring()</strong>
 </li>
-</ul><h5>Boleto Transactions</h5>
+</ul><h4>Boleto Transactions</h4>
 
 <ul>
 <li>Create boleto payment slip (Brazil only): <strong>boletoSale()</strong>
 </li>
-</ul><h5>Reports</h5>
+</ul><h4>Reports</h4>
 
 <ul>
 <li>Query one single transaction: <strong>pullReport()</strong>
@@ -185,7 +185,7 @@
 <li>Query a list of transactions: <strong>pullReport()</strong> </li>
 <li>Flip through pages of a transaction list: <strong>pullReport()</strong> </li>
 <li>Query a pending report: <strong>pullReport()</strong> </li>
-</ul><h5>Customer Profile / Card On File</h5>
+</ul><h4>Customer Profile / Card On File</h4>
 
 <ul>
 <li>Create a profile <em>(a profile must be created to save a card)</em>: <strong>addProfile()</strong>
@@ -196,16 +196,16 @@
 </li>
 <li>Remove a credit card: <strong>deleteCreditCard()</strong>
 </li>
-</ul><h2>All response methods</h2>
+</ul><h2 id="allres">All response methods</h2>
 
-<h5>Request validators</h5>
+<h4>Request validators</h4>
 
 <ul>
 <li>Checks if there was an error in the request: <strong>isErrorResponse()</strong>
 </li>
 <li>Checks if the request was successful: <strong>isTransactionResponse()</strong>
 </li>
-</ul><h5>Main transaction response methods</h5>
+</ul><h4>Main transaction response methods</h4>
 
 <ul>
 <li>Gets the Authorization Code, if any was replied: <strong>getAuthCode()</strong>
@@ -224,7 +224,7 @@
 </li>
 <li>Gets an array with all response fields: <strong>getResponse()</strong>
 </li>
-</ul><h5>Other transaction response methods</h5>
+</ul><h4>Other transaction response methods</h4>
 
 <ul>
 <li>Gets the AVS Response Code <em>(US only)</em>: <strong>getAvsResponseCode()</strong>
@@ -255,7 +255,7 @@
 </li>
 <li>Gets the Transaction Unix time: <strong>getTransactionTimestamp()</strong>
 </li>
-</ul><h2>Documentation and Support</h2>
+</ul><h2 id="support">Documentation and Support</h2>
 
 <p><a href="http://www.maxipago.com/docs/maxiPago_API_Latest.pdf"><strong>maxiPago!</strong>'s full API documentation can be found here</a>.</p>
 
