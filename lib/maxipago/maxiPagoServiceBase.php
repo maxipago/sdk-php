@@ -11,7 +11,7 @@ class maxiPagoServiceBase {
      * @param string $key
      */
     public function setCredentials($mid=null,$key=null) {
-        if ((ctype_digit($mid)) && (strlen($key) == 24)) {
+        if ((ctype_digit((string)$mid)) && (strlen($key) == 24)) {
             $this->credentials["merchantId"] = $mid;
             $this->credentials["merchantKey"] = $key;
         }

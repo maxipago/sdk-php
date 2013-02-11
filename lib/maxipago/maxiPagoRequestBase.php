@@ -23,13 +23,13 @@ class maxiPagoRequestBase {
     }
     
     private function validateCall() {
-        if ((strlen($this->processorID) > 0) && ((!ctype_digit($this->processorID)) || (strlen($this->processorID) > 2))) { throw new Exception("[maxiPago Class] Field 'processorID' is invalid. Please check documentation for valid values."); }
-        if ((strlen($this->number) > 0) && (!ctype_digit($this->number))) { throw new Exception("[maxiPago Class] Field 'number' accepts only numerical values."); }
-        if ((strlen($this->expMonth) > 0) && ((strlen($this->expMonth) < 2) || (!ctype_digit($this->expMonth)))) { throw new Exception("[maxiPago Class] Credit card expiration month must have 2 digits."); }
-        if ((strlen($this->expirationMonth) > 0) && ((strlen($this->expirationMonth) < 2) || (!ctype_digit($this->expirationMonth)))) { throw new Exception("[maxiPago Class] Credit card expiration month must have 2 digits."); }
-        if ((strlen($this->expYear) > 0) && ((strlen($this->expYear) < 4) || (!ctype_digit($this->expYear)))) { throw new Exception("[maxiPago Class] Credit card expiration year must have 4 digits."); }
-        if ((strlen($this->expirationYear) > 0) && ((strlen($this->expirationYear) < 2) || (!ctype_digit($this->expirationYear)))) { throw new Exception("[maxiPago Class] Credit card expiration year must have 4 digits."); }
-        if ((strlen($this->numberOfInstallments) > 0) && (!ctype_digit($this->numberOfInstallments))) { throw new Exception("[maxiPago Class] Field 'numberOfInstallments' accepts only numerical values."); }
+        if ((strlen($this->processorID) > 0) && ((!ctype_digit((string)$this->processorID)) || (strlen($this->processorID) > 2))) { throw new Exception("[maxiPago Class] Field 'processorID' is invalid. Please check documentation for valid values."); }
+        if ((strlen($this->number) > 0) && (!ctype_digit((string)$this->number))) { throw new Exception("[maxiPago Class] Field 'number' accepts only numerical values."); }
+        if ((strlen($this->expMonth) > 0) && ((strlen($this->expMonth) < 2) || (!ctype_digit((string)$this->expMonth)))) { throw new Exception("[maxiPago Class] Credit card expiration month must have 2 digits."); }
+        if ((strlen($this->expirationMonth) > 0) && ((strlen($this->expirationMonth) < 2) || (!ctype_digit((string)$this->expirationMonth)))) { throw new Exception("[maxiPago Class] Credit card expiration month must have 2 digits."); }
+        if ((strlen($this->expYear) > 0) && ((strlen($this->expYear) < 4) || (!ctype_digit((string)$this->expYear)))) { throw new Exception("[maxiPago Class] Credit card expiration year must have 4 digits."); }
+        if ((strlen($this->expirationYear) > 0) && ((strlen($this->expirationYear) < 2) || (!ctype_digit((string)$this->expirationYear)))) { throw new Exception("[maxiPago Class] Credit card expiration year must have 4 digits."); }
+        if ((strlen($this->numberOfInstallments) > 0) && (!ctype_digit((string)$this->numberOfInstallments))) { throw new Exception("[maxiPago Class] Field 'numberOfInstallments' accepts only numerical values."); }
         if ((strlen($this->chargeInterest) > 0) && (!in_array(strtoupper($this->chargeInterest), array("Y", "N")))) { throw new Exception("[maxiPago Class] Field 'chargeInterest' only accepts Y and N as value."); }
         if ((strlen($this->expirationDate) > 0) && (strtotime($this->expirationDate) < strtotime("now"))) { throw new Exception("[maxiPago Class] Boleto expiration date can only be set in the future."); }
         if ((strlen($this->instructions) > 0) && (strlen($this->instructions) > 100)) { throw new Exception("[maxiPago Class] Boleto instructions cannot be longer than 100 characters."); }
