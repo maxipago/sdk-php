@@ -40,33 +40,33 @@
 <li><a href="#allreq">Todas as requisições</a></li>
 <li><a href="#allres">Todas as respostas</a></li>
 <li><a href="#support">Suporte</a></li>
-</ol><h2 id="intro">Introduction</h2>
+</ol><h2 id="intro">Introdução</h2>
 
-<p>This <strong>NEW PHP</strong> library allows for easy integration with the <strong>maxiPago! Smart Payments</strong> API. Our payment platform allows online merchants to accept payments in many countries in Latin America and the US and includes such functionalities as Automated Recurring Billing, "Single-Click" payments, Online Returns, Credit Card Payment Reconciliation, Fraud Tools and more. You can find out more about <strong>maxiPago!</strong> by visiting <a href="http://www.maxipago.com/">www.maxipago.com</a>.</p>
+<p>Esta <strong>NOVA</strong> biblioteca <strong>PHP</strong> visa facilitar a integração com a API da <strong>maxiPago! Smart Payments</strong>. Nossa plataforma permite aos lojistas virtuais aceitarem pagamentos em diversos países da América Latina e nos EUA e inclui funcionalidades como Cobrança Recorrente Automática, Pagamentos com 1-Clique, Estornos Online, Conciliação de Cartões de Crédito e Ferramentas Anti-Fraude. Se quiser saber mais sobre a <strong>maxiPago!</strong> visite <a href="http://www.maxipago.com/">www.maxipago.com</a>.</p>
 
-<p>This library has all the functionalities currently available through our XML-based API and can be freely copied and used by Merchants and developers.</p>
+<p>Esta biblioteca traz todas as funcionalidades atualmente disponívels na plataforma e ela pode ser copiada e usada livremente por Lojas e desenvolvedores.</p>
 
-<p>You can get a more comprehensive view of our API by looking at our documentation, <a href="http://www.maxipago.com/docs/maxiPago_API_Latest.pdf">which can be downloaded here</a>. If you are looking for a hosted payment page solution, please see the section <em><strong>smartPages!</strong></em> in the documentation.</p>
+<p>Para ter uma visão mais aprofundada da nossa API baixe nossa documentação, <a href="http://www.maxipago.com/docs/maxiPago_API_Ultima.pdf">disponível aqui</a>. Se você está procurando por uma solução de página hospedada ("hosted payment page"), por favor veja a seção <em><strong>smartPages!</strong></em>.</p>
 
-<h2 id="types">Available transaction types</h2>
+<h2 id="types">Tipos de Transação</h2>
 
 <ul>
-<li><p><strong>Authorization:</strong> checks if the credit card used is valid (number, security code and expiration date) and if the card holder has sufficient funds for that purchase.</p></li>
-<li><p><strong>Capture:</strong> confirms the authorization previously made and completes the transaction. If the transaction is never captured the Merchant does not receive the funds and the Card Holder is never charged.</p></li>
+<li><p><strong>Autorização:</strong> verifica se o cartão de crédito usado é válido (número, CVV e data de validade) e se o comprador possui limite suficiente para a compra.</p></li>
+<li><p><strong>Captura:</strong> confirma a autorização feita para aquele pedido e completa a transação. Se a transação nunca for capturada o Estabelecimento não receberá o dinheiro e o comprador não será cobrado.</p></li>
 </ul><blockquote>
-<p><em>Separating the authorization and capture in two different moments is an excellent way to check if you have the purchased items in stock or to run a fraud check, while still guaranteeing payment.</em></p>
+<p><em>Separar a autorização e a captura em dois momentos diferentes é uma ótima maneira de checar se você tem os produtos em estoque ou fazer uma análise de fraude, e ainda assim garantir o pagamento.</em></p>
 </blockquote>
 
 <ul>
-<li><p><strong>Sale:</strong> combines the authorization and the capture in a single request. When performing a Sale we send the credit card for authorization and immediately capture that transaction, if approved.</p></li>
-<li><p><strong>Void:</strong> cancels the transaction and no money is charged from the buyer. You can only void a transaction until 11:59pm of the day of capture.</p></li>
-<li><p><strong>Return:</strong> reverses a credit card transaction, taking funds from the Merchant and giving them back to the buyer. This is a financial operation that might take a few days to be completed, depending on your credit card processor.</p></li>
-<li><p><strong>Recurring:</strong> schedules a credit card transaction to be charged at a specific interval, defined by the Merchant.</p></li>
-<li><p><strong>Card On File:</strong> saves a card in our system and returns a unique token, which can be used to process future transactions. <strong>This allows the implementation of "single-click" payments.</strong></p></li>
-<li><p><strong>Boleto:</strong> <em>(Brazil only)</em> Transactions made with Boletos are different than credit card purchases. This creates a boleto and returns an URL to the buyer to access the boleto payment slip. It can be accessed at any time before the boleto expiration and up to 60 days after it has expired.</p></li>
+<li><p><strong>Venda Direta:</strong> combina a autorização e a captura em uma mesma chamada. Ao usar a requisição de Venda Direta você estará fazendo uma autorização no cartão do cliente e imediatamente capturando o valor total.</p></li>
+<li><p><strong>Void:</strong>: cancela uma captura antes do fechamento do lote final do dia. Aqui o dinheiro não troca de mãos. Você só pode cancelar a venda até às 23h49 do dia da captura.</p></li>
+<li><p><strong>Estorno:</strong> reverte uma transação de cartão de crédito, debitando o valor do Estabelecimento e devolvendo-o ao comprador. O estorno é uma operação financeira e, por esta razão, pode demorar alguns dias para serem aprovados por algumas processadoras.</p></li>
+<li><p><strong>Recorrente:</strong> agenda uma transação de cartão de crédito para ser cobrada em um intervalo específico, definido pelo lojista.</p></li>
+<li><p><strong>Armazenar Cartão:</strong> guarda um cartão em nosso sistema e devolve um token único, que pode ser usado em novas transações. <strong>Isto permite a implantação de pagamentos com 1-clique no seu site.</strong></p></li>
+<li><p><strong>Boleto:</strong> Transações feitas com Boleto funcionam de forma diferente das transações com cartão de crédito. Aqui geramos um boleto e retornamos uma URL para comprador que dá acesso ao boleto. Ela pode ser acessada a qualquer momento antes do vencimento do boleto e até 60 dias após o vencimento.</p></li>
 </ul><h2 id="setup">Installation and setup</h2>
 
-<p>The library consists of the folling files:</p>
+<p>A biblioteca consiste dos seguintes arquivos:</p>
 
 <pre><code>  /lib/  
   |-- maxiPago.php  
@@ -79,38 +79,38 @@
     |-- maxiPagoXmlHandler.php
 </code></pre>
 
-<p>Copy <strong>/lib/maxipago/</strong> to your local server. In your code, include the <strong>maxiPago.php</strong> file, which checks the minimum requirements and includes the other necessary files:</p>
+<p>Copie <strong>/lib/maxipago/</strong> para seu servidor. No seu código, inclua o arquivo <strong>maxiPago.php</strong>, que checa os requisitos mínimos e inclui os demais arquivos necessários:</p>
 
-<div class="highlight"><pre><span class="k">require_once</span> <span class="s2">"./lib/maxiPago.php"</span>
+<div class="highlight"><pre>    <span class="k">require_once</span> <span class="s2">"./lib/maxiPago.php"</span><span class="p">;</span>
 </pre></div>
 
-<p>Now, create a new object from the maxiPago class:</p>
+<p>Agora, crie um novo object da classe maxiPago:</p>
 
-<div class="highlight"><pre><span class="nv">$maxiPago</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">maxiPago</span><span class="p">;</span>
+<div class="highlight"><pre>    <span class="nv">$maxiPago</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">maxiPago</span><span class="p">;</span>
 </pre></div>
 
-<h2 id="credentials">Environment and Credentials</h2>
+<h2 id="credentials">Ambiente e Credenciais</h2>
 
-<p>In order to send requests you will need valid Merchant Credentials. They can be obtained with our Customer Support team.</p>
+<p>Para poder enviar requisições você precisará de Credenciais válidas. Você pode conseguí-las com nosso Suporte.</p>
 
-<p><strong>maxiPago!</strong> provides a fully functional sandbox environment to simulate the transaction responses. You need to set the environment the transactions will be sent to, which can be done by sending either <strong>"TEST"</strong> or <strong>"LIVE"</strong>.</p>
+<p>A <strong>maxiPago!</strong> oferece um ambiente de teste (*"sandbox"*) totalmente funcional para simular as transações. Você precisa definir o ambiente para enviar as transações, o que pode ser feito enviando <strong>"TEST"</strong> ou <strong>"LIVE"</strong>:</p>
 
-<p>To set the credentials and environment used to process requests:</p>
+<p>Para definir as credenciais e o ambiente usado:</p>
 
-<div class="highlight"><pre><span class="nv">$maxiPago</span><span class="o">-&gt;</span><span class="na">setCredentials</span><span class="p">(</span><span class="s2">"100"</span><span class="p">,</span> <span class="s2">"merchant_key"</span><span class="p">);</span>
-<span class="nv">$maxiPago</span><span class="o">-&gt;</span><span class="na">setEnvironment</span><span class="p">(</span><span class="s2">"TEST"</span><span class="p">);</span>
+<div class="highlight"><pre>    <span class="nv">$maxiPago</span><span class="o">-&gt;</span><span class="na">setCredentials</span><span class="p">(</span><span class="s2">"100"</span><span class="p">,</span> <span class="s2">"merchant_key"</span><span class="p">);</span>
+    <span class="nv">$maxiPago</span><span class="o">-&gt;</span><span class="na">setEnvironment</span><span class="p">(</span><span class="s2">"TEST"</span><span class="p">);</span>
 </pre></div>
 
-<h2 id="debug">Debug Mode</h2>
+<h2 id="debug">Modo Debug</h2>
 
-<p>The Debug Mode prints the request and response XML's so you can easily identify any issues with the request. In order to enable debug use the <strong>setDebug()</strong> method:</p>
+<p>O Modo Debug imprime os XMLs de requisição e resposta para que você possa facilmente identificar problemas na chamada. Para habilitar o debug use o método <strong>setDebug()</strong>:</p>
 
 <div class="highlight"><pre>    <span class="nv">$maxiPago</span><span class="o">-&gt;</span><span class="na">setDebug</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
 </pre></div>
 
-<h2 id="request">Send a request</h2>
+<h2 id="request">Enviar uma requisição</h2>
 
-<p>To send a request to <strong>maxiPago!</strong> you need to call one of the methods listed above, passing an array with the request parameters, as such:</p>
+<p>Para mandar uma requisição para a <strong>maxiPago!</strong> você precisa chamar um dos métodos listados abaixo, passando um array com os parâmetros, como por exemplo:</p>
 
 <div class="highlight"><pre>    <span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
         <span class="s2">"processorID"</span> <span class="o">=&gt;</span> <span class="s2">"1"</span><span class="p">,</span>
@@ -125,9 +125,9 @@
     <span class="nv">$maxiPago</span><span class="o">-&gt;</span><span class="na">creditCardAuth</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
 </pre></div>
 
-<h2 id="response">Get a response</h2>
+<h2 id="response">Receber uma resposta</h2>
 
-<p>There are methods to get each piece of information from the response. However, you can also call the <strong>getResponse()</strong> method to retrieve all fields in the response as an array:</p>
+<p>Há métodos para resgatar cada parte da resposta. Contudo, você também pode chamar o método <strong>getResponse()</strong> para recuperar todos os campos da resposta em um array:</p>
 
 <pre><code>    print_r($maxiPago-&gt;getResponse());
 
@@ -148,118 +148,127 @@
     )
 </code></pre>
 
-<h2 id="allreq">All request methods</h2>
+<h2 id="allreq">Todas as requisições</h2>
 
-<h4>Credit Card Transactions</h4>
-
-<ul>
-<li>Authorization: <strong>creditCardAuth()</strong>
-</li>
-<li>Capture: <strong>creditCardCapture()</strong>
-</li>
-<li>Sale (Authorization + Capture): <strong>creditCardSale()</strong>
-</li>
-<li>Automatically save card: <strong>creditCardAuth() or creditCardSale()</strong>
-</li>
-<li>Void: <strong>creditCardVoid()</strong>
-</li>
-<li>Refund: <strong>creditCardRefund()</strong>
-</li>
-</ul><h4>Recurring Transactions</h4>
+<h4>
+<a name="transaes-de-carto-de-crdito" class="anchor" href="#transaes-de-carto-de-crdito"><span class="mini-icon mini-icon-link"></span></a>Transações de Cartão de Crédito</h4>
 
 <ul>
-<li>Create recurring credit card billing: <strong>createRecurring()</strong>
+<li>Autorização: <strong>creditCardAuth()</strong>
 </li>
-<li>Cancel a recurring billing: <strong>cancelRecurring()</strong>
+<li>Captura: <strong>creditCarcCapture()</strong>
 </li>
-</ul><h4>Boleto Transactions</h4>
+<li>Venda Direta (Autorização + Capura): <strong>creditCardSale()</strong> </li>
+<li>Salvar cartão automaticamente: <strong>creditCardAuth()</strong> ou <strong>creditCardSale()</strong>
+</li>
+<li>Cancelamento (*Void*): <strong>creditCardVoid()</strong>
+</li>
+<li>Estorno: <strong>creditCardRefund()</strong> </li>
+</ul><h4>
+<a name="transaes-recorrentes" class="anchor" href="#transaes-recorrentes"><span class="mini-icon mini-icon-link"></span></a>Transações Recorrentes</h4>
 
 <ul>
-<li>Create boleto payment slip (Brazil only): <strong>boletoSale()</strong>
+<li>Criar nova recorrência: <strong>createRecurring()</strong>
 </li>
-</ul><h4>Reports</h4>
+<li>Cancelar uma recorrência: <strong>cancelRecurring()</strong>
+</li>
+</ul><h4>
+<a name="transaes-de-boleto" class="anchor" href="#transaes-de-boleto"><span class="mini-icon mini-icon-link"></span></a>Transações de Boleto</h4>
 
 <ul>
-<li>Query one single transaction: <strong>pullReport()</strong>
+<li>Criar boleto: <strong>boletoSale()</strong>
 </li>
-<li>Query a list of transactions: <strong>pullReport()</strong> </li>
-<li>Flip through pages of a transaction list: <strong>pullReport()</strong> </li>
-<li>Query a pending report: <strong>pullReport()</strong> </li>
-</ul><h4>Customer Profile / Card On File</h4>
+</ul><h4>
+<a name="relatrios" class="anchor" href="#relatrios"><span class="mini-icon mini-icon-link"></span></a>Relatórios</h4>
 
 <ul>
-<li>Create a profile <em>(a profile must be created to save a card)</em>: <strong>addProfile()</strong>
+<li>Sondar uma transação: <strong>pullReport()</strong>
 </li>
-<li>Update a profile: <strong>updateProfile()</strong> </li>
-<li>Remove a profile: <strong>deleteProfile()</strong> </li>
-<li>Add a credit card: <strong>addCreditCard()</strong>
+<li>Sondar uma lista de transações: <strong>pullReport()</strong>
 </li>
-<li>Remove a credit card: <strong>deleteCreditCard()</strong>
+<li>Paginar a lista de transações: <strong>pullReport()</strong> </li>
+<li>Sondar um relatório pendente: <strong>pullReport()</strong>
 </li>
-</ul><h2 id="allres">All response methods</h2>
-
-<h4>Request validators</h4>
+</ul><h4>
+<a name="cadastro-de-cliente--salvar-carto" class="anchor" href="#cadastro-de-cliente--salvar-carto"><span class="mini-icon mini-icon-link"></span></a>Cadastro de Cliente / Salvar Cartão</h4>
 
 <ul>
-<li>Checks if there was an error in the request: <strong>isErrorResponse()</strong>
+<li>Criar um perfil: <em>(um perfil precisa ser criado antes de salvar um cartão)</em> <strong>addProfile()</strong>
 </li>
-<li>Checks if the request was successful: <strong>isTransactionResponse()</strong>
+<li>Atualizar um perfil: <strong>updateProfile()</strong> </li>
+<li>Remover um perfil: <strong>deleteProfile()</strong>
 </li>
-</ul><h4>Main transaction response methods</h4>
+<li>Adicionar um cartão de crédito: <strong>addCreditCard()</strong>
+</li>
+<li>Remover um cartão de crédito: <strong>deleteCreditCard()</strong>
+</li>
+</ul><h2 id="allres">Todas as respostas</h2>
+
+<h4>
+<a name="validao-da-chamada" class="anchor" href="#validao-da-chamada"><span class="mini-icon mini-icon-link"></span></a>Validação da chamada</h4>
 
 <ul>
-<li>Gets the Authorization Code, if any was replied: <strong>getAuthCode()</strong>
+<li>Verifica se houve algum erro na chamada: <strong>isErrorResponse()</strong>
 </li>
-<li>Gets the Order ID created: <strong>getOrderID()</strong>
+<li>Verificar se a chamada foi bem sucedida: <strong>isTransactionResponse()</strong>
 </li>
-<li>Gets the Transaction ID created: <strong>getTransactionID()</strong>
-</li>
-<li>Gets the URL for the Boleto issued <em>(Brazil only)</em>: <strong>getBoletoUrl()</strong>
-</li>
-<li>Gets the Processor Code: <strong>getProcessorCode()</strong>
-</li>
-<li>Gets the Processor Reference Number: <strong>getProcessorReferenceNumber()</strong>
-</li>
-<li>Gets the Processor Transaction ID: <strong>getProcessorTransactionID()</strong>
-</li>
-<li>Gets an array with all response fields: <strong>getResponse()</strong>
-</li>
-</ul><h4>Other transaction response methods</h4>
+</ul><h4>
+<a name="principais-mthodos-de-resposta" class="anchor" href="#principais-mthodos-de-resposta"><span class="mini-icon mini-icon-link"></span></a>Principais méthodos de resposta</h4>
 
 <ul>
-<li>Gets the AVS Response Code <em>(US only)</em>: <strong>getAvsResponseCode()</strong>
+<li>Traz o Código de Autorização, se houver: <strong>getAuthCode()</strong>
 </li>
-<li>Gets the Command used in the request: <strong>getCommand()</strong>
+<li>Traz o Order ID criado: <strong>getOrderID()</strong>
 </li>
-<li>Gets the Customer ID created: <strong>getCustomerId()</strong>
+<li>Traz o Transaction ID criado: <strong>getTransactionID()</strong>
 </li>
-<li>Gets the CVV Response Code <em>(US only)</em>: <strong>getCvvResponseCode()</strong>
+<li>Traz a URL do Boleto <em>(somente Brasil)</em>: <strong>getBoletoUrl()</strong>
 </li>
-<li>Gets the Fraud Score analysis: <strong>getFraudScore()</strong>
+<li>Traz o Código da Adquirente: <strong>getProcessorCode()</strong>
 </li>
-<li>Gets the Response Message: <strong>getMessage()</strong>
+<li>Traz o Numero de Referência da Adquirente: <strong>getProcessorReferenceNumber()</strong>
 </li>
-<li>Gets the report's number of pages: <strong>getNumberOfPages()</strong>
+<li>Traz o TID da Adquirente: <strong>getProcessorTransactionID()</strong>
 </li>
-<li>Gets the report's current page: <strong>getPageNumber()</strong>
+<li>Traz todos os campos da resposta: <strong>getResponse()</strong>
 </li>
-<li>Gets the report's page token: <strong>getPageToken()</strong>
+</ul><h4>
+<a name="outros-mtodos-de-rsposta" class="anchor" href="#outros-mtodos-de-rsposta"><span class="mini-icon mini-icon-link"></span></a>Outros métodos de rsposta</h4>
+
+<ul>
+<li>Traz a resposta do AVS <em>(somente EUA)</em>: <strong>getAvsResponseCode()</strong>
 </li>
-<li>Gets the transaction list as array: <strong>getReportResult()</strong>
+<li>Traz o Comando usado na chamada: <strong>getCommand()</strong>
 </li>
-<li>Gets the report's time: <strong>getTime()</strong>
+<li>Traz o Customer ID criado: <strong>getCustomerId()</strong>
 </li>
-<li>Gets the Credit Card Token created: <strong>getToken()</strong>
+<li>Traz a resposta do CVV: <em>(somente EUA)</em> <strong>getCvvResponseCode()</strong>
 </li>
-<li>Gets the number of transactions in a report: <strong>getTotalNumberOfRecords()</strong>
+<li>Traz o score da análise de fraude: <strong>getFraudScore()</strong>
 </li>
-<li>Gets the Transaction Unix time: <strong>getTransactionTimestamp()</strong>
+<li>Traz a mensagem de resposta: <strong>getMessage()</strong>
+</li>
+<li>Traz o número de páginas do relatório: <strong>getNumberOfPages()</strong>
+</li>
+<li>Traz a página atual do relatório: <strong>getPageNumber()</strong>
+</li>
+<li>Traz o token da página do relatório: <strong>getPageToken()</strong>
+</li>
+<li>Traz um array com as transações listadas: <strong>getReportResult()</strong>
+</li>
+<li>Traz a data/hora do relatório: <strong>getTime()</strong>
+</li>
+<li>Traz o Token criado para o Cartão de Crédito: <strong>getToken()</strong>
+</li>
+<li>Traz o número de transações no relatório: <strong>getTotalNumberOfRecords()</strong>
+</li>
+<li>Traz o Unix time da transação: <strong>getTransactionTimestamp()</strong>
 </li>
 </ul><h2 id="support">Documentation and Support</h2>
 
-<p><a href="http://www.maxipago.com/docs/maxiPago_API_Latest.pdf"><strong>maxiPago!</strong>'s full API documentation can be found here</a>.</p>
+<p><a href="http://www.maxipago.com/docs/maxiPago_API_Ultima.pdf">A documentação completa da API da <strong>maxiPago!</strong> pode ser encontrada aqui</a>.</p>
 
-<p>Our support team is happy to help you with any questions you might have, be it about the functionalities of our platform or about payments in general. They are available to customers and non-customers alike and can be reached at support [@] maxipago [.] com.</p>
+<p>Nossa equipe de suporte está à disposição para ajudá-lo com quaisquer assunto, seja sobre funcionalidades de nossa plataforma ou sobre pagamentos em geral. Eles estão disponíveis para clientes e não-clientes no endereço suporte [@] maxipago [.] com.</p>
       </section>
     </div>
     <footer>
