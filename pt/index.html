@@ -1,0 +1,272 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>PHP Integration lib by maxipago</title>
+
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+    <script src="/javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Biblioteca de integração PHP</h1>
+        <p>maxiPago! Smart Payments - Lib PHP</p>
+        <p class="view"><a href="https://github.com/maxipago/PHP-Integration-lib">Ver Projeto no GitHub <small>maxipago/PHP-Integration-lib</small></a></p>
+        <ul>
+          <li><a href="https://github.com/maxipago/PHP-Integration-lib/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/maxipago/PHP-Integration-lib/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/maxipago/PHP-Integration-lib">Ver No <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>Índice</h2>
+
+<ol>
+<li><a href="#intro">Introdução</a></li>
+<li><a href="#types">Tipos de Transação</a></li>
+<li><a href="#setup">Instalação e configuração</a></li>
+<li><a href="#credentials">Ambiente e Credenciais</a></li>
+<li><a href="#debug">Modo Debug</a></li>
+<li><a href="#request">Enviar uma requisição</a></li>
+<li><a href="#response">Receber uma resposta</a></li>
+<li><a href="#allreq">Todas as requisições</a></li>
+<li><a href="#allres">Todas as respostas</a></li>
+<li><a href="#support">Suporte</a></li>
+</ol><h2 id="intro">Introduction</h2>
+
+<p>This <strong>NEW PHP</strong> library allows for easy integration with the <strong>maxiPago! Smart Payments</strong> API. Our payment platform allows online merchants to accept payments in many countries in Latin America and the US and includes such functionalities as Automated Recurring Billing, "Single-Click" payments, Online Returns, Credit Card Payment Reconciliation, Fraud Tools and more. You can find out more about <strong>maxiPago!</strong> by visiting <a href="http://www.maxipago.com/">www.maxipago.com</a>.</p>
+
+<p>This library has all the functionalities currently available through our XML-based API and can be freely copied and used by Merchants and developers.</p>
+
+<p>You can get a more comprehensive view of our API by looking at our documentation, <a href="http://www.maxipago.com/docs/maxiPago_API_Latest.pdf">which can be downloaded here</a>. If you are looking for a hosted payment page solution, please see the section <em><strong>smartPages!</strong></em> in the documentation.</p>
+
+<h2 id="types">Available transaction types</h2>
+
+<ul>
+<li><p><strong>Authorization:</strong> checks if the credit card used is valid (number, security code and expiration date) and if the card holder has sufficient funds for that purchase.</p></li>
+<li><p><strong>Capture:</strong> confirms the authorization previously made and completes the transaction. If the transaction is never captured the Merchant does not receive the funds and the Card Holder is never charged.</p></li>
+</ul><blockquote>
+<p><em>Separating the authorization and capture in two different moments is an excellent way to check if you have the purchased items in stock or to run a fraud check, while still guaranteeing payment.</em></p>
+</blockquote>
+
+<ul>
+<li><p><strong>Sale:</strong> combines the authorization and the capture in a single request. When performing a Sale we send the credit card for authorization and immediately capture that transaction, if approved.</p></li>
+<li><p><strong>Void:</strong> cancels the transaction and no money is charged from the buyer. You can only void a transaction until 11:59pm of the day of capture.</p></li>
+<li><p><strong>Return:</strong> reverses a credit card transaction, taking funds from the Merchant and giving them back to the buyer. This is a financial operation that might take a few days to be completed, depending on your credit card processor.</p></li>
+<li><p><strong>Recurring:</strong> schedules a credit card transaction to be charged at a specific interval, defined by the Merchant.</p></li>
+<li><p><strong>Card On File:</strong> saves a card in our system and returns a unique token, which can be used to process future transactions. <strong>This allows the implementation of "single-click" payments.</strong></p></li>
+<li><p><strong>Boleto:</strong> <em>(Brazil only)</em> Transactions made with Boletos are different than credit card purchases. This creates a boleto and returns an URL to the buyer to access the boleto payment slip. It can be accessed at any time before the boleto expiration and up to 60 days after it has expired.</p></li>
+</ul><h2 id="setup">Installation and setup</h2>
+
+<p>The library consists of the folling files:</p>
+
+<pre><code>  /lib/  
+  |-- maxiPago.php  
+  |-- maxipago  
+    |-- maxiPagoRequest.php  
+    |-- maxiPagoRequestBase.php  
+    |-- maxiPagoResponseBase.php  
+    |-- maxiPagoServiceBase.php  
+    |-- maxiPagoTransaction.php  
+    |-- maxiPagoXmlHandler.php
+</code></pre>
+
+<p>Copy <strong>/lib/maxipago/</strong> to your local server. In your code, include the <strong>maxiPago.php</strong> file, which checks the minimum requirements and includes the other necessary files:</p>
+
+<div class="highlight"><pre><span class="k">require_once</span> <span class="s2">"./lib/maxiPago.php"</span>
+</pre></div>
+
+<p>Now, create a new object from the maxiPago class:</p>
+
+<div class="highlight"><pre><span class="nv">$maxiPago</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">maxiPago</span><span class="p">;</span>
+</pre></div>
+
+<h2 id="credentials">Environment and Credentials</h2>
+
+<p>In order to send requests you will need valid Merchant Credentials. They can be obtained with our Customer Support team.</p>
+
+<p><strong>maxiPago!</strong> provides a fully functional sandbox environment to simulate the transaction responses. You need to set the environment the transactions will be sent to, which can be done by sending either <strong>"TEST"</strong> or <strong>"LIVE"</strong>.</p>
+
+<p>To set the credentials and environment used to process requests:</p>
+
+<div class="highlight"><pre><span class="nv">$maxiPago</span><span class="o">-&gt;</span><span class="na">setCredentials</span><span class="p">(</span><span class="s2">"100"</span><span class="p">,</span> <span class="s2">"merchant_key"</span><span class="p">);</span>
+<span class="nv">$maxiPago</span><span class="o">-&gt;</span><span class="na">setEnvironment</span><span class="p">(</span><span class="s2">"TEST"</span><span class="p">);</span>
+</pre></div>
+
+<h2 id="debug">Debug Mode</h2>
+
+<p>The Debug Mode prints the request and response XML's so you can easily identify any issues with the request. In order to enable debug use the <strong>setDebug()</strong> method:</p>
+
+<div class="highlight"><pre>    <span class="nv">$maxiPago</span><span class="o">-&gt;</span><span class="na">setDebug</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</pre></div>
+
+<h2 id="request">Send a request</h2>
+
+<p>To send a request to <strong>maxiPago!</strong> you need to call one of the methods listed above, passing an array with the request parameters, as such:</p>
+
+<div class="highlight"><pre>    <span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s2">"processorID"</span> <span class="o">=&gt;</span> <span class="s2">"1"</span><span class="p">,</span>
+        <span class="s2">"referenceNum"</span> <span class="o">=&gt;</span> <span class="s2">"ORDER2937283"</span><span class="p">,</span>
+        <span class="s2">"chargeTotal"</span> <span class="o">=&gt;</span> <span class="s2">"10.00"</span><span class="p">,</span>
+        <span class="s2">"number"</span> <span class="o">=&gt;</span> <span class="s2">"4111111111111111"</span><span class="p">,</span>
+        <span class="s2">"expMonth"</span> <span class="o">=&gt;</span> <span class="s2">"07"</span><span class="p">,</span>
+        <span class="s2">"expYear"</span> <span class="o">=&gt;</span> <span class="s2">"2017"</span><span class="p">,</span>
+        <span class="s2">"cvvNumber"</span> <span class="o">=&gt;</span> <span class="s2">"123"</span>
+    <span class="p">);</span>
+
+    <span class="nv">$maxiPago</span><span class="o">-&gt;</span><span class="na">creditCardAuth</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+</pre></div>
+
+<h2 id="response">Get a response</h2>
+
+<p>There are methods to get each piece of information from the response. However, you can also call the <strong>getResponse()</strong> method to retrieve all fields in the response as an array:</p>
+
+<pre><code>    print_r($maxiPago-&gt;getResponse());
+
+    Array
+    (
+        [authCode] =&gt; 123456
+        [orderID] =&gt; 0AF90437:013CC42DDE87:F5D0:01E1101A
+        [referenceNum] =&gt; ORD29328493
+        [transactionID] =&gt; 422570
+        [transactionTimestamp] =&gt; 1312156800
+        [responseCode] =&gt; 0
+        [responseMessage] =&gt; AUTHORIZED
+        [avsResponseCode] =&gt;
+        [cvvResponseCode] =&gt;
+        [processorCode] =&gt; A
+        [processorMessage] =&gt; APPROVED
+        [errorMessage] =&gt; 
+    )
+</code></pre>
+
+<h2 id="allreq">All request methods</h2>
+
+<h4>Credit Card Transactions</h4>
+
+<ul>
+<li>Authorization: <strong>creditCardAuth()</strong>
+</li>
+<li>Capture: <strong>creditCardCapture()</strong>
+</li>
+<li>Sale (Authorization + Capture): <strong>creditCardSale()</strong>
+</li>
+<li>Automatically save card: <strong>creditCardAuth() or creditCardSale()</strong>
+</li>
+<li>Void: <strong>creditCardVoid()</strong>
+</li>
+<li>Refund: <strong>creditCardRefund()</strong>
+</li>
+</ul><h4>Recurring Transactions</h4>
+
+<ul>
+<li>Create recurring credit card billing: <strong>createRecurring()</strong>
+</li>
+<li>Cancel a recurring billing: <strong>cancelRecurring()</strong>
+</li>
+</ul><h4>Boleto Transactions</h4>
+
+<ul>
+<li>Create boleto payment slip (Brazil only): <strong>boletoSale()</strong>
+</li>
+</ul><h4>Reports</h4>
+
+<ul>
+<li>Query one single transaction: <strong>pullReport()</strong>
+</li>
+<li>Query a list of transactions: <strong>pullReport()</strong> </li>
+<li>Flip through pages of a transaction list: <strong>pullReport()</strong> </li>
+<li>Query a pending report: <strong>pullReport()</strong> </li>
+</ul><h4>Customer Profile / Card On File</h4>
+
+<ul>
+<li>Create a profile <em>(a profile must be created to save a card)</em>: <strong>addProfile()</strong>
+</li>
+<li>Update a profile: <strong>updateProfile()</strong> </li>
+<li>Remove a profile: <strong>deleteProfile()</strong> </li>
+<li>Add a credit card: <strong>addCreditCard()</strong>
+</li>
+<li>Remove a credit card: <strong>deleteCreditCard()</strong>
+</li>
+</ul><h2 id="allres">All response methods</h2>
+
+<h4>Request validators</h4>
+
+<ul>
+<li>Checks if there was an error in the request: <strong>isErrorResponse()</strong>
+</li>
+<li>Checks if the request was successful: <strong>isTransactionResponse()</strong>
+</li>
+</ul><h4>Main transaction response methods</h4>
+
+<ul>
+<li>Gets the Authorization Code, if any was replied: <strong>getAuthCode()</strong>
+</li>
+<li>Gets the Order ID created: <strong>getOrderID()</strong>
+</li>
+<li>Gets the Transaction ID created: <strong>getTransactionID()</strong>
+</li>
+<li>Gets the URL for the Boleto issued <em>(Brazil only)</em>: <strong>getBoletoUrl()</strong>
+</li>
+<li>Gets the Processor Code: <strong>getProcessorCode()</strong>
+</li>
+<li>Gets the Processor Reference Number: <strong>getProcessorReferenceNumber()</strong>
+</li>
+<li>Gets the Processor Transaction ID: <strong>getProcessorTransactionID()</strong>
+</li>
+<li>Gets an array with all response fields: <strong>getResponse()</strong>
+</li>
+</ul><h4>Other transaction response methods</h4>
+
+<ul>
+<li>Gets the AVS Response Code <em>(US only)</em>: <strong>getAvsResponseCode()</strong>
+</li>
+<li>Gets the Command used in the request: <strong>getCommand()</strong>
+</li>
+<li>Gets the Customer ID created: <strong>getCustomerId()</strong>
+</li>
+<li>Gets the CVV Response Code <em>(US only)</em>: <strong>getCvvResponseCode()</strong>
+</li>
+<li>Gets the Fraud Score analysis: <strong>getFraudScore()</strong>
+</li>
+<li>Gets the Response Message: <strong>getMessage()</strong>
+</li>
+<li>Gets the report's number of pages: <strong>getNumberOfPages()</strong>
+</li>
+<li>Gets the report's current page: <strong>getPageNumber()</strong>
+</li>
+<li>Gets the report's page token: <strong>getPageToken()</strong>
+</li>
+<li>Gets the transaction list as array: <strong>getReportResult()</strong>
+</li>
+<li>Gets the report's time: <strong>getTime()</strong>
+</li>
+<li>Gets the Credit Card Token created: <strong>getToken()</strong>
+</li>
+<li>Gets the number of transactions in a report: <strong>getTotalNumberOfRecords()</strong>
+</li>
+<li>Gets the Transaction Unix time: <strong>getTransactionTimestamp()</strong>
+</li>
+</ul><h2 id="support">Documentation and Support</h2>
+
+<p><a href="http://www.maxipago.com/docs/maxiPago_API_Latest.pdf"><strong>maxiPago!</strong>'s full API documentation can be found here</a>.</p>
+
+<p>Our support team is happy to help you with any questions you might have, be it about the functionalities of our platform or about payments in general. They are available to customers and non-customers alike and can be reached at support [@] maxipago [.] com.</p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/maxipago">maxipago</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
