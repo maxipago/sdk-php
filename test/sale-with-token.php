@@ -6,7 +6,7 @@ try {
     $maxiPago = new maxiPago;
 
     // Before calling any other methods you must first set your credentials
-    $maxiPago->setCredentials("99", "uanz3tvoooysclnkr16kd3as");
+    $maxiPago->setCredentials("99", "merchant_key");
 
     $maxiPago->setDebug(true);
     $maxiPago->setEnvironment("TEST");
