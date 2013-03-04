@@ -55,6 +55,11 @@ class maxiPagoRequestBase {
                 $this->tag = "<transaction-request></transaction-request>";
                 $this->setVoid();
                 break;
+            case "onlineDebit":
+                $this->tag = "<transaction-request></transaction-request>";
+                $this->type = "sale";
+                $this->setOnlineDebit();
+                break;
             case "boleto":
                 $this->tag = "<transaction-request></transaction-request>";
                 $this->type = "sale";
