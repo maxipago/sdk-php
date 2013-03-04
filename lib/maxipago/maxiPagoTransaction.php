@@ -140,6 +140,28 @@ class maxiPago extends maxiPagoResponseBase {
     }
 
     /**
+     * Performs an online debit sale (BR only)
+     * 
+     * An Online Debit transaction is a "push-only" method
+     * where the buyer is redirected to the bank's page
+     * for authorization and approval. Once they type their
+     * account number and PIN the bank approves the sale
+     * 
+     * @param array $array
+     * $return array
+     * @throws Exception
+     */
+    public function onlineDebitSale($array) {
+        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
+        $this->request = $array;
+        $req = new maxiPagoRequest($this->credentials);
+        $req->setVars($this->request);
+        $req->setEndpoint($this->host.'/UniversalAPI/postXML');
+        $req->setTransactionType("onlineDebit");
+        $this->response = $req->processRequest();
+    }
+    
+    /**
      * Performs a boleto sale
      * 
      * Transactions made with Boletos are different than credit

@@ -130,7 +130,7 @@ class maxiPagoXmlBuilder extends maxiPagoRequestBase {
         $this->xml->order->$type->addChild("transactionDetail");
         $this->xml->order->$type->transactionDetail->addChild("payType");
         $this->xml->order->$type->transactionDetail->payType->addChild("onlineDebit");
-        $this->xml->order->$type->transactionDetail->payType->creditCard->addChild("parametersURL", $this->parametersURL);
+        $this->xml->order->$type->transactionDetail->payType->onlineDebit->addChild("parametersURL", $this->parametersURL);
         $this->setPayment();
     }
     

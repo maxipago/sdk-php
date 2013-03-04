@@ -135,6 +135,14 @@ class maxiPagoResponseBase extends maxiPagoServiceBase {
     }
     
     /**
+     * Gets the Online Debit URL
+     * @return string
+     */
+    public function getDebitURL() {
+        if ((isset($this->response["onlineDebitUrl"])) && (strlen($this->response["onlineDebitUrl"]) > 0)) { return $this->response["onlineDebitUrl"]; }
+    }
+    
+    /**
      * Gets the Authentication URL
      * @return string
      */
