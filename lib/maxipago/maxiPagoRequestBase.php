@@ -32,7 +32,7 @@ class maxiPagoRequestBase {
         if ((strlen($this->numberOfInstallments) > 0) && (!ctype_digit((string)$this->numberOfInstallments))) { throw new Exception("[maxiPago Class] Field 'numberOfInstallments' accepts only numerical values."); }
         if ((strlen($this->chargeInterest) > 0) && (!in_array(strtoupper($this->chargeInterest), array("Y", "N")))) { throw new Exception("[maxiPago Class] Field 'chargeInterest' only accepts Y and N as value."); }
         if ((strlen($this->expirationDate) > 0) && (strtotime($this->expirationDate) < strtotime("now"))) { throw new Exception("[maxiPago Class] Boleto expiration date can only be set in the future."); }
-        if ((strlen($this->instructions) > 0) && (strlen($this->instructions) > 100)) { throw new Exception("[maxiPago Class] Boleto instructions cannot be longer than 100 characters."); }
+        if ((strlen($this->instructions) > 0) && (strlen($this->instructions) > 350)) { throw new Exception("[maxiPago Class] Boleto instructions cannot be longer than 350 characters."); }
     }
     
     public function processRequest() {
