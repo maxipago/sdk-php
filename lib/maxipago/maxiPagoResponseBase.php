@@ -41,6 +41,32 @@ class maxiPagoResponseBase extends maxiPagoServiceBase {
         elseif ((isset($this->response["errorCode"])) && ($this->response["errorCode"] >= 0)) { return (string)$this->response["errorCode"]; }
         else { return null; }
     }
+
+    /**
+     * Maps the responseCode to HTTP status code.
+     *  
+     * @return int
+     */
+    public function getHTTPStatusCode() { 
+        switch ($this->response['responseCode']) {
+            case 0: 
+                return 201;
+            case 1:
+                return 401;
+            case 2:
+                return 401;
+            case 5:
+                return 202;
+            case 1022:
+                return 502;
+            case 1024:
+                return 400;
+            case 1025:
+                return 500;
+            case 2048:
+                return 502;
+        }
+    }
     
     /**
      * Gets the request's error message, if any
