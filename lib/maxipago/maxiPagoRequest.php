@@ -6,7 +6,7 @@ class maxiPagoRequest extends maxiPagoXmlBuilder {
         if ((!isset($this->xml)) || (!$this->xml)) { throw new Exception('[maxiPago Class] INTERNAL ERROR on '.__METHOD__.' method:'); }
         $curl = curl_init($this->endpoint);
         $opt = array(CURLOPT_POST => 1,
-            CURLOPT_HTTPHEADER => array('Content-Type: text/xml', 'charset=utf-8'),
+            CURLOPT_HTTPHEADER => array('Content-Type: text/xml; charset=UTF-8'),
             CURLOPT_SSL_VERIFYHOST => $this->sslVerify,
             CURLOPT_SSL_VERIFYPEER => $this->sslVerify,
             CURLOPT_CONNECTTIMEOUT => $this->timeout,
