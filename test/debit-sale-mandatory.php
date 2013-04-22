@@ -14,6 +14,14 @@ try {
         "processorID" => "17", // REQUIRED - Use 17 for testing. For production values contact our team //
         "referenceNum" => "ORD2928391", // REQUIRED - Merchant's internal order number //
         "chargeTotal" => "10.00", // REQUIRED - US format: 10.00 or 1234.56 //
+        "customerIdExt" => "12345678909", // REQUIRED FOR ITAU - Customer Brazilian ID (CPF, CNPJ) //
+        "bname" => "Fulano de Tal", // REQUIRED FOR ITAU - Customer name //
+        "baddress" => "Av. República do Chile, 230", // REQUIRED FOR ITAU - Customer address //
+        "baddress2" => "16 Andar", // REQUIRED FOR ITAU - Customer address //
+        "bcity" => "Rio de Janeiro", // REQUIRED FOR ITAU - Customer city //
+        "bstate" => "RJ", // REQUIRED FOR ITAU - Customer state with 2 characters //
+        "bpostalcode" => "20031170", // REQUIRED FOR ITAU - Customer zip code //
+        "bcountry" => "BR", // REQUIRED FOR ITAU - Customer country code per ISO 3166-2 //
         "paramsURL" => "id=abc123" // OPTIONAL - Value to be echoed back when the customer returns to store //
     );
     $maxiPago->onlineDebitSale($data);
