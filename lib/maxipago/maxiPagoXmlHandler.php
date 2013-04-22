@@ -23,6 +23,7 @@ class maxiPagoXmlBuilder extends maxiPagoRequestBase {
         $this->xml->order->addChild($type);
         if (strlen($this->processorID) > 0 ) {  $this->xml->order->$type->addChild("processorID", $this->processorID); }
         if (strlen($this->referenceNum) > 0 ) {  $this->xml->order->$type->addChild("referenceNum", $this->referenceNum); }
+        if (strlen($this->customerIdExt) > 0) { $this->xml->order->$type->addChild("customerIdExt", $this->customerIdExt); }
         if (strlen($this->fraudCheck) > 0 ) { $this->xml->order->$type->addChild("fraudCheck", strtoupper($this->fraudCheck)); }
         if (strlen($this->ipAddress) > 0 ) { $this->xml->order->$type->addChild("ipAddress", strtoupper($this->ipAddress)); }
         $this->setAddress();
