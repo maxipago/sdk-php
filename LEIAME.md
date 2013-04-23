@@ -97,10 +97,10 @@ Para mandar uma requisição para a **maxiPago!** você precisa chamar um dos m�
 
 ## Resposta ##
 
-Há métodos para resgatar cada parte da resposta. Contudo, você também pode chamar o método **getResponse()** para recuperar todos os campos da resposta em um array:
+Há métodos para resgatar cada parte da resposta. Contudo, você também pode chamar o método **getResult()** para recuperar todos os campos da resposta em um array:
 
 ```
-	print_r($maxiPago->getResponse());
+	print_r($maxiPago->getResult());
 	
 	Array
 	(
