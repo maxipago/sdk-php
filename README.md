@@ -161,6 +161,7 @@ There are methods to get each piece of information from the response. However, y
 * Checks if the request was successful: **isTransactionResponse()**
 
 #####Main transaction response methods#####
+* Gets the Response Code (transactions/orders): **getResponseCode()**
 * Gets the Authorization Code, if any was replied: **getAuthCode()**
 * Gets the Order ID created: **getOrderID()**
 * Gets the Transaction ID created: **getTransactionID()**
@@ -168,7 +169,7 @@ There are methods to get each piece of information from the response. However, y
 * Gets the Processor Code: **getProcessorCode()**
 * Gets the Processor Reference Number: **getProcessorReferenceNumber()**
 * Gets the Processor Transaction ID: **getProcessorTransactionID()**
-* Gets an array with all response fields: **getResponse()**
+* Gets an array with all response fields: **getResult()**
 
 #####Other transaction response methods#####
 * Gets the AVS Response Code *(US only)*: **getAvsResponseCode()**
