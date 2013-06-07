@@ -31,7 +31,7 @@ class maxiPagoRequest extends maxiPagoXmlBuilder {
                 else {
                     if (($key == "transactionTimestamp") || ($key == "time")) {
                         $value = (string)$value;
-                        if (strlen($value) == 13) { $value = $value/1000; }
+                        if (strlen($value) == 13) { $value = substr($value,0,10); }
                         else { $array[$key] = $value; }
                     }
                     $array[$key] = (string)$value;
