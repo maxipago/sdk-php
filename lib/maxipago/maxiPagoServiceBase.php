@@ -15,7 +15,7 @@ class maxiPagoServiceBase {
             $this->credentials["merchantId"] = $mid;
             $this->credentials["merchantKey"] = $key;
         }
-        else { throw new Exception('[maxiPago Class error] Invalid credentials.', 401); }
+        else { throw new InvalidArgumentException('[maxiPago Class error] Invalid credentials.', 401); }
     }
     
     /**
@@ -25,7 +25,7 @@ class maxiPagoServiceBase {
     public function setEnvironment($param=null) {
         if (strtoupper($param) == 'TEST') { $this->host = 'https://testapi.maxipago.net'; }
         elseif (strtoupper($param) == 'LIVE') { $this->host = 'https://api.maxipago.net'; }
-        else { throw new Exception('[maxiPago Class error] Invalid environment. '.__METHOD__.' accepts either "TEST" or "LIVE"', 400); }
+        else { throw new BadMethodCallException('[maxiPago Class error] Invalid environment. '.__METHOD__.' accepts either "TEST" or "LIVE"', 400); }
     }
     
     /**
