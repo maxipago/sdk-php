@@ -6,7 +6,7 @@ class maxiPagoRequest extends maxiPagoXmlBuilder {
         if ((!isset($this->xml)) || (!$this->xml)) { throw new Exception('[maxiPago Class] INTERNAL ERROR on '.__METHOD__.' method:'); }
         $curl = curl_init($this->endpoint);
         $opt = array(CURLOPT_POST => 1,
-            CURLOPT_HTTPHEADER => array('Content-Type: text/xml', 'charset=utf-8'),
+            CURLOPT_HTTPHEADER => array('Content-Type: text/xml; charset=UTF-8'),
             CURLOPT_SSL_VERIFYHOST => $this->sslVerify,
             CURLOPT_SSL_VERIFYPEER => $this->sslVerify,
             CURLOPT_CONNECTTIMEOUT => $this->timeout,
@@ -31,7 +31,7 @@ class maxiPagoRequest extends maxiPagoXmlBuilder {
                 else {
                     if (($key == "transactionTimestamp") || ($key == "time")) {
                         $value = (string)$value;
-                        if (strlen($value) == 13) { $value = $value/1000; }
+                        if (strlen($value) == 13) { $value = substr($value,0,10); }
                         else { $array[$key] = $value; }
                     }
                     $array[$key] = (string)$value;

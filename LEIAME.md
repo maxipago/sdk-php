@@ -97,10 +97,10 @@ Para mandar uma requisição para a **maxiPago!** você precisa chamar um dos m�
 
 ## Resposta ##
 
-Há métodos para resgatar cada parte da resposta. Contudo, você também pode chamar o método **getResponse()** para recuperar todos os campos da resposta em um array:
+Há métodos para resgatar cada parte da resposta. Contudo, você também pode chamar o método **getResult()** para recuperar todos os campos da resposta em um array:
 
 ```
-	print_r($maxiPago->getResponse());
+	print_r($maxiPago->getResult());
 	
 	Array
 	(
@@ -158,6 +158,7 @@ Há métodos para resgatar cada parte da resposta. Contudo, você também pode c
 * Verificar se a chamada foi bem sucedida: **isTransactionResponse()**
 
 #####Principais méthodos de resposta#####
+* Traz o Código de Resposta (transações/vendas): **getResponseCode()**
 * Traz o Código de Autorização, se houver: **getAuthCode()**
 * Traz o Order ID criado: **getOrderID()**
 * Traz o Transaction ID criado: **getTransactionID()**
@@ -165,7 +166,7 @@ Há métodos para resgatar cada parte da resposta. Contudo, você também pode c
 * Traz o Código da Adquirente: **getProcessorCode()**
 * Traz o Numero de Referência da Adquirente: **getProcessorReferenceNumber()**
 * Traz o TID da Adquirente: **getProcessorTransactionID()**
-* Traz todos os campos da resposta: **getResponse()**
+* Traz todos os campos da resposta: **getResult()**
 
 #####Outros métodos de rsposta#####
 * Traz a resposta do AVS *(somente EUA)*: **getAvsResponseCode()**
