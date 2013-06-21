@@ -48,9 +48,12 @@ class maxiPagoResponseBase extends maxiPagoServiceBase {
      * @return int
      */
     public function getHTTPStatusCode() { 
+        if ($this->isErrorResponse()) {
+            return 500;
+        }
         switch ($this->response['responseCode']) {
             case 0: 
-                return 201;
+                return 200;
             case 1:
                 return 401;
             case 2:
