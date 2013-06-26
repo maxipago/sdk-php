@@ -31,7 +31,7 @@ class maxiPagoRequestBase {
         if ((strlen($this->expirationYear) > 0) && ((strlen($this->expirationYear) < 2) || (!ctype_digit((string)$this->expirationYear)))) { throw new InvalidArgumentException("[maxiPago Class] Credit card expiration year must have 4 digits."); }
         if ((strlen($this->numberOfInstallments) > 0) && (!ctype_digit((string)$this->numberOfInstallments))) { throw new InvalidArgumentException("[maxiPago Class] Field 'numberOfInstallments' accepts only numerical values."); }
         if ((strlen($this->chargeInterest) > 0) && (!in_array(strtoupper($this->chargeInterest), array("Y", "N")))) { throw new InvalidArgumentException("[maxiPago Class] Field 'chargeInterest' only accepts Y and N as value."); }
-        if ((strlen($this->expirationDate) > 0) && (strtotime($this->expirationDate) < strtotime("now"))) { throw new InvalidArgumentException("[maxiPago Class] Boleto expiration date can only be set in the future."); }
+        if ((strlen($this->expirationDate) > 0) && (date("Ymd", strtotime($this->expirationDate)) < date("Ymd"))) { throw new InvalidArgumentException("[maxiPago Class] Boleto expiration date can only be set in the future."); }
         if ((strlen($this->instructions) > 0) && (strlen($this->instructions) > 350)) { throw new InvalidArgumentException("[maxiPago Class] Boleto instructions cannot be longer than 350 characters."); }
     }
     
