@@ -22,7 +22,7 @@ try {
         "bstate" => "RJ", // REQUIRED FOR ITAU - Customer state with 2 characters //
         "bpostalcode" => "20031170", // REQUIRED FOR ITAU - Customer zip code //
         "bcountry" => "BR", // REQUIRED FOR ITAU - Customer country code per ISO 3166-2 //
-        "paramsURL" => "id=abc123" // OPTIONAL - Value to be echoed back when the customer returns to store //
+        "parametersURL" => "id=abc123&amp;type=3" // OPTIONAL - Value to be echoed back when the customer returns to store //
     );
     $maxiPago->onlineDebitSale($data);
 
