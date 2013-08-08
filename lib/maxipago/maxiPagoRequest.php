@@ -3,7 +3,7 @@ class maxiPagoRequest extends maxiPagoXmlBuilder {
     
     protected function sendXml() {
         $this->xml = $this->xml->asXML();
-        if ((!isset($this->xml)) || (!$this->xml)) { throw new Exception('[maxiPago Class] INTERNAL ERROR on '.__METHOD__.' method:'); }
+        if ((!isset($this->xml)) || (!$this->xml)) { throw new RuntimeException('[maxiPago Class] INTERNAL ERROR on '.__METHOD__.' method:'); }
         $curl = curl_init($this->endpoint);
         $opt = array(CURLOPT_POST => 1,
             CURLOPT_HTTPHEADER => array('Content-Type: text/xml; charset=UTF-8'),
@@ -18,7 +18,7 @@ class maxiPagoRequest extends maxiPagoXmlBuilder {
         curl_close($curl);
         if (maxiPagoRequestBase::$debug == true) { $this->printDebug($curlInfo); }
         if ($this->xmlResponse) { return $this->parseXml(); }
-        else { throw new Exception('[maxiPago Class] Connection error with maxiPago! server', 503); }
+        else { throw new UnexpectedValueException('[maxiPago Class] Connection error with maxiPago! server', 503); }
     }
     
     private function parseXml($array = array(),$c = 0) {

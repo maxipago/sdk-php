@@ -32,6 +32,7 @@ class maxiPagoResponseBase extends maxiPagoServiceBase {
      *     5 = Fraud Review
      *     1022 = Acquirer error
      *     1024 = Error in parameters sent (INVALID TRANSACTION)
+     *     1025 = Credentials error
      *     2048 = Internal error
      * 
      * @return int
@@ -40,6 +41,33 @@ class maxiPagoResponseBase extends maxiPagoServiceBase {
         if ((isset($this->response["responseCode"])) && ($this->response["responseCode"] >= 0)) { return $this->response["responseCode"]; }
         elseif ((isset($this->response["errorCode"])) && ($this->response["errorCode"] >= 0)) { return (string)$this->response["errorCode"]; }
         else { return null; }
+    }
+
+    /**
+     * Maps the responseCode to HTTP status code.
+     *  
+     * @return int
+     */
+    public function getHTTPStatusCode() { 
+        if ($this->isErrorResponse()) {
+            return 500;
+        }
+        switch ($this->getResponseCode()) {
+            case 0: 
+                return 200;
+            case 1:
+            case 2:
+            case 1025:
+                return 403;
+            case 5:
+                return 202;
+            case 1022:
+            case 2048:
+                return 502;
+            case 1024:
+                return 400;
+        }
+        return 502;
     }
     
     /**
