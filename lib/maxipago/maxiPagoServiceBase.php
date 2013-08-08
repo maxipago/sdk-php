@@ -3,7 +3,6 @@ class maxiPagoServiceBase {
     
     protected $credentials = array();
     protected $host;
-    private $libVersion = "1.0b";
     
     /**
      * Sets the Merchant Credentials
