@@ -65,12 +65,12 @@ class maxiPagoRequestBase {
                 $this->type = "sale";
                 $this->setBoleto();
                 break;
-			case "add-consumer":
-			case "delete-consumer":
-			case "update-consumer":
-			case "add-card-onfile":
-			case "delete-card-onfile":
-			case "cancel-recurring":
+	    case "add-consumer":
+	    case "delete-consumer":
+	    case "update-consumer":
+	    case "add-card-onfile":
+	    case "delete-card-onfile":
+	    case "cancel-recurring":
             	$this->tag = "<api-request></api-request>";
                 $this->setApiRequest();
                 break;
