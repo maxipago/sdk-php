@@ -16,10 +16,10 @@ class maxiPago extends maxiPagoResponseBase {
      * 
      * @param array $array
      * @return array
-     * @throws Exception
+     * @throws BadMethodCallException
      */
     public function creditCardAuth($array) {
-        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
+        if (!is_array($array)) { throw new BadMethodCallException('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -38,10 +38,10 @@ class maxiPago extends maxiPagoResponseBase {
      * 
      * @param array $array
      * @return array
-     * @throws Exception
+     * @throws BadMethodCallException
      */
     public function creditCardCapture($array) {
-        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
+        if (!is_array($array)) { throw new BadMethodCallException('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -61,10 +61,10 @@ class maxiPago extends maxiPagoResponseBase {
      * 
      * @param array $array
      * @return array
-     * @throws Exception
+     * @throws BadMethodCallException
      */
     public function creditCardSale($array) {
-        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
+        if (!is_array($array)) { throw new BadMethodCallException('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -83,10 +83,10 @@ class maxiPago extends maxiPagoResponseBase {
      * 
      * @param array $array
      * @return array
-     * @throws Exception
+     * @throws BadMethodCallException
      */
     public function createRecurring($array) {
-        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
+        if (!is_array($array)) { throw new BadMethodCallException('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -104,10 +104,10 @@ class maxiPago extends maxiPagoResponseBase {
      * 
      * @param array $array
      * @return array
-     * @throws Exception
+     * @throws BadMethodCallException
      */
     public function creditCardVoid($array) {
-        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
+        if (!is_array($array)) { throw new BadMethodCallException('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -127,10 +127,10 @@ class maxiPago extends maxiPagoResponseBase {
      * 
      * @param array $array
      * @return array
-     * @throws Exception
+     * @throws BadMethodCallException
      */
     public function creditCardRefund($array) {
-        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
+        if (!is_array($array)) { throw new BadMethodCallException('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -149,10 +149,10 @@ class maxiPago extends maxiPagoResponseBase {
      * 
      * @param array $array
      * $return array
-     * @throws Exception
+     * @throws BadMethodCallException
      */
     public function onlineDebitSale($array) {
-        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
+        if (!is_array($array)) { throw new BadMethodCallException('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -171,10 +171,10 @@ class maxiPago extends maxiPagoResponseBase {
      * 
      * @param array $array
      * @return array
-     * @throws Exception
+     * @throws BadMethodCallException
      */
     public function boletoSale($array) {
-        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
+        if (!is_array($array)) { throw new BadMethodCallException('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -187,10 +187,10 @@ class maxiPago extends maxiPagoResponseBase {
      * Cancels a recurring payment
      * @param array $array
      * @return array
-     * @throws Exception
+     * @throws BadMethodCallException
      */
     public function cancelRecurring($array) {
-        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
+        if (!is_array($array)) { throw new BadMethodCallException('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -207,10 +207,10 @@ class maxiPago extends maxiPagoResponseBase {
      * 
      * @param array $array
      * @return array
-     * @throws Exception
+     * @throws BadMethodCallException
      */
     public function addProfile($array) {
-        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
+        if (!is_array($array)) { throw new BadMethodCallException('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -227,10 +227,10 @@ class maxiPago extends maxiPagoResponseBase {
      * 
      * @param array $array
      * @return array
-     * @throws Exception
+     * @throws BadMethodCallException
      */
     public function updateProfile($array) {
-        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
+        if (!is_array($array)) { throw new BadMethodCallException('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -243,10 +243,10 @@ class maxiPago extends maxiPagoResponseBase {
      * Removes a customer profile
      * @param array $array
      * @return array
-     * @throws Exception
+     * @throws BadMethodCallException
      */
     public function deleteProfile($array) {
-        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
+        if (!is_array($array)) { throw new BadMethodCallException('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -265,10 +265,10 @@ class maxiPago extends maxiPagoResponseBase {
      * 
      * @param array $array
      * @return array
-     * @throws Exception
+     * @throws BadMethodCallException
      */
     public function addCreditCard($array) {
-        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
+        if (!is_array($array)) { throw new BadMethodCallException('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -282,10 +282,10 @@ class maxiPago extends maxiPagoResponseBase {
      * Removes a credit card previously saved
      * @param array $array
      * @return array
-     * @throws Exception
+     * @throws BadMethodCallException
      */
     public  function deleteCreditCard($array) {
-        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
+        if (!is_array($array)) { throw new BadMethodCallException('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
@@ -298,10 +298,10 @@ class maxiPago extends maxiPagoResponseBase {
      * Extracts a transaction report
      * @param array $array 
      * @return array
-     * @throws Exception
+     * @throws BadMethodCallException
      */
     public function pullReport($array) {
-        if (!is_array($array)) { throw new Exception('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
+        if (!is_array($array)) { throw new BadMethodCallException('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
         $this->request = $array;
         $req = new maxiPagoRequest($this->credentials);
         $req->setVars($this->request);
