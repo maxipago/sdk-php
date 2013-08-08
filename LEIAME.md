@@ -124,8 +124,8 @@ Há métodos para resgatar cada parte da resposta. Contudo, você também pode c
 
 #####Transações de Cartão de Crédito#####
 * Autorização: **creditCardAuth()**
-* Captura: **creditCarcCapture()**
-* Venda Direta (Autorização + Capura): **creditCardSale()** 
+* Captura: **creditCardCapture()**
+* Venda Direta (Autorização + Captura): **creditCardSale()** 
 * Salvar cartão automaticamente: **creditCardAuth()** ou **creditCardSale()**
 * Cancelamento (*Void*): **creditCardVoid()**
 * Estorno: **creditCardRefund()** 
@@ -168,7 +168,7 @@ Há métodos para resgatar cada parte da resposta. Contudo, você também pode c
 * Traz o TID da Adquirente: **getProcessorTransactionID()**
 * Traz todos os campos da resposta: **getResult()**
 
-#####Outros métodos de rsposta#####
+#####Outros métodos de resposta#####
 * Traz a resposta do AVS *(somente EUA)*: **getAvsResponseCode()**
 * Traz o Comando usado na chamada: **getCommand()**
 * Traz o Customer ID criado: **getCustomerId()**
