@@ -1,5 +1,8 @@
 <?php
 
+if (!function_exists('curl_init')) { throw new RuntimeException('[maxiPago Class] cURL PHP extension is required', 500); }
+if (!extension_loaded('simplexml')) { throw new RuntimeException('[maxiPago Class] SimpleXML PHP extension is required', 500); }
+
 class maxiPago extends maxiPagoResponseBase {
 
     private $request;
