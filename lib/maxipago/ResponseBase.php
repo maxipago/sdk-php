@@ -1,7 +1,6 @@
 <?php
 
-class maxiPago_ResponseBase extends maxiPago_ServiceBase
-{
+class maxiPago_ResponseBase extends maxiPago_ServiceBase {
 
     public $response;
 
@@ -9,8 +8,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Checks if the transaction syntax was valid
      * @return boolean
      */
-    public function isTransactionResponse()
-    {
+    public function isTransactionResponse() {
         if ((isset($this->response["responseCode"])) && ($this->response["responseCode"] >= 0)) {
             return true;
         }
@@ -26,8 +24,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Checks if the transaction syntax was invalid
      * @return boolean
      */
-    public function isErrorResponse()
-    {
+    public function isErrorResponse() {
         if ((isset($this->response["errorCode"])) && ($this->response["errorCode"] > 0)) {
             return true;
         }
@@ -51,8 +48,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * 
      * @return int
      */
-    public function getResponseCode()
-    {
+    public function getResponseCode() {
         if ((isset($this->response["responseCode"])) && ($this->response["responseCode"] >= 0)) {
             return $this->response["responseCode"];
         }
@@ -69,8 +65,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      *  
      * @return int
      */
-    public function getHTTPStatusCode()
-    {
+    public function getHTTPStatusCode() {
         if ($this->isErrorResponse()) {
             return 500;
         }
@@ -105,8 +100,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * 
      * @return string
      */
-    public function getMessage()
-    {
+    public function getMessage() {
         if ((isset($this->response["processorMessage"])) && (strlen($this->response["processorMessage"]) > 0)) {
             return $this->response["processorMessage"];
         }
@@ -125,8 +119,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets authotization code returned by the Acquirer
      * @return string
      */
-    public function getAuthCode()
-    {
+    public function getAuthCode() {
         if ((isset($this->response["authCode"])) && (strlen($this->response["authCode"]) > 0)) {
             return $this->response["authCode"];
         }
@@ -136,8 +129,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets the Order ID created by maxiPago!
      * @return string
      */
-    public function getOrderID()
-    {
+    public function getOrderID() {
         if ((isset($this->response["orderID"])) && (strlen($this->response["orderID"]) > 0)) {
             return $this->response["orderID"];
         }
@@ -147,8 +139,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets the Reference Number sent by the Merchant
      * @return string
      */
-    public function getReferenceNum()
-    {
+    public function getReferenceNum() {
         if ((isset($this->response["referenceNum"])) && (strlen($this->response["referenceNum"]) > 0)) {
             return $this->response["referenceNum"];
         }
@@ -158,8 +149,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets the Transaction ID created by maxiPago!
      * @return string
      */
-    public function getTransactionID()
-    {
+    public function getTransactionID() {
         if ((isset($this->response["transactionID"])) && (strlen($this->response["transactionID"]) > 0)) {
             return $this->response["transactionID"];
         }
@@ -169,8 +159,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets the transaction timestamp in Unix time
      * @return string
      */
-    public function getTransactionTimestamp()
-    {
+    public function getTransactionTimestamp() {
         if ((isset($this->response["transactionTimestamp"])) && (strlen($this->response["transactionTimestamp"]) > 0)) {
             return $this->response["transactionTimestamp"];
         }
@@ -180,8 +169,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets the AVS response code (US only)
      * @return string
      */
-    public function getAvsResponseCode()
-    {
+    public function getAvsResponseCode() {
         if ((isset($this->response["avsResponseCode"])) && (strlen($this->response["avsResponseCode"]) > 0)) {
             return $this->response["avsResponseCode"];
         }
@@ -191,10 +179,19 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets the CVV response code (US only)
      * @return string
      */
-    public function getCvvResponseCode()
-    {
+    public function getCvvResponseCode() {
         if ((isset($this->response["cvvResponseCode"])) && (strlen($this->response["cvvResponseCode"]) > 0)) {
             return $this->response["cvvResponseCode"];
+        }
+    }
+    
+    /**
+     * Gets the Response Message
+     * @return string
+     */
+    public function getResponseMessage() {
+        if ((isset($this->response["responseCode"])) && (strlen($this->response["responseCode"]) > 0)) {
+            return $this->response["responseCode"];
         }
     }
 
@@ -202,8 +199,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets the Acquirer's return code
      * @return string
      */
-    public function getProcessorCode()
-    {
+    public function getProcessorCode() {
         if ((isset($this->response["processorCode"])) && (strlen($this->response["processorCode"]) > 0)) {
             return $this->response["processorCode"];
         }
@@ -213,8 +209,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets the Boleto URL
      * @return string
      */
-    public function getBoletoUrl()
-    {
+    public function getBoletoUrl() {
         if ((isset($this->response["boletoUrl"])) && (strlen($this->response["boletoUrl"]) > 0)) {
             return $this->response["boletoUrl"];
         }
@@ -224,8 +219,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets the Online Debit URL
      * @return string
      */
-    public function getDebitURL()
-    {
+    public function getDebitURL() {
         if ((isset($this->response["onlineDebitUrl"])) && (strlen($this->response["onlineDebitUrl"]) > 0)) {
             return $this->response["onlineDebitUrl"];
         }
@@ -235,8 +229,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets the Authentication URL
      * @return string
      */
-    public function getAuthenticationURL()
-    {
+    public function getAuthenticationURL() {
         if ((isset($this->response["authenticationURL"])) && (strlen($this->response["authenticationURL"]) > 0)) {
             return $this->response["authenticationURL"];
         }
@@ -246,8 +239,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets the Acquirer's reference number
      * @return string
      */
-    public function getProcessorReferenceNumber()
-    {
+    public function getProcessorReferenceNumber() {
         if ((isset($this->response["processorReferenceNumber"])) && (strlen($this->response["processorReferenceNumber"]) > 0)) {
             return $this->response["processorReferenceNumber"];
         }
@@ -257,8 +249,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets the Acquirer's transaction ID
      * @return string
      */
-    public function getProcessorTransactionID()
-    {
+    public function getProcessorTransactionID() {
         if ((isset($this->response["processorTransactionID"])) && (strlen($this->response["processorTransactionID"]) > 0)) {
             return $this->response["processorTransactionID"];
         }
@@ -268,8 +259,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets the fraud score
      * @return string
      */
-    public function getFraudScore()
-    {
+    public function getFraudScore() {
         if ((isset($this->response["fraudScore"])) && (strlen($this->response["fraudScore"]) > 0)) {
             return $this->response["fraudScore"];
         }
@@ -279,8 +269,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets the credit card token created by maxiPago!
      * @return string
      */
-    public function getToken()
-    {
+    public function getToken() {
         if ((isset($this->response["save-on-file"]["token"])) && (strlen($this->response["save-on-file"]["token"]) > 0)) {
             return $this->response["save-on-file"]["token"];
         }
@@ -293,8 +282,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets the command returned in the API call
      * @return string
      */
-    public function getCommand()
-    {
+    public function getCommand() {
         if ((isset($this->response["command"])) && (strlen($this->response["command"]) > 0)) {
             return $this->response["command"];
         }
@@ -304,8 +292,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets the request timestamp
      * @return string
      */
-    public function getTime()
-    {
+    public function getTime() {
         if ((isset($this->response["time"])) && (strlen($this->response["time"]) > 0)) {
             return $this->response["time"];
         }
@@ -315,8 +302,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets the Customer ID created by maxiPago!
      * @return string
      */
-    public function getCustomerId()
-    {
+    public function getCustomerId() {
         if ((isset($this->response["result"]["customerId"])) && (strlen($this->response["result"]["customerId"]) > 0)) {
             return $this->response["result"]["customerId"];
         }
@@ -326,8 +312,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets the report results
      * @return array
      */
-    public function getReportResult()
-    {
+    public function getReportResult() {
         if ((isset($this->response["records"])) && (is_array($this->response["records"]))) {
             return $this->response["records"];
         }
@@ -337,8 +322,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets the total number of records in the report results
      * @return string
      */
-    public function getTotalNumberOfRecords()
-    {
+    public function getTotalNumberOfRecords() {
         if ((isset($this->response["totalNumberOfRecords"])) && (strlen($this->response["totalNumberOfRecords"]) > 0)) {
             return $this->response["totalNumberOfRecords"];
         }
@@ -348,15 +332,13 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets the page token from the report results
      * @return array
      */
-    public function getPageToken()
-    {
+    public function getPageToken() {
         if ((isset($this->response["pageToken"])) && (strlen($this->response["pageToken"]) > 0)) {
             return $this->response["pageToken"];
         }
     }
 
-    public function getNumberOfPages()
-    {
+    public function getNumberOfPages() {
         if ((isset($this->response["numberOfPages"])) && (strlen($this->response["numberOfPages"]) > 0)) {
             return $this->response["numberOfPages"];
         }
@@ -366,8 +348,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets the page number from the report results
      * @return array
      */
-    public function getPageNumber()
-    {
+    public function getPageNumber() {
         if ((isset($this->response["pageNumber"])) && (strlen($this->response["pageNumber"]) > 0)) {
             return $this->response["pageNumber"];
         }
@@ -377,8 +358,7 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase
      * Gets ALL the transaction response data
      * @return array
      */
-    public function getResult()
-    {
+    public function getResult() {
         if ((isset($this->response)) && (is_array($this->response))) {
             return $this->response;
         }

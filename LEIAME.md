@@ -159,6 +159,7 @@ Há métodos para resgatar cada parte da resposta. Contudo, você também pode c
 
 #####Principais méthodos de resposta#####
 * Traz o Código de Resposta (transações/vendas): **getResponseCode()**
+* Traz a Mensagem de Resposta: **getResponseMessage()**
 * Traz o Código de Autorização, se houver: **getAuthCode()**
 * Traz o Order ID criado: **getOrderID()**
 * Traz o Transaction ID criado: **getTransactionID()**

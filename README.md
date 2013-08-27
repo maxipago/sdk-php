@@ -162,6 +162,7 @@ There are methods to get each piece of information from the response. However, y
 
 #####Main transaction response methods#####
 * Gets the Response Code (transactions/orders): **getResponseCode()**
+* Gets the Response Message: **getResponseMessage()**
 * Gets the Authorization Code, if any was replied: **getAuthCode()**
 * Gets the Order ID created: **getOrderID()**
 * Gets the Transaction ID created: **getTransactionID()**

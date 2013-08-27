@@ -2,3 +2,4 @@
 
 * PSR-0 refactoring
 * Added this CHANGELOG
+* Added getResponseMessage() method
