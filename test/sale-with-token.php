@@ -1,5 +1,5 @@
 <?php
-require_once "../lib/maxipago/Autoload.php";
+require_once "../lib/maxipago/Autoload.php"; // Remove if using a globa autoloader
 require_once "../lib/maxiPago.php";
 
 try {
