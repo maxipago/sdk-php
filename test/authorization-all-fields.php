@@ -21,6 +21,7 @@ try {
         "expMonth" => "07", // REQUIRED - Credit card expiration month //
         "expYear" => "2020", // REQUIRED - Credit card expiration year //
         "cvvNumber" => "123", // RECOMMENDED - Credit card verification code //
+        "fraudCheck" => "N", // Optional - Trigger fraud analysis for the transaction //
         "bname" => "Fulano de Tal", // RECOMMENDED - Customer name //
         "currencyCode" => "", // Optional - Valid only for ChasePaymentech multi-currecy setup. Please see full documentation for more info//
         "ipAddress" => "123.123.123.123", // Optional //
