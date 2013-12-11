@@ -23,7 +23,6 @@ class maxiPago extends maxiPago_ResponseBase
      * assessment process.
      * 
      * @param array $array
-     * @return array
      * @throws BadMethodCallException
      */
     public function creditCardAuth($array)
@@ -48,7 +47,6 @@ class maxiPago extends maxiPago_ResponseBase
      * In these cases the authorization expires within 5 days.
      * 
      * @param array $array
-     * @return array
      * @throws BadMethodCallException
      */
     public function creditCardCapture($array)
@@ -74,7 +72,6 @@ class maxiPago extends maxiPago_ResponseBase
      * The response sent is final.
      * 
      * @param array $array
-     * @return array
      * @throws BadMethodCallException
      */
     public function creditCardSale($array)
@@ -99,7 +96,6 @@ class maxiPago extends maxiPago_ResponseBase
      * authorize a recurring payment to capture it later).
      * 
      * @param array $array
-     * @return array
      * @throws BadMethodCallException
      */
     public function createRecurring($array)
@@ -123,7 +119,6 @@ class maxiPago extends maxiPago_ResponseBase
      * a transaction before any funds change hands.
      * 
      * @param array $array
-     * @return array
      * @throws BadMethodCallException
      */
     public function creditCardVoid($array)
@@ -149,7 +144,6 @@ class maxiPago extends maxiPago_ResponseBase
      * to be completed.
      * 
      * @param array $array
-     * @return array
      * @throws BadMethodCallException
      */
     public function creditCardRefund($array)
@@ -174,7 +168,6 @@ class maxiPago extends maxiPago_ResponseBase
      * account number and PIN the bank approves the sale
      * 
      * @param array $array
-     * $return array
      * @throws BadMethodCallException
      */
     public function onlineDebitSale($array)
@@ -199,7 +192,6 @@ class maxiPago extends maxiPago_ResponseBase
      * to access the boleto payment slip.
      * 
      * @param array $array
-     * @return array
      * @throws BadMethodCallException
      */
     public function boletoSale($array)
@@ -218,7 +210,6 @@ class maxiPago extends maxiPago_ResponseBase
     /**
      * Cancels a recurring payment
      * @param array $array
-     * @return array
      * @throws BadMethodCallException
      */
     public function cancelRecurring($array)
@@ -241,7 +232,6 @@ class maxiPago extends maxiPago_ResponseBase
      * card information
      * 
      * @param array $array
-     * @return array
      * @throws BadMethodCallException
      */
     public function addProfile($array)
@@ -264,7 +254,6 @@ class maxiPago extends maxiPago_ResponseBase
      * card information
      * 
      * @param array $array
-     * @return array
      * @throws BadMethodCallException
      */
     public function updateProfile($array)
@@ -283,7 +272,6 @@ class maxiPago extends maxiPago_ResponseBase
     /**
      * Removes a customer profile
      * @param array $array
-     * @return array
      * @throws BadMethodCallException
      */
     public function deleteProfile($array)
@@ -308,7 +296,6 @@ class maxiPago extends maxiPago_ResponseBase
      * token that can be used when sending new transactions.
      * 
      * @param array $array
-     * @return array
      * @throws BadMethodCallException
      */
     public function addCreditCard($array)
@@ -327,7 +314,6 @@ class maxiPago extends maxiPago_ResponseBase
     /**
      * Removes a credit card previously saved
      * @param array $array
-     * @return array
      * @throws BadMethodCallException
      */
     public function deleteCreditCard($array)
@@ -346,7 +332,6 @@ class maxiPago extends maxiPago_ResponseBase
     /**
      * Extracts a transaction report
      * @param array $array 
-     * @return array
      * @throws BadMethodCallException
      */
     public function pullReport($array)
