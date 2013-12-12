@@ -1,6 +1,6 @@
 ## Introdução ##
 
-Esta **NOVA** biblioteca **PHP** visa facilitar a integração com a API da **maxiPago! Smart Payments**. Nossa plataforma permite aos lojistas virtuais aceitarem pagamentos em diversos países da América Latina e nos EUA e inclui funcionalidades como Cobrança Recorrente Automática, Pagamentos com 1-Clique, Estornos Online, Conciliação de Cartões de Crédito e Ferramentas Anti-Fraude. Se quiser saber mais sobre a **maxiPago!** visite [www.maxipago.com](http://www.maxipago.com/).
+Esta biblioteca PHP visa facilitar a integração com a API da **maxiPago! Smart Payments**. Nossa plataforma permite aos lojistas virtuais aceitarem pagamentos em diversos países da América Latina e nos EUA e inclui funcionalidades como Cobrança Recorrente Automática, Pagamentos com 1-Clique, Estornos Online, Conciliação de Cartões de Crédito e Ferramentas Anti-Fraude. Se quiser saber mais sobre a **maxiPago!** visite [www.maxipago.com](http://www.maxipago.com/).
 
 Esta biblioteca traz todas as funcionalidades atualmente disponívels na plataforma e ela pode ser copiada e usada livremente por Lojas e desenvolvedores.
 
@@ -29,7 +29,7 @@ Para ter uma visão mais aprofundada da nossa API baixe nossa documentação, [d
 
 ## Installação e configuração ##
 
-A biblioteca consiste dos seguintes arquivos:
+A biblioteca foi testada no **PHP 5.1.6 e acima** e consiste dos seguintes arquivos:
 
 ```
   /lib/  
@@ -69,7 +69,15 @@ Para definir as credenciais e o ambiente usado:
 	$maxiPago->setEnvironment("TEST");
 ```
 
-## Modo Debug ##
+## Logs e Modo Debug ##
+
+Em Junho de 2013 [o KLogger de Kenny Katzgrau](https://github.com/katzgrau/KLogger) foi adicionado à esta biblioteca, permitindo que os lojistas logassem a requisição e resposta das transações cumprindo as regras do PCI.
+
+Para habilitar o log use o método **setLogger()** e se certifique que o diretório escolhido tem as permissões corretas. O nível de log padrão é INFO:
+
+```php
+    $maxiPago->setLogger(dirname(__FILE__).'/logs','INFO');
+```
 
 O Modo Debug imprime os XMLs de requisição e resposta para que você possa facilmente identificar problemas na chamada. Para habilitar o debug use o método **setDebug()**:
 
@@ -159,7 +167,6 @@ Há métodos para resgatar cada parte da resposta. Contudo, você também pode c
 
 #####Principais méthodos de resposta#####
 * Traz o Código de Resposta (transações/vendas): **getResponseCode()**
-* Traz a Mensagem de Resposta: **getResponseMessage()**
 * Traz o Código de Autorização, se houver: **getAuthCode()**
 * Traz o Order ID criado: **getOrderID()**
 * Traz o Transaction ID criado: **getTransactionID()**

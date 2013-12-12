@@ -7,6 +7,12 @@ try {
     $maxiPago = new maxiPago;
 
     // Before calling any other methods you must first set your credentials
+    // Define Logger parameters if preferred
+    // Do *NOT* use 'DEBUG' for Production environment as Credit Card details WILL BE LOGGED
+    // Severities INFO and up are safe to use in Production as Credi Card info are NOT logged
+    $maxiPago->setLogger(dirname(__FILE__).'/logs','INFO');
+    
+    // Set your credentials before any other transaction methods
     $maxiPago->setCredentials("100", "merchant_key");
 
     $maxiPago->setDebug(true);
@@ -20,6 +26,7 @@ try {
         "currencyCode" => "", // Optional - Valid only for ChasePaymentech multi-currecy setup. Please see full documentation for more info//
         "token" => "z1FuQQ0qSBA=", // REQUIRED for this command - Credit card token created by maxiPago! //
         "customerId" => "11006", // REQUIRED for this command - Customer ID create by maxiPago! after the "add-consumer" command //
+    	"softDescriptor" => "ORDER12313", // Optional - Text printed in customer's credit card statement (Cielo only) //
         "ipAddress" => "123.123.123.123", // Optional //
         "bname" => "Fulano de Tal", // RECOMMENDED - Customer name //
         "baddress" => "Av. República do Chile, 230", // Optional - Customer address //

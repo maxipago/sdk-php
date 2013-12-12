@@ -7,19 +7,26 @@ try {
     $maxiPago = new maxiPago;
 
     // Before calling any other methods you must first set your credentials
-    $maxiPago->setCredentials("99", "merchant_key");
+    // Define Logger parameters if preferred
+    // Do *NOT* use 'DEBUG' for Production environment as Credit Card details WILL BE LOGGED
+    // Severities INFO and up are safe to use in Production as Credi Card info are NOT logged
+    $maxiPago->setLogger(dirname(__FILE__).'/logs','INFO');
+    
+    // Set your credentials before any other transaction methods
+    $maxiPago->setCredentials("100", "merchant_key");
 
     $maxiPago->setDebug(true);
     $maxiPago->setEnvironment("TEST");
     $data = array(
         "processorID" => "1", // REQUIRED - Use '1' for testing. Contact our team for production values //
         "referenceNum" => "TestTransaction123", // REQUIRED - Merchant internal order number //
-        "chargeTotal" => "1.00", // REQUIRED - Transaction amount in US format //
-        "numberOfInstallments" => "", // Optional - Number of installments ("parcelas") //
-        "chargeInterest" => "", // Optional -  Charge interest flag (Y/N) ("com" ou "sem" juros) //
+        "chargeTotal" => "0.01", // REQUIRED - Transaction amount in US format //
+        "numberOfInstallments" => "", // Optional - Number of installments ("parcelas") for the credit card transaction //
+        "chargeInterest" => "", // Optional - Charge interest flag (Y/N), used with installments. ("com" e "sem" juros) //
         "currencyCode" => "", // Optional - Valid only for ChasePaymentech multi-currecy setup. Please see full documentation for more info//
-        "token" => "Z5LFXb55eN4=", // REQUIRED - Credit card token replied by maxiPago! //
-        "customerId" => "11013", // REQUIRED -  Customer ID created by maxiPago! //
+        "token" => "z1FuQQ0qSBA=", // REQUIRED for this command - Credit card token created by maxiPago! //
+        "customerId" => "11006", // REQUIRED for this command - Customer ID create by maxiPago! after the "add-consumer" command //
+    	"softDescriptor" => "ORDER12313", // Optional - Text printed in customer's credit card statement (Cielo only) //
         "ipAddress" => "123.123.123.123", // Optional //
         "bname" => "Fulano de Tal", // RECOMMENDED - Customer name //
         "baddress" => "Av. República do Chile, 230", // Optional - Customer address //
@@ -39,11 +46,9 @@ try {
         "scountry" => "BR", // Optional - Shipping country code per ISO 3166-2 //
         "sphone" => "1121737900", // Optional - Shipping phone number //
         "semail" => "ciclanodetal@email.com", // Optional - Shipping email address //
-        "comments" => "Pedido de teste.", // Optional - Additional comments //        
+        "comments" => "Pedido de teste.", // Optional - Additional comments //
     );
     $maxiPago->creditCardSale($data);
-
-    $result = $maxiPago->getResult();
 
     if ($maxiPago->isErrorResponse()) {
         echo "Transaction has failed<br>Error message: ".$maxiPago->getMessage();

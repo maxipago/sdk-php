@@ -1,6 +1,6 @@
 ## Introduction ##
 
-This **NEW PHP** library allows for easy integration with the **maxiPago! Smart Payments** API. Our payment platform allows online merchants to accept payments in many countries in Latin America and the US and includes such functionalities as Automated Recurring Billing, "Single-Click" payments, Online Returns, Credit Card Payment Reconciliation, Fraud Tools and more. You can find out more about **maxiPago!** by visiting [www.maxipago.com](http://www.maxipago.com/).
+This PHP library allows for easy integration with the **maxiPago! Smart Payments** API. Our payment platform allows online merchants to accept payments in many countries in Latin America and the US and includes such functionalities as Automated Recurring Billing, "Single-Click" payments, Online Returns, Credit Card Payment Reconciliation, Fraud Tools and more. You can find out more about **maxiPago!** by visiting [www.maxipago.com](http://www.maxipago.com/).
 
 This library has all the functionalities currently available through our XML-based API and can be freely copied and used by Merchants and developers.
 
@@ -30,7 +30,7 @@ You can get a more comprehensive view of our API by looking at our documentation
 
 ## Installation and setup ##
 
-The library consists of the folling files:
+The library has been tested on **PHP 5.1.6 and up** and consists of the following files:
 
 ```
   /lib/  
@@ -69,7 +69,15 @@ $maxiPago->setCredentials("100", "merchant_key");
 $maxiPago->setEnvironment("TEST");
 ```
 
-## Debug Mode ##
+## Logging and Debug Mode ##
+
+In June 2013 [Kenny Katzgrau's KLogger](https://github.com/katzgrau/KLogger) was added to this lib, allowing merchants to automatically log the transactions' request and response, following PCI compliance.
+
+To enable logging use the **setLogger()** method, making sure your log file directory permissions are correct. The default logger level is INFO:
+
+```php
+    $maxiPago->setLogger(dirname(__FILE__).'/logs','INFO');
+```
 
 The Debug Mode prints the request and response XML's so you can easily identify any issues with the request. In order to enable debug use the **setDebug()** method:
 
@@ -162,7 +170,6 @@ There are methods to get each piece of information from the response. However, y
 
 #####Main transaction response methods#####
 * Gets the Response Code (transactions/orders): **getResponseCode()**
-* Gets the Response Message: **getResponseMessage()**
 * Gets the Authorization Code, if any was replied: **getAuthCode()**
 * Gets the Order ID created: **getOrderID()**
 * Gets the Transaction ID created: **getTransactionID()**

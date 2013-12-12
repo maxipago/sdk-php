@@ -7,6 +7,12 @@ try {
     $maxiPago = new maxiPago;
 
     // Before calling any other methods you must first set your credentials
+    // Define Logger parameters if preferred
+    // Do *NOT* use 'DEBUG' for Production environment as Credit Card details WILL BE LOGGED
+    // Severities INFO and up are safe to use in Production as Credi Card info are NOT logged
+    $maxiPago->setLogger(dirname(__FILE__).'/logs','INFO');
+    
+    // Set your credentials before any other transaction methods
     $maxiPago->setCredentials("100", "merchant_key");
 
     $maxiPago->setDebug(true);
@@ -22,6 +28,7 @@ try {
         "expMonth" => "07", // REQUIRED - Credit card expiration month //
         "expYear" => "2020", // REQUIRED - Credit card expiriation year //
         "cvvNumber" => "123", // Optional - Credit card verification number //
+        "softDescriptor" => "ORDER12313", // Optional - Text printed in customer's credit card statement (Cielo only) //
         "authentication" => "", // Optional - Valid only for Cielo. Please see full documentation for more info //
         "ipAddress" => "123.123.123.123", // Optional //
         "bname" => "Fulano de Tal", // RECOMMENDED - Customer name //

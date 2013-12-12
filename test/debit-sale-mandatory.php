@@ -5,10 +5,16 @@ require_once "../lib/maxiPago.php";
 try {
 
     $maxiPago = new maxiPago;
+   
+    // Define Logger parameters if preferred
+    // Do *NOT* use 'DEBUG' for Production environment as Credit Card details WILL BE LOGGED
+    // Severities INFO and up are safe to use in Production as Credi Card info are NOT logged
+    $maxiPago->setLogger(dirname(__FILE__).'/logs','INFO');
+    
+    // Set your credentials before any other transaction methods
+    $maxiPago->setCredentials("100", "merchant_key");
 
-    // Before calling any other methods you must first set your credentials
-    $maxiPago->setCredentials("100", "secret_key");
-
+    // true = prints XMLs on the screen for easy debugging
     $maxiPago->setDebug(true);
     $maxiPago->setEnvironment("TEST");
     $data = array(
