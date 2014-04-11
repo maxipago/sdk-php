@@ -1,0 +1,25 @@
+{
+    "name": "zardo/maxipago",
+    "type": "library",
+    "description": "maxiPago! Smart Payments - PHP library for our payment gateway",
+    "keywords": ["maxipago", "php", "payments", "lib"],
+    "homepage": "http://www.maxipago.com",
+    "require": {},
+    "license": "Apache 2.0",
+    "authors": [
+        {
+            "name": "T. Canabarro",
+            "role": "Developer"
+        },
+        {
+            "name": "zanaca",
+            "role": "Developer"
+        },
+        {
+            "name": "Lucas Zardo",
+            "email": "lucas@deliverymuch.com.br",
+            "homepage": "https://deliverymuch.com.br",
+            "role": "Packagist Editor"
+        }
+    ]
+}
