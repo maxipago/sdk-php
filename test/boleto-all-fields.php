@@ -24,9 +24,9 @@ try {
         "bname" => "Fulano de Tal", // REQUIRED - Customer name //
         "number" => time(), // REQUIRED AND UNIQUE - Boleto ID number, max of 8 numbers //
         "expirationDate" => "2020-12-25", // REQUIRED - Boleto expiration date, YYYY-MM-DD format //
-        "instructions" => "Sr. Caixa, não receber após vencimento.;Não receber pagamento com cheque.", // Optional - Instructions to be printed with the boleto. Use ";" to break lines //
+        "instructions" => "Sr. Caixa, nao receber apos vencimento.;Nao receber pagamento com cheque.", // Optional - Instructions to be printed with the boleto. Use ";" to break lines //
         "ipAddress" => "123.123.123.123", // Optional //
-        "baddress" => "Av. República do Chile, 230", // Optional - Customer address //
+        "baddress" => "Av. Republica do Chile, 230", // Optional - Customer address //
         "baddress2" => "16 Andar", // Optional - Customer address //
         "bcity" => "Rio de Janeiro", // Optional - Customer city //
         "bstate" => "RJ", // Optional - Customer state with 2 characters //
@@ -37,7 +37,7 @@ try {
         "sname" => "Ciclano de Tal", // Optional - Shipping address //
         "saddress" => "Av. Prestes Maia, 737", // Optional - Shipping address //
         "saddress2" => "20 Andar", // Optional - Shipping address //
-        "scity" => "São Paulo", // Optional - Shipping city //
+        "scity" => "Sao Paulo", // Optional - Shipping city //
         "sstate" => "SP", // Optional - Shipping state with 2 characters //
         "spostalcode" => "01031-001", // Optional - Shipping zip code //
         "scountry" => "BR", // Optional - Shipping country under ISO 3166-2 //

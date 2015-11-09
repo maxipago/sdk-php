@@ -29,7 +29,7 @@ try {
     	"softDescriptor" => "ORDER12313", // Optional - Text printed in customer's credit card statement (Cielo only) //
         "ipAddress" => "123.123.123.123", // Optional //
         "bname" => "Fulano de Tal", // RECOMMENDED - Customer name //
-        "baddress" => "Av. República do Chile, 230", // Optional - Customer address //
+        "baddress" => "Av. Republica do Chile, 230", // Optional - Customer address //
         "baddress2" => "16 Andar", // Optional - Customer address //
         "bcity" => "Rio de Janeiro", // Optional - Customer city //
         "bstate" => "RJ", // Optional - Customer state with 2 characters //
@@ -40,7 +40,7 @@ try {
         "sname" => "Ciclano de Tal", // Optional - Shipping name //
         "saddress" => "Av. Prestes Maia, 737", // Optional - Shipping address //
         "saddress2" => "20 Andar", // Optional - Shipping address //
-        "scity" => "São Paulo", // Optional - Shipping city //
+        "scity" => "Sao Paulo", // Optional - Shipping city //
         "sstate" => "SP", // Optional - Shipping stats with 2 characters //
         "spostalcode" => "01031-001", // Optional - Shipping zip code //
         "scountry" => "BR", // Optional - Shipping country code per ISO 3166-2 //

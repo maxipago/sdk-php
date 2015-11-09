@@ -21,8 +21,8 @@ try {
         "processorID" => "1", // REQUIRED - Use '1' for testing. Contact our team for production values //
         "referenceNum" => "ORD29328493", // REQUIRED - Merchant internal order number //
         "chargeTotal" => "10.00", // REQUIRED - Transaction amount in US format //
-        "bname" => "John Smith", // HIGHLY RECOMMENDED - Customer name //
-        "number" => "5555555555554444", // REQUIRED - Full credit card number //
+        "bname" => "Fulano de tal", // HIGHLY RECOMMENDED - Customer name //
+        "number" => "4111111111111111", // REQUIRED - Full credit card number //
         "expMonth" => "07", // REQUIRED - Credit card expiration month //
         "expYear" => "2020", // REQUIRED - Credit card expiration year //
         "cvvNumber" => "123", // HIGHLY RECOMMENDED - Credit card verification code //
