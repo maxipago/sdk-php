@@ -44,6 +44,7 @@ try {
         "sphone" => "1121737900", // Optional - Shipping phone number
         "semail" => "ciclanodetal@email.com", // Optional - Shipping email address //
         "comments" => "Pedido de teste.", // Optional - Additional comments //
+        "customerIdExt" => "111.111.111-11", //CPF,
     );
     $maxiPago->boletoSale($data);
 
