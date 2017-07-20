@@ -13,12 +13,12 @@ try {
     $maxiPago->setLogger(dirname(__FILE__).'/logs','INFO');
     
     // Set your credentials before any other transaction methods
-    $maxiPago->setCredentials("100", "merchant_key");
+    $maxiPago->setCredentials("12345", "123456789");
 
     $maxiPago->setDebug(true);
     $maxiPago->setEnvironment("TEST");
     $data = array(
-        "transactionID" => "413534", // REQUIRED - TransactionID replied by maxiPago! //
+        "transactionID" => "188056011", // REQUIRED - TransactionID replied by maxiPago! //
     );
     $maxiPago->creditCardVoid($data);
 

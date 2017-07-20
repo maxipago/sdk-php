@@ -13,12 +13,12 @@ try {
     $maxiPago->setLogger(dirname(__FILE__).'/logs','INFO');
     
     // Set your credentials before any other transaction methods
-    $maxiPago->setCredentials("100", "merchant_key");
+    $maxiPago->setCredentials("12345", "1234567890");
 
     $maxiPago->setDebug(true);
     $maxiPago->setEnvironment("TEST");
     $data = array(
-        "orderID" => "0AF90437:013C6E0449EE:D12A:009300C5", // REQUIRED - Order ID replied by maxiPago! after authorization //
+        "orderID" => "0A01159A:015D2F35E87E:BC4D:5F0AE873", // REQUIRED - Order ID replied by maxiPago! after authorization //
         "referenceNum" => "TestTransaction123", // REQUIRED - Merchant internal order number //
         "chargeTotal" => "10.00", // REQUIRED - Amount to be captured. US format // 
     );

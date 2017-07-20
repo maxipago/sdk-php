@@ -14,7 +14,9 @@ class maxiPago_ServiceBase {
             if ((ctype_digit((string)$mid)) && (strlen($key) == 24)) {
                 $this->credentials["merchantId"] = $mid;
                 $this->credentials["merchantKey"] = $key;
-                if (is_object(maxiPago_RequestBase::$logger)) { maxiPago_RequestBase::$logger->logNotice('Setting credentials "'.$mid.'" and "'.maxiPago_RequestBase::clearForLog($key).'"'); }
+                if (is_object(maxiPago_RequestBase::$logger)) { 
+                	maxiPago_RequestBase::$logger->logNotice('Setting credentials "'.$mid.'" and "'.maxiPago_RequestBase::clearForLog($key).'"'); 
+                }
             }
             else { throw new InvalidArgumentException('[maxiPago Class error] Invalid credentials.', 401); }
         }
@@ -34,12 +36,17 @@ class maxiPago_ServiceBase {
             	maxiPago_RequestBase::setSslVerify(false);
             	$this->host = 'https://testapi.maxipago.net';
             }
-            elseif (strtoupper($param) == 'LIVE') { $this->host = 'https://api.maxipago.net'; }
+            elseif (strtoupper($param) == 'LIVE') { 
+            	$this->host = 'https://api.maxipago.net'; 
+            }
             else { throw new BadMethodCallException('[maxiPago Class error] Invalid environment. '.__METHOD__.' accepts either "TEST" or "LIVE"', 400); }
-            if (is_object(maxiPago_RequestBase::$logger)) { maxiPago_RequestBase::$logger->logNotice('Setting enviroment to "'.$param.'"'); }
+            if (is_object(maxiPago_RequestBase::$logger)) { 
+            	maxiPago_RequestBase::$logger->logNotice('Setting enviroment to "'.$param.'"'); 
+            }
         }
         catch (Exception $e) {
-            if (is_object(maxiPago_RequestBase::$logger)) { maxiPago_RequestBase::$logger->logFatal($e->getMessage()." in ".$e->getFile()." on line ".$e->getLine()); }
+            if (is_object(maxiPago_RequestBase::$logger)) { 
+            	maxiPago_RequestBase::$logger->logCrit($e->getMessage()." in ".$e->getFile()." on line ".$e->getLine()); }
             throw $e;
         }
     }
@@ -51,7 +58,9 @@ class maxiPago_ServiceBase {
     public function setDebug($param=false) {
         if (($param == true) || ($param == "1")) { 
             maxiPago_RequestBase::$debug = true;
-            if (is_object(maxiPago_RequestBase::$logger)) { maxiPago_RequestBase::$logger->logDebug('Enabling on-screen debug ouput'); }
+            if (is_object(maxiPago_RequestBase::$logger)) { 
+            	maxiPago_RequestBase::$logger->logDebug('Enabling on-screen debug ouput'); 
+            }
         }
     }
     
@@ -62,7 +71,9 @@ class maxiPago_ServiceBase {
      * @throws Exception
      */
     public function setLogger($path, $severity='NOTICE') {
-        if (!isset($path)) { throw new Exception('Logger path '.$path.' is required'); }
+        if (!isset($path)) { 
+        	throw new Exception('Logger path '.$path.' is required'); 
+        }
         maxiPago_RequestBase::setLogger($path, $severity);
         if (is_object(maxiPago_RequestBase::$logger)) {
           maxiPago_RequestBase::$logger->logInfo('Starting transaction log');

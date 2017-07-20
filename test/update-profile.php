@@ -13,14 +13,14 @@ try {
     $maxiPago->setLogger(dirname(__FILE__).'/logs','INFO');
     
     // Set your credentials before any other transaction methods
-    $maxiPago->setCredentials("100", "merchant_key");
+    $maxiPago->setCredentials("12345", "123456789");
 
     $maxiPago->setDebug(true);
     $maxiPago->setEnvironment("TEST");
     $data = array(
-        "customerId" => "10952", // REQUIRED - Customer ID returned by MaxiPago!
+        "customerId" => "44692297", // REQUIRED - Customer ID returned by MaxiPago!
         "customerIdExt" => time(), // REQUIRED - Merchant internal customer ID //
-        "firstName" => "Ciclano", // Optional - Customer first name //
+        "firstName" => "Fulano", // Optional - Customer first name //
         "lastName" => "de Tal", // Optional - Customer last name //
         "address1" => "Av. República do Chile, 230", // Optional - Customer address //
         "address2" => "16 Andar", // Optional - Customer address //

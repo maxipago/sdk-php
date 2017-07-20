@@ -13,12 +13,12 @@ try {
     $maxiPago->setLogger(dirname(__FILE__).'/logs','INFO');
     
     // Set your credentials before any other transaction methods
-    $maxiPago->setCredentials("100", "merchant_key");
+    $maxiPago->setCredentials("12345", "123456789");
 
     $maxiPago->setDebug(true);
     $maxiPago->setEnvironment("TEST");
     $data = array(
-        "orderID" => "0AF90437:013C06E0B916:C5B6:0023DD09", // REQUIRED - Order ID replied by maxiPago! after creating the scheduled payment //
+        "orderID" => "0A011599:015D39B9072C:D4A1:0C3C0994", // REQUIRED - Order ID replied by maxiPago! after creating the scheduled payment //
     );
     $maxiPago->cancelRecurring($data);
 

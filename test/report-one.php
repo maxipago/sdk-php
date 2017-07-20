@@ -13,7 +13,7 @@ try {
     $maxiPago->setLogger(dirname(__FILE__).'/logs','INFO');
     
     // Set your credentials before any other transaction methods
-    $maxiPago->setCredentials("100", "merchant_key");
+    $maxiPago->setCredentials("12345", "123456789");
 
     $maxiPago->setDebug(true);
     $maxiPago->setEnvironment("TEST");

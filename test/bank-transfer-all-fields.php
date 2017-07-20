@@ -5,8 +5,7 @@ require_once "../lib/maxiPago.php";
 try {
 
     $maxiPago = new maxiPago;
-
-    // Before calling any other methods you must first set your credentials
+   
     // Define Logger parameters if preferred
     // Do *NOT* use 'DEBUG' for Production environment as Credit Card details WILL BE LOGGED
     // Severities INFO and up are safe to use in Production as Credi Card info are NOT logged
@@ -18,8 +17,8 @@ try {
     $maxiPago->setDebug(true);
     $maxiPago->setEnvironment("TEST");
     $data = array(
-        	"processorID" => "12", // REQUIRED - Use 12 for testing. For production values contact our team //
-        	"referenceNum" => "TestBoleto123", // REQUIRED - Merchant's internal order number //
+        "processorID" => "17", // REQUIRED - Use 17 for testing. For production values contact our team //
+    		"referenceNum" => "TestBoleto123", // REQUIRED - Merchant's internal order number //
     		"ipAddress" => "123.123.123.123", // Optional //
     		"customerIdExt" => "111.111.111-11", //CPF,
     		"billingName" => "Fulano de Tal", // REQUIRED - Customer name //
@@ -41,30 +40,24 @@ try {
     		"shippingCountry" => "BR", // Optional - Shipping country under ISO 3166-2 //
     		"shippingPhone" => "1121737900", // Optional - Shipping phone number
     		"shippingEmail" => "ciclanodetal@email.com", // Optional - Shipping email address //
-    		"expirationDate" => "2020-12-25", // REQUIRED - Boleto expiration date, YYYY-MM-DD format //
-    		"number" => time(), // REQUIRED AND UNIQUE - Boleto ID number, max of 8 numbers //
     		"chargeTotal" => "10.00", // REQUIRED - US format: 10.00 or 1234.56 //
-        	"instructions" => "Sr. Caixa, nao receber apos vencimento.;Nao receber pagamento com cheque.", // Optional - Instructions to be printed with the boleto. Use ";" to break lines //   		
-        
+    		"parametersURL" => "id=abc123&amp;type=3" // OPTIONAL - Value to be echoed back when the customer returns to store //
     );
-    $maxiPago->boletoSale($data);
+    $maxiPago->onlineDebitSale($data);
 
     if ($maxiPago->isErrorResponse()) {
-        echo "There was an error creating the boleto<br>Error message: ".$maxiPago->getMessage();
+        echo "There was an error creating the online debit transaction<br>Error message: ".$maxiPago->getMessage();
     }
 
     elseif ($maxiPago->isTransactionResponse()) {
         if ($maxiPago->getResponseCode() == "0") { 
-        	echo "Boleto has been created<br>Visit ".$maxiPago->getBoletoURL()." to view boleto."; 
-        }
-        else { 
-        	echo "There was an error creating the boleto<br>Error message: ".$maxiPago->getMessage(); 
+        	echo "Online Debit created.<br><a href='".$maxiPago->getDebitURL()."' target='_blank'>Click here</a> to open bank window."; 
+        } else { 
+        	echo "There was an error creating the transaction<br>Error message: ".$maxiPago->getMessage(); 
         }    
     }
 
 }
 
-catch (Exception $e) { 
-	echo $e->getMessage()." in ".$e->getFile()." on line ".$e->getLine(); 
-}
+catch (Exception $e) { echo $e->getMessage()." in ".$e->getFile()." on line ".$e->getLine(); }
 ?>

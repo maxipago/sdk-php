@@ -13,13 +13,13 @@ try {
     $maxiPago->setLogger(dirname(__FILE__).'/logs','INFO');
     
     // Set your credentials before any other transaction methods
-    $maxiPago->setCredentials("100", "merchant_key");
+    $maxiPago->setCredentials("12345", "123456789");
 
     $maxiPago->setDebug(true);
     $maxiPago->setEnvironment("TEST");
     $data = array(
-        "customerId" => "11006", // REQUIRED - Customer ID created by maxiPago! after "add-customer" command //
-        "token" => "z1FuQQ0qSBA=", // REQUIRED - Card token assigne by maxiPago! after "add-card-onfile" command //
+        "customerId" => "44708254", // REQUIRED - Customer ID created by maxiPago! after "add-customer" command //
+        "token" => "vdJVhiGc2MdgJR4AQc9sZQ==", // REQUIRED - Card token assigne by maxiPago! after "add-card-onfile" command //
     );
     $maxiPago->deleteCreditCard($data);
 

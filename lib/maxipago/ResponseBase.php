@@ -280,5 +280,8 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase {
         else { return null; }
     }
    
-
+    public function getauthenticated() {
+    	if ((isset($this->response["authenticated"])) && (strlen($this->response["authenticated"]) > 0)) { return $this->response["authenticated"]; }
+    }
+    
 }
