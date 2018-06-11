@@ -15,6 +15,7 @@ class maxiPago_Request extends maxiPago_XmlBuilder {
             CURLOPT_SSL_VERIFYPEER => self::$sslVerifyPeer,
             CURLOPT_CONNECTTIMEOUT => $this->timeout,
             CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_SSLVERSION => 6,
             CURLOPT_POSTFIELDS => $this->xml);
         curl_setopt_array($curl, $opt);
         $this->xmlResponse = curl_exec($curl);
