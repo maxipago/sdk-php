@@ -122,6 +122,11 @@ class maxiPago_RequestBase {
                     $this->tag = "<transaction-request></transaction-request>";
                     $this->setAuthOrSale();
                     break;
+                case "debtSale":
+                    $this->tag = "<transaction-request></transaction-request>";
+                    $this->type = 'sale';
+                    $this->setDebtSale();
+                    break;    
                 case "capture": 
                 case "return":
                     $this->tag = "<transaction-request></transaction-request>";
