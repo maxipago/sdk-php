@@ -111,6 +111,29 @@ class maxiPago_XmlBuilder extends maxiPago_RequestBase {
         if (($this->saveOnFile) && (!$this->token) && ($this->type != "recurringPayment")) { $this->setSaveOnFile(); }
     }
     
+    protected function setDebtSale() {
+        $this->setRequest();
+        $this->setOrder();
+        $type = $this->type;
+        $this->xml->order->$type->addChild("transactionDetail");
+        $this->xml->order->$type->transactionDetail->addChild("payType");
+        if (strlen($this->number) > 0) {
+            $this->xml->order->$type->transactionDetail->payType->addChild("debitCard");
+            $this->xml->order->$type->transactionDetail->payType->debitCard->addChild("number", $this->number);
+            $this->xml->order->$type->transactionDetail->payType->debitCard->addChild("expMonth", $this->expMonth);
+            $this->xml->order->$type->transactionDetail->payType->debitCard->addChild("expYear", $this->expYear);
+            if (strlen($this->cvvNumber) > 0) { $this->xml->order->$type->transactionDetail->payType->debitCard->addChild("cvvNumber", $this->cvvNumber); }
+        }
+        elseif ((strlen($this->token) > 0) && (strlen($this->customerId) > 0)) {
+            $this->xml->order->$type->transactionDetail->payType->addChild("onFile");
+            $this->xml->order->$type->transactionDetail->payType->onFile->addChild("token", $this->token);
+            $this->xml->order->$type->transactionDetail->payType->onFile->addChild("customerId", $this->customerId);
+        }
+        else { throw new InvalidArgumentException('[maxiPago Class] Invalid payment data for Credit Card transaction.'); }
+        $this->setPayment();
+        if (($this->saveOnFile) && (!$this->token) && ($this->type != "recurringPayment")) { $this->setSaveOnFile(); }
+    }
+    
     protected function setBoleto() {
         $this->setRequest();
         $this->setOrder();
