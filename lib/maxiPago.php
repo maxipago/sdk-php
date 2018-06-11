@@ -92,6 +92,35 @@ class maxiPago extends maxiPago_ResponseBase {
     }
     
     /**
+     * Performs a debit card sale
+     *
+     * A Sale transaction combines the  authorization  and the
+     * capture in a single request. When performing a Sale
+     * maxiPago! sends the debit card for authorization and
+     * immediately captures that transaction, if approved.
+     * The response sent is final.
+     *
+     * @param array $array
+     * @throws BadMethodCallException
+     */
+    public function debtCardSale($array) {
+        try {
+            if (!is_array($array)) { throw new BadMethodCallException('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); }
+            if (is_object(maxiPago_RequestBase::$logger)) { maxiPago_RequestBase::$logger->logNotice('Calling method '.__METHOD__); }
+            $this->request = $array;
+            $req = new maxiPago_Request($this->credentials);
+            $req->setVars($this->request);
+            $req->setEndpoint($this->host.'/UniversalAPI/postXML');
+            $req->setTransactionType("debtSale");
+            $this->response = $req->processRequest();
+        }
+        catch (Exception $e) {
+            if (is_object(maxiPago_RequestBase::$logger)) { maxiPago_RequestBase::$logger->logFatal($e->getMessage()." in ".$e->getFile()." on line ".$e->getLine()); }
+            throw $e;
+        }
+    }
+    
+    /**
      * Creates a recurring payment
      * 
      * A recurring payment schedules a transaction to be run
