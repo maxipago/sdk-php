@@ -187,6 +187,10 @@ class maxiPago_RequestBase {
                     $this->tag = "<transaction-request></transaction-request>";
                     $this->setRecurring();                    
                     break;
+                case "modifyRecurring":
+                    $this->tag = "<api-request></api-request>";
+                    $this->setModifyRecurring();                    
+                    break;
                 case "void":
                     $this->tag = "<transaction-request></transaction-request>";
                     $this->setVoid();

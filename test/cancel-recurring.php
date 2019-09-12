@@ -18,7 +18,7 @@ try {
     $maxiPago->setDebug(true);
     $maxiPago->setEnvironment("TEST");
     $data = array(
-        "orderID" => "0A011599:015D39B9072C:D4A1:0C3C0994", // REQUIRED - Order ID replied by maxiPago! after creating the scheduled payment //
+        "orderID" => "0A0115CF:016D1716646F:70D8:2D7C7C96", // REQUIRED - Order ID replied by maxiPago! after creating the scheduled payment //
     );
     $maxiPago->cancelRecurring($data);
 

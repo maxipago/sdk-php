@@ -635,6 +635,125 @@ class maxiPago_XmlBuilder extends maxiPago_RequestBase {
         	$this->xml->order->$type->recurring->addChild("lastDate", $this->lastDate);
         }
     }
+    
+    protected function setModifyRecurring() {
+        $this->setRequest();
+        $this->xml->addChild("command", "modify-recurring");
+        
+        $this->xml->addChild("request");       
+        
+        if (strlen($this->orderID) > 0) {
+            $this->xml->request->addChild("orderID", $this->orderID);
+        }
+        
+        $this->xml->request->addChild("paymentInfo");
+        $this->xml->request->paymentInfo->addChild("cardInfo"); 
+        if (strlen($this->number) > 0) {
+            $this->xml->request->paymentInfo->cardInfo->addChild("creditCardNumber", $this->number);
+        }
+        if (strlen($this->expMonth) > 0) {
+            $this->xml->request->paymentInfo->cardInfo->addChild("expirationMonth", $this->expMonth);
+        }
+        if (strlen($this->expYear) > 0) {
+            $this->xml->request->paymentInfo->cardInfo->addChild("expirationYear", $this->expYear);
+        }
+        if (strlen($this->chargeTotal) > 0) {
+            $this->xml->request->paymentInfo->addChild("chargeTotal", $this->chargeTotal);
+        }
+        
+        $this->xml->request->addChild("recurring");
+        if (strlen($this->action) > 0) {
+            $this->xml->request->recurring->addChild("action", $this->action);
+        }
+        if (strlen($this->startDate) > 0) {
+            $this->xml->request->recurring->addChild("startDate", $this->startDate);
+        }        
+        if (strlen($this->startDate) > 0) {
+            $this->xml->request->recurring->addChild("startDate", $this->startDate);
+        }
+        if (strlen($this->frequency) > 0) {
+            $this->xml->request->recurring->addChild("frequency", $this->frequency);
+        }
+        if (strlen($this->period) > 0) {
+            $this->xml->request->recurring->addChild("period", $this->period);
+        }
+        if (strlen($this->installments) > 0) {
+            $this->xml->request->recurring->addChild("installments", $this->installments);
+        }
+        if (strlen($this->failureThreshold) > 0) {
+            $this->xml->request->recurring->addChild("failureThreshold", $this->failureThreshold);
+        }
+        if (strlen($this->firstAmount) > 0) {
+            $this->xml->request->recurring->addChild("firstAmount", $this->firstAmount);
+        }
+        if (strlen($this->lastAmount) > 0) {
+            $this->xml->request->recurring->addChild("lastAmount", $this->lastAmount);
+        }
+        if (strlen($this->lastDate) > 0) {
+            $this->xml->request->recurring->addChild("lastDate", $this->lastDate);
+        }
+        if (strlen($this->processorID) > 0) {
+            $this->xml->request->recurring->addChild("processorID", $this->processorID);
+        }
+        if (strlen($this->nextFireDate) > 0) {
+            $this->xml->request->recurring->addChild("nextFireDate", $this->nextFireDate);
+        }
+        if (strlen($this->fireDay) > 0) {
+            $this->xml->request->recurring->addChild("fireDay", $this->fireDay);
+        }
+        
+        $this->xml->request->addChild("billingInfo");
+        if (strlen($this->billingName) > 0) {
+            $this->xml->request->billingInfo->addChild("name", $this->billingName);
+        }
+        if (strlen($this->billingAddress) > 0) {
+            $this->xml->request->billingInfo->addChild("address1", $this->billingAddress);
+        }
+        if (strlen($this->billingAddress2) > 0) {
+            $this->xml->request->billingInfo->addChild("address2", $this->billingAddress2);
+        }
+        if (strlen($this->billingCity) > 0) {
+            $this->xml->request->billingInfo->addChild("city", $this->billingCity);
+        }
+        if (strlen($this->billingPostalCode) > 0) {
+            $this->xml->request->billingInfo->addChild("zip", $this->billingPostalCode);
+        }
+        if (strlen($this->billingCountry) > 0) {
+            $this->xml->request->billingInfo->addChild("country", $this->billingCountry);
+        }
+        if (strlen($this->billinEmail) > 0) {
+            $this->xml->request->billingInfo->addChild("email", $this->billinEmail);
+        }
+        if (strlen($this->billingPhone) > 0) {
+            $this->xml->request->billingInfo->addChild("phone", $this->billingPhone);
+        }
+        
+        $this->xml->request->addChild("shippingInfo");
+        if (strlen($this->shippingName) > 0) {
+            $this->xml->request->shippingInfo->addChild("name", $this->shippingName);
+        }
+        if (strlen($this->shippingAddress) > 0) {
+            $this->xml->request->shippingInfo->addChild("address1", $this->shippingAddress);
+        }
+        if (strlen($this->shippingAddress2) > 0) {
+            $this->xml->request->shippingInfo->addChild("address2", $this->shippingAddress2);
+        }
+        if (strlen($this->shippingCity) > 0) {
+            $this->xml->request->shippingInfo->addChild("city", $this->shippingCity);
+        }
+        if (strlen($this->shippingPostalCode) > 0) {
+            $this->xml->request->shippingInfo->addChild("zip", $this->shippingPostalCode);
+        }
+        if (strlen($this->shippingCountry) > 0) {
+            $this->xml->request->shippingInfo->addChild("country", $this->shippingCountry);
+        }
+        if (strlen($this->shippingEmail) > 0) {
+            $this->xml->request->shippingInfo->addChild("email", $this->shippingEmail);
+        }
+        if (strlen($this->shippingPhone) > 0) {
+            $this->xml->request->shippingInfo->addChild("phone", $this->shippingPhone);
+        }
+    }
            
     protected function setCommand() {
         $this->xml->addChild("command", $this->type);

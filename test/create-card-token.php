@@ -13,12 +13,12 @@ try {
     $maxiPago->setLogger(dirname(__FILE__).'/logs','INFO');
     
     // Set your credentials before any other transaction methods
-    $maxiPago->setCredentials("100", "merchant_key");
+    $maxiPago->setCredentials("1234", "1234");
 
     $maxiPago->setDebug(true);
     $maxiPago->setEnvironment("TEST");
     $data = array(
-        "customerId" => "11006", // REQUIRED - Customer ID created by maxiPago! after "add-customer" command //
+        "customerId" => "254789", // REQUIRED - Customer ID created by maxiPago! after "add-customer" command //
         "creditCardNumber" => "5555555555554444", // REQUIRED - Full credit card number //
         "expirationMonth" => "12", // REQUIRED - Credit card expiration month //
         "expirationYear" => "2020", // REQUIRED - Credit card expiration year //

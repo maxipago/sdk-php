@@ -18,8 +18,8 @@ try {
 	$maxiPago->setDebug(true);
 	$maxiPago->setEnvironment("TEST");
 	$data = array(
-			"customerId" => "44708254", // REQUIRED - Customer ID created by maxiPago! after "add-customer" command //
-			"creditCardNumber" => "4111111111111111",
+			"customerId" => "45350974", // REQUIRED - Customer ID created by maxiPago! after "add-customer" command //
+			"creditCardNumber" => "5448280000000007",
 			"expirationMonth" => "01",
 			"expirationYear" => "3000",
 			"billingName" => "Fulano de Tal", // RECOMMENDED - Customer name //

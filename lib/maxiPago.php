@@ -142,6 +142,40 @@ class maxiPago extends maxiPago_ResponseBase {
             throw $e;
         }
     }
+    
+    /**
+     * Creates a recurring payment
+     * 
+     * A recurring payment schedules a transaction to be run
+     * at a specific interval, starting at a specific date.
+     * A recurring payment is always a Sale (you cannot
+     * authorize a recurring payment to capture it later).
+     * 
+     * @param array $array
+     * @throws BadMethodCallException
+     */
+    public function ModifyRecurring($array) {
+        try {
+            if (!is_array($array)) { 
+            	throw new BadMethodCallException('[maxiPago Class] Method '.__METHOD__.' must receive array as input'); 
+            }
+            if (is_object(maxiPago_RequestBase::$logger)) { 
+            	maxiPago_RequestBase::$logger->logNotice('Calling method '.__METHOD__); 
+            }
+            $this->request = $array;
+            $req = new maxiPago_Request($this->credentials);
+            $req->setVars($this->request);
+            $req->setEndpoint($this->host.'/UniversalAPI/postAPI');
+            $req->setTransactionType("modifyRecurring");
+            $this->response = $req->processRequest();
+        }
+        catch (Exception $e) {
+            if (is_object(maxiPago_RequestBase::$logger)) { 
+            	maxiPago_RequestBase::$logger->logCrit($e->getMessage()." in ".$e->getFile()." on line ".$e->getLine()); 
+            }
+            throw $e;
+        }
+    }
 
     /**
      * Performs a credit card void

@@ -21,13 +21,11 @@ try {
         "processorID" => "1", // REQUIRED - Use '1' for testing. Contact our team for production values //
         "referenceNum" => "TestTransaction1234562", // REQUIRED - Merchant internal order number //
         "customerIdExt" => "123.123.123-12",
-        "chargeTotal" => "10.00", // REQUIRED - Transaction amount in US format //
+        "chargeTotal" => "11.00", // REQUIRED - Transaction amount in US format //
         "numberOfInstallments" => "2", // Optional - Number of installments ("parcelas") //
-        "chargeInterest" => "N", // Optional - Charge interest flag (Y/N) ("com" e "sem" juros) //
-        "number" => "4916497917001722", // REQUIRED - Full credit card number //
-        "expMonth" => "07", // REQUIRED - Credit card expiration month //
-        "expYear" => "2020", // REQUIRED - Credit card expiration year //
-        "cvvNumber" => "419", // RECOMMENDED - Credit card verification number //
+        "chargeInterest" => "N", // Optional - Charge interest flag (Y/N) ("com" e "sem" juros) //        
+        "token" => "Qhkx71KNxfNgJR4AQc9sZQ==", // REQUIRED for this command - Credit card token created by maxiPago! //
+        "customerId" => "45350974", // REQUIRED for this command - Credit card token created by maxiPago! //        
         "currencyCode" => "", // Optional - Valid only for ChasePaymentech multi-currecy setup. Please see full documentation for more info//
         "ipAddress" => "123.123.123.123", // Optional //
     	"billingName" => "Fulano de Tal Joao", // RECOMMENDED - Customer name //
@@ -61,6 +59,7 @@ try {
         "installments" => "12", // REQUIRED for this command - Total number of payments before the order is completed //
         "failureThreshold" => "2" // REQUIRED for this command - Number of declines before email notification //
     );
+        
     $maxiPago->createRecurring($data);
 
     if ($maxiPago->isErrorResponse()) {
