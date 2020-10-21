@@ -438,4 +438,9 @@ class maxiPago_RequestBase {
     protected $dob;
     protected $sex;
     protected $customerId;
+	
+	//Info Brand
+	protected $brandCode;
+	protected $brandMessage;
+	protected $brandTransactionID;
 }

@@ -283,5 +283,29 @@ class maxiPago_ResponseBase extends maxiPago_ServiceBase {
     public function getauthenticated() {
     	if ((isset($this->response["authenticated"])) && (strlen($this->response["authenticated"]) > 0)) { return $this->response["authenticated"]; }
     }
+	
+	/**
+     * Gets the brandCode
+     * @return string
+     */
+    public function getBrandCode() {
+        if ((isset($this->response["brandCode"])) && (strlen($this->response["brandCode"]) > 0)) { return $this->response["brandCode"]; }
+    }
+	
+	/**
+     * Gets the brandMessage
+     * @return string
+     */
+    public function getBrandMessage() {
+        if ((isset($this->response["brandMessage"])) && (strlen($this->response["brandMessage"]) > 0)) { return $this->response["brandMessage"]; }
+    }
+	
+	/**
+     * Gets the brandTransactionID
+     * @return string
+     */
+    public function getBrandTransactionID() {
+        if ((isset($this->response["brandTransactionID"])) && (strlen($this->response["brandTransactionID"]) > 0)) { return $this->response["brandTransactionID"]; }
+    }
     
 }
