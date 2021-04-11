@@ -65,7 +65,7 @@ In order to send requests you will need valid Merchant Credentials. They can be 
 To set the credentials and environment used to process requests:
 
 ```php
-$maxiPago->setCredentials("100", "merchant_key");
+$maxiPago->setCredentials("id_merchant", "merchant_key");
 $maxiPago->setEnvironment("TEST");
 ```
 
