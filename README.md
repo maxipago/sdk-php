@@ -33,14 +33,14 @@ You can get a more comprehensive view of our API by looking at our documentation
 The library has been tested on **PHP 5.1.6 and up** and consists of the following files:
 
 ```
-  /lib/  
-  |-- maxiPago.php  
-  |-- maxipago  
-    |-- maxiPagoRequest.php  
-    |-- maxiPagoRequestBase.php  
-    |-- maxiPagoResponseBase.php  
-    |-- maxiPagoServiceBase.php  
-    |-- maxiPagoTransaction.php  
+  /lib/
+  |-- maxiPago.php
+  |-- maxipago
+    |-- maxiPagoRequest.php
+    |-- maxiPagoRequestBase.php
+    |-- maxiPagoResponseBase.php
+    |-- maxiPagoServiceBase.php
+    |-- maxiPagoTransaction.php
     |-- maxiPagoXmlHandler.php
 ```
 
@@ -99,7 +99,7 @@ To send a request to **maxiPago!** you need to call one of the methods listed ab
 		"expYear" => "2017",
 		"cvvNumber" => "123"
 	);
-	
+
 	$maxiPago->creditCardAuth($data);
 ```
 
@@ -109,7 +109,7 @@ There are methods to get each piece of information from the response. However, y
 
 ```
 	print_r($maxiPago->getResult());
-	
+
 	Array
 	(
 	    [authCode] => 123456
@@ -123,7 +123,7 @@ There are methods to get each piece of information from the response. However, y
 	    [cvvResponseCode] =>
 	    [processorCode] => A
 	    [processorMessage] => APPROVED
-	    [errorMessage] => 
+	    [errorMessage] =>
 	)
 ```
 
@@ -138,25 +138,25 @@ There are methods to get each piece of information from the response. However, y
 * Automatically save card: **creditCardAuth() or creditCardSale()**
 * Void: **creditCardVoid()**
 * Refund: **creditCardRefund()**
-  
+
 #####Recurring Transactions#####
 * Create recurring credit card billing: **createRecurring()**
 * Cancel a recurring billing: **cancelRecurring()**
- 
+
 #####Boleto Transactions#####
 * Create boleto payment slip (Brazil only): **boletoSale()**
 
 #####Reports#####
 * Query one single transaction: **pullReport()**
-* Query a list of transactions: **pullReport()** 
-* Flip through pages of a transaction list: **pullReport()** 
-* Query a pending report: **pullReport()** 
+* Query a list of transactions: **pullReport()**
+* Flip through pages of a transaction list: **pullReport()**
+* Query a pending report: **pullReport()**
 
 
 #####Customer Profile / Card On File#####
 * Create a profile *(a profile must be created to save a card)*: **addProfile()**
-* Update a profile: **updateProfile()** 
-* Remove a profile: **deleteProfile()** 
+* Update a profile: **updateProfile()**
+* Remove a profile: **deleteProfile()**
 * Add a credit card: **addCreditCard()**
 * Remove a credit card: **deleteCreditCard()**
 
@@ -202,13 +202,11 @@ There are methods to get each piece of information from the response. However, y
 
 Our support team is happy to help you with any questions you might have, be it about the functionalities of our platform or about payments in general. They are available to customers and non-customers alike and can be reached at support [@] maxipago [.] com.
 
+-----
 ## License ##
 
-Library for integration with the **maxiPago! Payment Gateway**     
-**_Copyright (C) 2013, maxiPago!_**        
-                                                                      
-This program is free software: you can redistribute it and/or modify  it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.                                   
-                                                                      
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.                          
-                                                                      
-You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
+Library for integration with the **maxiPago! Payment Gateway**
+
+**_Copyright (C) 2013, maxiPago!_**
+
+[Apache](https://github.com/maxipago/sdk-php/blob/master/LICENSE)
